@@ -1,11 +1,13 @@
 "use client"
 import React, { useState, useEffect } from "react"
+import { BsFillSendCheckFill } from "react-icons/bs";
 import { GiMailbox } from "react-icons/gi"
 
 function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,7 +29,10 @@ function Contact() {
     .then(response => {
       if (response.ok) {
         console.log('Correo electrónico enviado exitosamente');
-        console.log()
+        setShowAlert(true);
+        setEmail("");
+        setName("");
+        setMessage("");
       } else {
         console.log('Error al enviar el correo electrónico');
       }
@@ -35,16 +40,21 @@ function Contact() {
     .catch(error => console.error('Error al hacer la solicitud HTTP', error));
   }
 
+  const handleClose = () => {
+    setShowAlert(false);
+  };
+
   return (
-    <section className="min-h-screen">
+    <section className="min-h-screen" id="Contact">
       <div className="flex flex-row text-center justify-center">
         <GiMailbox className="text-2xl text-indigo-500 mx-5" />
         <h1 className="text-3xl text-center">Contáctame</h1>
       </div>
         <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center m-10 p-20">
-          <div >
-            <p className="text-xl text-center">Si tienes alguna duda o quieres contactarme, puedes hacerlo a través de este formulario.</p>
-          </div>
+        <div >
+          <p className="text-xl text-center my-2">Si tienes alguna duda o quieres contactarme, puedes hacerlo a través de este formulario.</p>
+          {/* código del formulario de contacto */}
+        </div>
           <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block mb-2 font-bold text-left ">
@@ -95,7 +105,21 @@ function Contact() {
               >
                 Enviar mensaje
               </button>
-            </div>
+            {showAlert && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <div className="flex justify-center text-center">
+                  <BsFillSendCheckFill className="text-green-500 mx-2 inline-block align-text-bottom mr-2 text-5xl" />
+                </div>
+                <span className="block sm:inline"> El correo electrónico ha sido enviado exitosamente.</span>
+                <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                  <svg className="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onClick={handleClose}>
+                    <title>Cerrar</title>
+                    <path d="M14.348 6.165c.292-.293.292-.767 0-1.06l-.708-.707a.752.752 0 0 0-1.06 0L10 7.88 7.418 5.298a.752.752 0 0 0-1.06 0l-.708.707a.752.752 0 0 0 0 1.06L8.12 10l-2.582 2.582a.752.752 0 0 0 0 1.06l.708.707c.292.293.767.293 1.06 0L10 12.12l2.582 2.582c.292.293.767.293 1.06 0l.708-.707a.752.752 0 0 0 0-1.06L11.88 10l2.582-2.582z" />
+                  </svg>
+                </span>
+              </div>
+            )}
+          </div>
           </form>
         </div>
     </section>

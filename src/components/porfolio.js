@@ -22,7 +22,7 @@ function Portafolio() {
   }, []);
 
   return (
-    <section className="min-h-screen dark:bg-gradient-to-b dark:bg-gray-900  dark:to-indigo-900">
+    <section className="min-h-screen dark:bg-gradient-to-b dark:bg-gray-900  dark:to-indigo-900" id="Portafolio">
       <div className="text-center p-10">
         <div className="flex text-center justify-center"> 
           <BsFolder2Open className="text-2xl text-indigo-500 mx-2"/>

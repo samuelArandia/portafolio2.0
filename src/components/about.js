@@ -13,7 +13,7 @@ function About() {
   }, []);
 
   return (
-    <section className="min-h-screen" id="sobreMi" data-aos="fade-right">
+    <section className="min-h-screen" id="About" data-aos="fade-right">
       <div className="container mx-auto px- py-20 md:py-32">
         <div className="flex justify-center text-center">
           <BsFillPersonFill className="text-5xl text-indigo-500 mx-5"/>

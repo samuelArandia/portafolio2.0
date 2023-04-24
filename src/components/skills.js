@@ -33,7 +33,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className='min-h-screen mt-20'>
+    <section className='min-h-screen mt-20' id="Skills">
       <div className="flex text-center justify-center my-20">
         <FaCodeBranch className="text-2xl text-indigo-500 mx-5" />
         <h1 className="text-3xl text-center">Habilidades</h1>

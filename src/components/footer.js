@@ -6,7 +6,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaGithub } from "react-
 import { socialMedia } from "@/constans";
 import { navLinks } from "@/constans";
 import { projects } from "@/constans";
-
+import { Link } from "react-scroll";  
 
 function Footer() {
   const logoUrl = "/logo.png";
@@ -49,9 +49,10 @@ function Footer() {
             <ul className="list-none items-center">
               {navLinks.map((nav) => (
                 <li key={nav.id} className="cursor-pointer text-xl">
-                  <a 
-                  className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300"
-                  href={`/${nav.id}`}>{nav.title}</a>
+                  <Link to={nav.id} smooth={true} duration={500} offset={-70}
+                    className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300">
+                    {nav.title}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -6,6 +6,7 @@ import { AiOutlineClose } from "react-icons/ai"
 import { navLinks } from "@/constans";
 import { BsSun } from "react-icons/bs";
 import { GiDeathStar } from "react-icons/gi"
+import { Link } from 'react-scroll';
 
 function Header({ darkMode, toggleDarkMode}) {
   const [toggle, setToggle] = useState(false);
@@ -14,13 +15,16 @@ function Header({ darkMode, toggleDarkMode}) {
   return (
     <nav className="w-full flex py-2 justify-between items-center navbar">
       {/* imagen tiene que ser un link al home  */}
-      <a href="#home" className="cursor-pointer">
+      <a href="/" className="cursor-pointer">
         <Image src={logoUrl} alt="Logo" width={124} height={32} className="ml-5"/>
       </a>
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {navLinks.map((nav, index) => (
           <li key={nav.id} className={` cursor-pointer text-lg mr-10 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300${index === navLinks.length - 1 ? 'mr-0': 'mr-10'}`}>
-            <a href={`${nav.Link}`}>{nav.title}</a>
+            <Link to={nav.id} smooth={true} duration={500} offset={-70} 
+              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300">
+              {nav.title}
+            </Link>
           </li>
         ))}
         {

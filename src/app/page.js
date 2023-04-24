@@ -21,8 +21,8 @@ import Loader from "@/components/loader";
     setLoading(true);
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setDarkMode(true);
-      setLoading(false);
     }
+    setLoading(false);
   }, []);
 
   //Esta funcion se ejecuta cuando el usuario cambia el modo oscuro
@@ -31,11 +31,11 @@ import Loader from "@/components/loader";
   }
 
   useEffect(() => {
-    Aos.init({ duration: 2000 });
+    Aos.init();
   }, []);
 
   useEffect(() => {
-    () => setLoading(false); 
+    return () => setLoading(false); 
   }, []);
 
   return (
