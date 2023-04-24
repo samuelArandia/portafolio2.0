@@ -1,6 +1,7 @@
 # Portafolio de Samuel Arandia
 
 ¡Bienvenido a mi portafolio en GitHub! Mi nombre es Samuel Arandia y soy un desarrollador web apasionado por crear soluciones tecnológicas innovadoras. Este portafolio es una muestra de mis habilidades técnicas y creativas, así como también de mi enfoque en el diseño de experiencias de usuario atractivas e intuitivas.
+<img width="1074" alt="portafolio" src="https://user-images.githubusercontent.com/83564327/233895705-2d718512-abcb-42f5-b4a8-e033087c5fc1.png">
 
 ## Resumen
 
