@@ -1,58 +1,116 @@
 "use client"
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
+import { FaPython, FaVuejs, FaReact } from "react-icons/fa";
+import { BsBootstrap } from "react-icons/bs";
+import { SiMicrosoftazure, SiPostgresql, SiPug, SiTailwindcss } from "react-icons/si";
+import { DiCss3, DiDjango, DiJavascript } from "react-icons/di";
+import { TbBrandNextjs } from "react-icons/tb";
+import { AiFillHtml5 } from "react-icons/ai";
+import { BsFolder2Open } from "react-icons/bs";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Portafolio() {
-    const Atm = "/atm.png";
-    const Sill = "/SILL.png";
-    const Platzi = "/platzi.png";
+  const atm = "/atm.png";
+  const sill = "/SILL.png";
+  const platzi = "/platzi.png";
+  const portafolio = "/portafolio.png";
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
-    return ( 
-        <section className="min-h-screen">
-            <h1>Portafolio</h1>
-            <h3 className="subtitulo">Conoce mi portfolio. Estos son algunos de los proyectos en los que he participado como freelance.</h3>
-            <div className="">
-                <div className="text-center shadow-lg rounded-xl my-10">
-                    <a href="https://atodamakina.cl" target="_blank" className="link" />
-                    <div className="">
-                        <Image src={Atm} alt="Atm" width={100} height={100}/>
-                    </div>
-                    <h3 className="text-lg font-medium pt-8 pb-2"   >ATM</h3>
-                    <p> Arriendo de Herramientas y Maquinaria para el area de construcción</p>
-                    <hr />
-                    <div className="">
-                        <h3 className="user__name">A toda makina SPA</h3>
-                    </div>
-                </div>
-                <div className="text-center shadow-lg rounded-xl ">
-                    <a href="https://center.sill.cl/login" target="_blank" className="link" />
-                    <div className="">
-                        <Image src={Sill} alt="Sill" width={100} height={100}/>
-                    </div>
-                    <h3 className="text-lg font-medium pt-8 pb-2" >SILL</h3>
-                    <p>Aplicación para la gestion y control de inventario de equipos tegnologicos</p>
-                    <hr />
-                    <div className="">
-                        <h3 className="">Eleva SPA</h3>
-                    </div>
-                </div>
-                <div className="text-center shadow-lg rounded-xl ">
-                    <a href="https://samuelarandia.github.io/curso-practico-javascript/" target="_blank" className="link" />
-                    <div className="">
-                        <Image src={Platzi} alt="Platzi" href="https://samuelarandia.github.io/curso-practico-javascript/" target="_blank"  width={100} height={100}/>
-                    </div>
-                    <h3 className="text-lg font-medium pt-8 pb-2">PLATZI</h3>
-                    <p>Calculo de figuras geométricas</p>
-                    <hr />
-                    <div className="">
-                        <h3 className="">Escuela de desarrollo web</h3>
-                    </div>
-                </div>
+  return (
+    <section className="min-h-screen dark:bg-gradient-to-b dark:bg-gray-900  dark:to-indigo-900">
+      <div className="text-center p-10">
+        <div className="flex text-center justify-center"> 
+          <BsFolder2Open className="text-2xl text-indigo-500 mx-2"/>
+          <h1 className="text-3xl mb-20 text-center"> Portafolio</h1>
+        </div>
+        <h5 className="text-2xl">Conoce mi portfolio. Estos son algunos de los proyectos en los que he participado y tambien algunos que hecho en los cursos</h5>
+      </div>
+      <div className="flex flex-row flex-wrap justify-around w-auto mt-5">
+        <div className="max-w-md m-3 bg-white rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden md:max-w-2xl p-2 text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" data-aos="zoom-in">
+          <div className="md:flex  justify-center align-middle">
+            <div className="md:shrink-0">
+              <Image src={atm} alt="Portada empresa" width={300} height={200} className="w-full object-cover md:h-full md:w-48" loading="lazy"/>
             </div>
-        </section>
+            <div className="p-8" >
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">ATM</div>
+              <a href="https://atodamakina.cl" target="_blank" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">A toda makina Spa</a>
+              <p className="mt-2 text-slate-500">Landing page de empresa de rriendo de Herramientas y Maquinaria para el area de construcción</p>
+              <div className="flex flex-row justify-center p-3">
+                <DiJavascript className="text-3xl text-yellow-500 " />
+                <FaVuejs className="text-3xl text-green-700 mx-5" />
+                <BsBootstrap className="text-3xl text-purple-500" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" max-w-md m-3 bg-white rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden md:max-w-2xl p-2 text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" data-aos="zoom-in">
+          <div className="md:flex justify-center align-middle">
+            <div className="md:shrink-0">
+              <Image src={sill} alt="Portada empresa" width={400} height={200} className=" h-48 w-full object-cover md:h-full md:w-48" loading="lazy" />
+            </div>
+            <div className="p-8">
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Sill</div>
+              <a href="https://center.sill.cl/login" target="_blank" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Eleva Spa</a>
+              <p className="mt-2 text-slate-500">Aplicación para la gestión y control de inventario de equipos tecnológicos, proyecto en cual trabaje en mi practicas</p>
+              <div className="flex flex-row justify-center p-3" >
+                <FaVuejs className="text-3xl text-green-700 mx-5" />
+                <SiPug className="text-3xl text-amber-950 mx-5" />
+                <BsBootstrap className="text-3xl text-purple-500 mx-5" />
+                <FaPython className="text-3xl text-blue-500 mx-5" />
+                <DiDjango className="text-3xl text-green-900 mx-5" />
+                <SiPostgresql className="text-3xl text-blue-500 mx-5" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-md m-3 bg-white rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden md:max-w-2xl p-2 text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" data-aos="zoom-in">
+          <div className="md:flex justify-center align-middle">
+            <div className="md:shrink-0">
+              <Image src={platzi} alt="Portada empresa" width={300} height={200} className="h-48 w-full object-cover md:h-full md:w-48" loading="lazy" />
+            </div>
+            <div className="p-8">
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Platzi</div>
+              <a href="https://samuelarandia.github.io/curso-practico-javascript/" target="_blank" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Escuela de desarrollo web</a>
+              <p className="mt-2 text-slate-500">Curso de JavaScript realizamos un pagina que calcula distintas medidas de figuras geométricas</p>
+              <div className="flex flex-row justify-center p-3" >
+                <DiJavascript className="text-3xl text-yellow-500 " />
+                <AiFillHtml5 className="text-3xl text-red-500 mx-5" />
+                <DiCss3 className="text-3xl text-blue-500" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" max-w-md m-3 bg-white rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden md:max-w-2xl p-2 text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" data-aos="zoom-in">
+          <div className="md:flex justify-center align-middle">
+            <div className="md:shrink-0">
+              <Image src={portafolio} alt="Portada empresa" width={300} height={200} className=" h-48 w-full object-cover md:h-full md:w-48" loading="lazy" />
+            </div>
+            <div className="p-8">
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Mi portafolio</div>
+              <a href="https://samuelarandia.com" target="_blank" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Samuel Arandia</a>
+              <p className="mt-2 text-slate-500">Mi portafolio web lo cree en base a todo lo aprendiendo en todos los cursos y proyectos en lo que he participado</p>
 
-    );
+              <div className="flex flex-row justify-center p-3" >
+                <FaReact className="text-3xl text-blue-500 mx-5" />
+                <DiJavascript className="text-3xl text-yellow-500 " />
+                <SiTailwindcss className="text-3xl text-blue-600 mx-5" />
+                <TbBrandNextjs className="text-3xl text-blue-900 " />
+                <SiMicrosoftazure className="text-3xl text-blue-500 mx-5" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="p-5 text-center">
+        <p className="text-sm">Esta sección la estaré actualizando con nuevos proyectos al paso del tiempo.</p>
+      </div>
+    </section>
+  );
 }
 
 export default Portafolio;

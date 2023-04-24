@@ -4,53 +4,33 @@ import Image from "next/image";
 import { FaHamburger } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai"
 import { navLinks } from "@/constans";
-import { BsFillMoonStarsFill, BsSun } from "react-icons/bs";
+import { BsSun } from "react-icons/bs";
+import { GiDeathStar } from "react-icons/gi"
 
-function Header() {
+function Header({ darkMode, toggleDarkMode}) {
   const [toggle, setToggle] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const logoUrl = "/logo.png";
-
-  //Esta funcion se ejecuta cuando el componente se monta
-  useEffect(() => {
-    //Si el usuario tiene el modo oscuro activado
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode(true);
-    }
-  }, []);
-
-    // Esta función se ejecuta cada vez que el estado isDarkMode cambia
-    useEffect(() => {
-      // Agrega o elimina la clase "dark" de la etiqueta <html> según el modo actual
-      if (isDarkMode) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    }, [darkMode]);
-  
-    // Esta función se ejecuta cuando el botón de modo oscuro se presiona
-    function toggleDarkMode() {
-      setIsDarkMode(!darkMode);
-    }
+  const logoUrl = "/logo.png";  
   
   return (
     <nav className="w-full flex py-2 justify-between items-center navbar">
-      <Image src={logoUrl} alt="Logo" width={124} height={32} />
+      {/* imagen tiene que ser un link al home  */}
+      <a href="#home" className="cursor-pointer">
+        <Image src={logoUrl} alt="Logo" width={124} height={32} className="ml-5"/>
+      </a>
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {navLinks.map((nav, index) => (
-          <li key={nav.id} className={`cursor-pointer text-xl mr-10 ${index === navLinks.length - 1 ? 'mr-0': 'mr-10'}`}>
-            <a href={`#${nav.id}`}>{nav.title}</a>
+          <li key={nav.id} className={` cursor-pointer text-lg mr-10 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300${index === navLinks.length - 1 ? 'mr-0': 'mr-10'}`}>
+            <a href={`${nav.Link}`}>{nav.title}</a>
           </li>
         ))}
         {
           darkMode ? (  
             <li>
-              <BsFillMoonStarsFill onClick={toggleDarkMode} className="text-2xl cursor-pointer mr-10 text-black" />
+              <BsSun onClick={toggleDarkMode} className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-2xl cursor-pointer mr-10" />
             </li>
           ) : (
             <li>
-              <BsSun onClick={toggleDarkMode} className="text-2xl cursor-pointer mr-10 text-black" />
+              <GiDeathStar onClick={toggleDarkMode} className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-2xl cursor-pointer mr-10" />
             </li>
           )
         }
@@ -80,9 +60,7 @@ function Header() {
             <li key={nav.id} className={`cursor-pointer text-xl mr-10 ${index === navLinks.length - 1 ? 'mr-0' : 'mb-4'}`}>
               <a href={`/${nav.id}`}>{nav.title}</a>
             </li>
-
           ))}
-
         </ul>
       </div>
     </nav>

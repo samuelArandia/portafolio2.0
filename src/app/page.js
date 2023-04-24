@@ -18,9 +18,10 @@ import Loader from "@/components/loader";
 
   //Esta funcion se ejecuta cuando el componente se monta
   useEffect(() => {
-    //Si el usuario tiene el modo oscuro activado
+    setLoading(true);
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setDarkMode(true);
+      setLoading(false);
     }
   }, []);
 
@@ -34,19 +35,22 @@ import Loader from "@/components/loader";
   }, []);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 3000); // simula un tiempo de carga de 3 segundos
+    () => setLoading(false); 
   }, []);
 
   return (
-    <main className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'}`}>
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-      <Inicio />
-      <About />
-      <Portafolio />
-      <Skills /> 
-      <Contact />
-      <Footer />
-    </main>
+    loading ? <Loader /> :
+    <>
+      <main className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'}`}>
+        <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <Inicio />
+          <About />
+          <Portafolio />
+          <Skills />
+          <Contact />
+          <Footer />
+        </main>
+    </>
   )
 }
 
