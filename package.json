@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build": "npm install --force && next build"
   },
   "dependencies": {
     "aos": "^3.0.0-beta.6",
