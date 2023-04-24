@@ -1,47 +1,91 @@
 "use client"
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 import { socialMedia } from "@/constans";
+import { TypeAnimation } from "react-type-animation";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 
 function Inicio() {
   const perfil = "/perfil.png";
 
-  return ( 
-    <section className="">
-      <div className="text-center p-10">
-        <div className="flex justify-center items-center">
-          <div className="text-left ">
-            <h1 className="text-5xl py-2 font-medium text-indigo-700">Hola, Soy Samuel Arandia</h1>
-            <h2 className="text-2xl font-semibold">Desarrollador de software</h2>
-            <h4 className="text-lg font-light">Formado para construir sobre bases y fundamentos. Busco un puesto de trabajo desafiante y dinámico para continuar sumando experiencia y conocimientos.</h4>
-            <div className="mt-8">
-              <input type="button" onclick="window.location.href='https://drive.google.com/file/d/1cSYAWENGx7xBDv369pYlYbjlWnAxP9sK/view?usp=sharing';" download="CvSamuelArandia" defaultValue="Descargar Cv" target="_blank" className="bg-indigo-700 hover:bg-indigo-800 text-white font-medium py-2 px-4 rounded mr-4" />
-              <input type="button" onclick="window.location.href='mailto:samuelarandia@gmail.com';" defaultValue="Escríbeme" target="_blank" className="bg-gray-400 hover:bg-gray-500 text-white font-medium py-2 px-4 rounded" />
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    buttonRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
+  return (
+    <section className="min-h-screen md:container md:mx-auto">
+      <div className="p-40 md:p-40">
+        <div className="flex justify-center text-center md:text-left">
+          <div className="m-5">
+            <div className="flex flex-col">
+                <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                  Hola, Soy Samuel Arandia
+                </h1>
+              <TypeAnimation
+                sequence={['Soy desarrollador de software', 1500, 'Soy analista y programador de sistemas', 1500, 'Bienvenido a mi portafolio', 1500]}
+                style={{ fontSize: '2em', display: 'inline-block' }}
+                className="text-2xl font-semibold"
+                cursor={true}
+                repeat={Infinity}
+              />
+              <h4 className="text-lg font-light">
+                Formado para construir sobre bases y fundamentos.
+                <br/>Apto para un puesto de trabajo
+                desafiante y dinámico para continuar sumando experiencia y conocimientos.
+              </h4>
+            </div>
+            <div className="mt-8 justify-between">
+              <button
+                ref={buttonRef}
+                onClick={() =>
+                  (window.location.href =
+                    "https://drive.google.com/file/d/1cSYAWENGx7xBDv369pYlYbjlWnAxP9sK/view?usp=sharing")
+                }
+                download="CvSamuelArandia"
+                target="_blank"
+                className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40"
+              >
+                Descargar CV
+              </button>
+              <button
+                onClick={() => (window.location.href = "mailto:samuelarandia@gmail.com")}
+                target="_blank"
+                className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40"
+              >
+                Escríbeme
+              </button>
             </div>
             <div className="">
-                <div className="flex flex-row text-center justify-center">
-                  {socialMedia.map((social) => (
-                    <a
-                      key={social.id}
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-indigo-700 text-3xl hover:text-indigo-800 m-4"
-                    >
-                      {social.id === "social-media-1" && <FaInstagram />}
-                      {social.id === "social-media-2" && <FaFacebook />}
-                      {social.id === "social-media-3" && <FaTwitter />}
-                      {social.id === "social-media-4" && <FaLinkedin />}
-                      {social.id === "social-media-5" && <FaGithub />}
-                    </a>
-                  ))}
-                </div>
+              <div className="flex flex-row text-center justify-center p-5">
+                {socialMedia.map((social) => (
+                  <a
+                    key={social.id}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="m-5 md:m-10 md:mr-10 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-3xl cursor-pointer"
+                  >
+                    {social.id === "social-media-1" && <FaInstagram />}
+                    {social.id === "social-media-2" && <FaFacebook />}
+                    {social.id === "social-media-3" && <FaTwitter />}
+                    {social.id === "social-media-4" && <FaLinkedin />}
+                    {social.id === "social-media-5" && <FaGithub />}
+                  </a>
+                ))}
               </div>
+            </div>
           </div>
-          <div className=" mx-auto w-1/2">
-            <Image src={perfil} alt="perfil" width={200} height={200} className="rounded-full" />
+          <div className="w-auto ml-20 hidden md:block">
+            <Image src={perfil} alt="perfil" width={300} height={200} className="rounded-full w-64 skew-y-0 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
           </div>
         </div>
       </div>
