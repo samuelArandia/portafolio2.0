@@ -6,7 +6,7 @@ import { socialMedia } from "@/constans";
 import { TypeAnimation } from "react-type-animation";
 import Aos from "aos";
 import "aos/dist/aos.css";
-
+import { Link } from "react-scroll";
 
 function Inicio() {
   const perfil = "/perfil.png";
@@ -20,6 +20,8 @@ function Inicio() {
   useEffect(() => {
     Aos.init();
   }, []);
+
+  const contactId = "Contact"
 
   return (
     <section className="min-h-screen md:container md:mx-auto" id="Inicio">
@@ -44,25 +46,22 @@ function Inicio() {
               </h4>
             </div>
             <div className="mt-8 justify-between">
+              {/* descargar archivo pdf */}
               <button
                 ref={buttonRef}
-                onClick={() =>
-                  (window.location.href =
-                    "https://drive.google.com/file/d/1cSYAWENGx7xBDv369pYlYbjlWnAxP9sK/view?usp=sharing")
-                }
+                onClick={() => window.open("https://drive.google.com/file/d/1cSYAWENGx7xBDv369pYlYbjlWnAxP9sK/view?usp=sharing", "_blank")}
                 download="CvSamuelArandia"
                 target="_blank"
-                className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40"
+                className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40 cursor-pointer"
               >
                 Descargar CV
               </button>
-              <button
-                onClick={() => (window.location.href = "mailto:samuelarandia@gmail.com")}
-                target="_blank"
-                className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40"
+              <Link
+                to={contactId} smooth={true} duration={500} offset={-70}
+                className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40 cursor-pointer"
               >
                 Escríbeme
-              </button>
+              </Link>
             </div>
             <div className="">
               <div className="flex flex-row text-center justify-center p-5">

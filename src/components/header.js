@@ -62,7 +62,10 @@ function Header({ darkMode, toggleDarkMode}) {
         <ul className="list-none flex flex-col">
           {navLinks.map((nav, index) => (
             <li key={nav.id} className={`cursor-pointer text-xl mr-10 ${index === navLinks.length - 1 ? 'mr-0' : 'mb-4'}`}>
-              <a href={`/${nav.id}`}>{nav.title}</a>
+              <Link to={nav.id} smooth={true} duration={500} offset={-70} 
+                className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300">
+                {nav.title}
+              </Link>
             </li>
           ))}
         </ul>
