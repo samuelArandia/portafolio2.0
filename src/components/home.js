@@ -24,7 +24,7 @@ function Inicio() {
   const contactId = "Contact"
 
   return (
-    <section className="min-h-screen md:container md:mx-auto" id="Inicio">
+    <section className="md:container md:mx-auto" id="Inicio">
       <div className="p-40 md:p-40">
         <div className="flex justify-center text-center md:text-left">
           <div className="m-5">

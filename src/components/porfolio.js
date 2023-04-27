@@ -23,7 +23,7 @@ function Portafolio() {
 
   return (
     <section className="min-h-screen dark:bg-gradient-to-b dark:bg-gray-900  dark:to-indigo-900" id="Portafolio">
-      <div className="text-center p-10">
+      <div className="text-center p-10 mt-20 md:mt-0 md:p-0">
         <div className="flex text-center justify-center"> 
           <BsFolder2Open className="text-2xl text-indigo-500 mx-2"/>
           <h1 className="text-3xl mb-20 text-center"> Portafolio</h1>
@@ -57,7 +57,7 @@ function Portafolio() {
               <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Sill</div>
               <a href="https://center.sill.cl/login" target="_blank" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Eleva Spa</a>
               <p className="mt-2 text-slate-500">Aplicación para la gestión y control de inventario de equipos tecnológicos, proyecto en cual trabaje en mi practicas</p>
-              <div className="flex flex-row justify-center p-3" >
+              <div className="flex flex-wrap justify-center md:p-3 md:flex-row" >
                 <FaVuejs className="text-3xl text-green-700 mx-5" />
                 <SiPug className="text-3xl text-amber-950 mx-5" />
                 <BsBootstrap className="text-3xl text-purple-500 mx-5" />
