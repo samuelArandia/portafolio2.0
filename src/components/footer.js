@@ -10,6 +10,7 @@ import { Link } from "react-scroll";
 
 function Footer() {
   const logoUrl = "/logo.png";
+  const year = new Date().getFullYear();
 
     return ( 
       <footer className="min-h-">
@@ -81,7 +82,7 @@ function Footer() {
                 </div>
               </div>
             </div>
-            <p className="border-t-2 border-t-indigo-300 flex-row text-center shadow-lg shadow-indigo-500/40 justify-center p-5">© 2022 Samuel Arandia. Todos los derechos reservados. Hecho como ❤</p>
+            <p className="border-t-2 border-t-indigo-300 flex-row text-center shadow-lg shadow-indigo-500/40 justify-center p-5">©{year} Samuel Arandia. Todos los derechos reservados. Hecho como ❤</p>
           </div>
       </div>
       </footer>
