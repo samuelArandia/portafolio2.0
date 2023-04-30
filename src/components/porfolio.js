@@ -28,7 +28,7 @@ function Portafolio() {
           <BsFolder2Open className="text-2xl text-indigo-500 mx-2"/>
           <h1 className="text-3xl mb-20 text-center"> Portafolio</h1>
         </div>
-        <h5 className="text-2xl">Conoce mi portfolio. Estos son algunos de los proyectos en los que he participado y tambien algunos que hecho en los cursos</h5>
+        <h5 className="text-2xl">Conoce mi portfolio. Estos son algunos de los proyectos en los que he participado y tambien algunos que hecho en los cursos.</h5>
       </div>
       <div className="flex flex-row flex-wrap justify-around w-auto mt-5">
         <div className="max-w-md m-3 bg-white rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden md:max-w-2xl p-2 text-center transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" data-aos="zoom-in">
@@ -39,7 +39,7 @@ function Portafolio() {
             <div className="p-8" >
               <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">ATM</div>
               <a href="https://atodamakina.cl" target="_blank" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">A toda makina Spa</a>
-              <p className="mt-2 text-slate-500">Landing page de empresa de rriendo de Herramientas y Maquinaria para el area de construcción</p>
+              <p className="mt-2 text-slate-500">Landing page de empresa de alquiler de Herramientas y Maquinaria para el area de construcción</p>
               <div className="flex flex-row justify-center p-3">
                 <DiJavascript className="text-3xl text-yellow-500 " />
                 <FaVuejs className="text-3xl text-green-700 mx-5" />
