@@ -35,6 +35,7 @@ function Contact() {
         setMessage("");
       } else if (response.status === 400) {
         alert('Error al enviar el correo electrónico (400)');
+        setEmail("");
         console.log('Error al enviar el correo electrónico');
       } else {
         alert('Error al enviar el correo electrónico');
