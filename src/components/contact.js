@@ -33,7 +33,11 @@ function Contact() {
         setEmail("");
         setName("");
         setMessage("");
+      } else if (response.status === 400) {
+        alert('Error al enviar el correo electrónico (400)');
+        console.log('Error al enviar el correo electrónico');
       } else {
+        alert('Error al enviar el correo electrónico');
         console.log('Error al enviar el correo electrónico');
       }
     })
