@@ -4,6 +4,7 @@ import Image from "next/image";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { BsFillPersonFill } from "react-icons/bs";
+import { Link } from 'react-scroll';
 
 function About() {
   const svg = "/Web Developer_Monochromatic.svg";
@@ -32,10 +33,10 @@ function About() {
               Fuera del trabajo, disfruto de leer, escuchar música y hacer ejercicio, sobre todo correr y hacer senderismo. También me encanta el rap y la música lofi.
               <br/><b className="">¿Qué música te gusta a ti?</b>
             </h3>
-            <div className="flex justify-center mt-8">
-            <a href="mailto:samuelarandia@gmail.com" className="text-white shadow-lg shadow-indigo-500/40 rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300">
+            <div className="flex justify-center mt-8" >
+            <Link to={"Contact"} smooth={true} duration={500} offset={-70}  className="text-white shadow-lg shadow-indigo-500/40 rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300">
               Cuentame
-            </a>
+            </Link>
           </div>
           </div>
         </div>

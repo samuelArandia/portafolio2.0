@@ -7,7 +7,8 @@ import {
   FaCodeBranch,
   FaHtml5,
   FaReact,
-  FaCss3Alt
+  FaCss3Alt,
+  FaAngular
 } from 'react-icons/fa';
 import { DiDjango } from 'react-icons/di';
 import {
@@ -21,7 +22,6 @@ import {
 import { BsBootstrap, BsGit } from 'react-icons/bs';
 import { SiJavascript, SiMicrosoftazure } from 'react-icons/si';
 import { TbBrandVscode } from 'react-icons/tb';
-import { RxNotionLogo } from 'react-icons/rx';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
@@ -43,7 +43,7 @@ const Skills = () => {
         experiencia trabajando y que me gustaría seguir aprendiendo. 
         <br/>Tambien herramientas que uso a diario para trabajar en equipo y gestionar proyectos.
       </p>
-      <div className="bg-slate-200 rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center m-10">
+      <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center  m-10">
         <div
           className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 text-center justify-center p-10 md:p-20"
           data-aos="fade-up"
@@ -68,8 +68,8 @@ const Skills = () => {
           <FaReact
             className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-sky-700 mx-2 sm:mx-5"
           />
-          <SiPug
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-amber-950 mx-2 sm:mx-5"
+          <FaAngular
+            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:text-indigo-700 duration-300 cursor-pointer text-red-800 mx-2 sm:mx-5"
           />
           <BsBootstrap
             className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-purple-500 mx-2 sm:mx-5"
@@ -98,8 +98,8 @@ const Skills = () => {
           <TbBrandVscode
             className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
           />
-          <RxNotionLogo
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:text-indigo-700 duration-300 cursor-pointer text-gray-500 mx-2 sm:mx-5"
+          <SiPug
+            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-amber-950 mx-2 sm:mx-5"
           />
         </div>
       </div>

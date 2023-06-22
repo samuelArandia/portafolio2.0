@@ -24,7 +24,7 @@ function Inicio() {
   const contactId = "Contact"
 
   return (
-    <section className="md:container md:mx-auto" id="Inicio">
+    <section className="md:container h-screen md:mx-auto" id="Inicio">
       <div className="p-40 md:p-40">
         <div className="flex justify-center text-center md:text-left">
           <div className="m-5">
@@ -45,7 +45,7 @@ function Inicio() {
                 desafiante y dinámico para continuar sumando experiencia y conocimientos.
               </h4>
             </div>
-            <div className="mt-8 justify-between">
+            <div className="mt-8 justify-between text-center">
               {/* descargar archivo pdf */}
               <button
                 ref={buttonRef}
@@ -56,12 +56,15 @@ function Inicio() {
               >
                 Descargar CV
               </button>
-              <Link
-                to={contactId} smooth={true} duration={500} offset={-70}
+              <button
                 className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40 cursor-pointer"
               >
-                Escríbeme
-              </Link>
+                <Link
+                  to={contactId} smooth={true} duration={500} offset={-70}
+                >
+                  Escríbeme
+                </Link>
+              </button>
             </div>
             <div className="">
               <div className="flex flex-row text-center justify-center p-5">
@@ -84,7 +87,7 @@ function Inicio() {
             </div>
           </div>
           <div className="w-auto ml-20 hidden md:block">
-            <Image src={perfil} alt="perfil" width={300} height={200} className="rounded-full w-64 skew-y-0 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
+            <Image  style={{ borderRadius: "50%" }} src={perfil} alt="perfil" width={300} height={200} className="rounded-full w-64 skew-y-0 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
           </div>
         </div>
       </div>

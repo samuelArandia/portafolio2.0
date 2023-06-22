@@ -41,11 +41,11 @@ import Loader from "@/components/loader";
   return (
     loading ? <Loader /> :
     <>
-      <main className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'}`}>
+      <main className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'}`}>
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <Inicio />
-          <About />
           <Portafolio />
+          <About />
           <Skills />
           <Contact />
           <Footer />
