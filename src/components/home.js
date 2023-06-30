@@ -49,7 +49,7 @@ function Inicio() {
               {/* descargar archivo pdf */}
               <button
                 ref={buttonRef}
-                onClick={() => window.open("https://drive.google.com/file/d/1cSYAWENGx7xBDv369pYlYbjlWnAxP9sK/view?usp=sharing", "_blank")}
+                onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
                 download="CvSamuelArandia"
                 target="_blank"
                 className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40 cursor-pointer"
