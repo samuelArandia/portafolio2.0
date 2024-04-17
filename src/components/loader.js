@@ -1,24 +1,14 @@
 import React from "react";
-import Lottie from 'react-lottie';   
-import animationData from '../../public/animationData.json';
+import '../app/globals.css'
 
 const Loader = () => {
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: animationData,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-        }
-    };
 
     return (
-        <>
-        <Lottie options={defaultOptions}
-            height={400}
-            width={400}
-        />
-        </>
+        <div className="fixed inset-0 z-50 w-full h-full bg-black bg-opacity-80 flex justify-center items-center">
+            <div className="spinner">
+                <div className="spinner1"></div>
+            </div>
+        </div>
     )
 }   
 

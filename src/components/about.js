@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { BsFillPersonFill } from "react-icons/bs";
+import { FaRocket } from "react-icons/fa";
 import { Link } from 'react-scroll';
 
 function About() {
@@ -14,10 +14,10 @@ function About() {
   }, []);
 
   return (
-    <section className="min-h-screen" id="About" data-aos="fade-right">
+    <section className="min-h-screen px-10 md:px-40 mt-10" id="About" data-aos="fade-right">
       <div className="container mx-auto">
         <div className="flex justify-center text-center">
-          <BsFillPersonFill className="text-5xl text-indigo-500 mx-5"/>
+          <FaRocket className="text-4xl text-indigo-500 mx-5"/>
           <h1 className="text-3xl mb-20 text-center">Sobre mi</h1>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center">

@@ -4,15 +4,15 @@ import { useEffect } from 'react';
 import {
   FaVuejs,
   FaPython,
-  FaCodeBranch,
   FaHtml5,
   FaReact,
   FaCss3Alt,
-  FaAngular
+  FaAngular,
+  FaJava
 } from 'react-icons/fa';
+import { GiSkills } from "react-icons/gi";
 import { DiDjango } from 'react-icons/di';
 import {
-  SiPug,
   SiPostgresql,
   SiTailwindcss,
   SiTypescript,
@@ -25,7 +25,6 @@ import { TbBrandVscode } from 'react-icons/tb';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-
 const Skills = () => {
 
   useEffect(() => {
@@ -33,17 +32,17 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className='min-h-screen mt-20' id="Skills">
+    <section className='min-h-screen mt-20 px-10 md:px-40' id="Skills">
       <div className="flex text-center justify-center my-20">
-        <FaCodeBranch className="text-2xl text-indigo-500 mx-5" />
+        <GiSkills className="text-4xl text-indigo-500 mx-5" />
         <h1 className="text-3xl text-center">Habilidades</h1>
       </div>
-      <p className="text-lg mb-8 text-center gap-5">
+      <p className="text-lg mb-8 text-center gap-3">
         Estas son algunas de las tecnologias y leguajes de programación en las que tengo
         experiencia trabajando y que me gustaría seguir aprendiendo. 
         <br/>Tambien herramientas que uso a diario para trabajar en equipo y gestionar proyectos.
       </p>
-      <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center  m-10">
+      <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center m-5">
         <div
           className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 text-center justify-center p-10 md:p-20"
           data-aos="fade-up"
@@ -98,8 +97,8 @@ const Skills = () => {
           <TbBrandVscode
             className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
           />
-          <SiPug
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-amber-950 mx-2 sm:mx-5"
+          <FaJava
+            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-red-500 mx-2 sm:mx-5"
           />
         </div>
       </div>

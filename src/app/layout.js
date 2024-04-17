@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Samuel Arandia',
   description: 'Mi porfolio personal',
   icons: {
-    icon: '/src/app/assets/1.svg',
+    icon: '/logo.icon',
   }
 }
 

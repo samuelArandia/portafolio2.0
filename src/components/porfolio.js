@@ -22,10 +22,10 @@ function Portafolio() {
   }, []);
 
   return (
-    <section className="min-h-screen dark:bg-gradient-to-b dark:bg-gray-900  dark:to-indigo-900" id="Portafolio">
+    <section className="min-h-screen px-10 md:px-40" id="Portafolio">
       <div className="text-center p-10 mt-20 md:mt-0 md:p-0">
         <div className="flex text-center justify-center"> 
-          <BsFolder2Open className="text-2xl text-indigo-500 mx-2"/>
+          <BsFolder2Open className="text-4xl text-indigo-500 mx-2"/>
           <h1 className="text-3xl mb-20 text-center"> Portafolio</h1>
         </div>
         <h5 className="text-2xl">Conoce mi portfolio. Estos son algunos de los proyectos en los que he participado y tambien algunos que hecho en los cursos.</h5>

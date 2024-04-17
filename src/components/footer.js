@@ -13,7 +13,7 @@ function Footer() {
   const year = new Date().getFullYear();
 
     return ( 
-      <footer className="min-h-">
+      <footer className="mt-20" id="Contact">
       <div className="">
         <div className="flex flex-wrap justify-around text-center ">
           <div className="w-full md:w-1/4 text-center md:text-left">

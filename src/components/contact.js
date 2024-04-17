@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react"
 import { BsFillSendCheckFill } from "react-icons/bs";
-import { GiMailbox } from "react-icons/gi"
+import { RiContactsLine } from "react-icons/ri";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -50,9 +50,9 @@ function Contact() {
   };
 
   return (
-    <section className="min-h-screen" id="Contact">
+    <section className="min-h-screen px-15 md:px-40 mt-10" id="Contact">
       <div className="flex flex-row text-center justify-center">
-        <GiMailbox className="text-2xl text-indigo-500 mx-5" />
+        <RiContactsLine className="text-4xl text-indigo-500 mx-5" />
         <h1 className="text-3xl text-center">Contáctame</h1>
       </div>
         <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center m-10 p-10">
