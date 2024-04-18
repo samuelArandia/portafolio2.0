@@ -7,6 +7,7 @@ import { TypeAnimation } from "react-type-animation";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-scroll";
+import '../app/globals.css'
 
 function Inicio() {
   const perfil = "/perfil.png";
@@ -86,8 +87,8 @@ function Inicio() {
               </div>
             </div>
           </div>
-          <div className="w-auto ml-20 hidden md:block">
-            <Image  style={{ borderRadius: "50%" }} src={perfil} alt="perfil" width={300} height={200} className="rounded-full w-64 skew-y-0 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
+          <div className="card w-auto ml-20 hidden md:block">
+            <Image src={perfil} alt="perfil" width={300} height={300} className=" w-64 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
           </div>
         </div>
       </div>
