@@ -1,105 +1,52 @@
-"use client"
-import React from 'react';
-import { useEffect } from 'react';
-import {
-  FaVuejs,
-  FaPython,
-  FaHtml5,
-  FaReact,
-  FaCss3Alt,
-  FaAngular,
-  FaJava
-} from 'react-icons/fa';
-import { GiSkills } from "react-icons/gi";
+import React, { useEffect } from 'react';
+import { FaVuejs, FaPython, FaHtml5, FaReact, FaCss3Alt, FaAngular, FaJava } from 'react-icons/fa';
+import { GiSkills } from 'react-icons/gi';
 import { DiDjango } from 'react-icons/di';
-import {
-  SiPostgresql,
-  SiTailwindcss,
-  SiTypescript,
-  SiAzuredevops,
-  SiPostman
-} from 'react-icons/si';
+import { SiPostgresql, SiTailwindcss, SiTypescript, SiAzuredevops, SiPostman, SiJavascript, SiMicrosoftazure } from 'react-icons/si';
 import { BsBootstrap, BsGit } from 'react-icons/bs';
-import { SiJavascript, SiMicrosoftazure } from 'react-icons/si';
 import { TbBrandVscode } from 'react-icons/tb';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import IconBox from './iconBox'; // El nuevo componente
 
 const Skills = () => {
-
   useEffect(() => {
     Aos.init();
   }, []);
 
   return (
-    <section className='min-h-screen mt-20 px-10 md:px-40' id="Skills">
-      <div className="flex text-center justify-center my-20">
-        <GiSkills className="text-4xl text-indigo-500 mx-5" />
-        <h1 className="text-3xl text-center">Habilidades</h1>
+    <section className='min-h-screen mt-20 px-10 md:px-40' id='Skills'>
+      <div className='flex text-center justify-center my-20'>
+        <GiSkills className='text-4xl text-indigo-500 mx-5' />
+        <h1 className='text-3xl text-center'>Habilidades</h1>
       </div>
-      <p className="text-lg mb-8 text-center gap-3">
-        Estas son algunas de las tecnologias y leguajes de programación en las que tengo
-        experiencia trabajando y que me gustaría seguir aprendiendo. 
-        <br/>Tambien herramientas que uso a diario para trabajar en equipo y gestionar proyectos.
+      <p className='text-lg mb-4 text-center'>
+        Estas son algunas de las tecnologías y lenguajes de programación en las que tengo experiencia y herramientas que uso diariamente.
       </p>
-      <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center m-5">
-        <div
-          className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 text-center justify-center p-10 md:p-20"
-          data-aos="fade-up"
-        >
-          <FaHtml5 
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-red-500 mx-2 sm:mx-5" />
-          <FaCss3Alt
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
-          />
-          <SiJavascript
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-yellow-500 mx-2 sm:mx-5"
-          />
-          <SiTypescript
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
-          />
-          <FaPython
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
-          />
-          <FaVuejs
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-green-700 mx-2 sm:mx-5"
-          />
-          <FaReact
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-sky-700 mx-2 sm:mx-5"
-          />
-          <FaAngular
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:text-indigo-700 duration-300 cursor-pointer text-red-800 mx-2 sm:mx-5"
-          />
-          <BsBootstrap
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-purple-500 mx-2 sm:mx-5"
-          />
-          <SiTailwindcss
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-cyan-500 mx-2 sm:mx-5"
-          />
-          <DiDjango
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-green-500 mx-2 sm:mx-5"
-          />
-          <SiPostgresql
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
-          />
-          <SiAzuredevops
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
-          />
-          <SiPostman
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-orange-500 mx-2 sm:mx-5"
-          />
-          <SiMicrosoftazure
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
-          />
-          <BsGit
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-red-500 mx-2 sm:mx-5"
-          />
-          <TbBrandVscode
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 hover:text-indigo-700 duration-300 cursor-pointer text-blue-500 mx-2 sm:mx-5"
-          />
-          <FaJava
-            className="text-5xl sm:text-6xl md:text-8xl m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer text-red-500 mx-2 sm:mx-5"
-          />
+
+      <div className=' overflow-hidden text-center'>
+        <div className='grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 text-center justify-items-center content-center justify-center p-10 md:p-20 gap-4' data-aos='fade-up'>
+          {/* Lenguajes de Programación */}
+          <IconBox Icon={FaHtml5} color='text-red-500' label='HTML' />
+          <IconBox Icon={FaCss3Alt} color='text-blue-500' label='CSS' />
+          <IconBox Icon={SiJavascript} color='text-yellow-500' label='JavaScript' />
+          <IconBox Icon={SiTypescript} color='text-blue-500' label='TypeScript' />
+          <IconBox Icon={FaPython} color='text-blue-500' label='Python' />
+          <IconBox Icon={FaJava} color='text-red-500' label='Java' />
+
+          {/* Frameworks */}
+          <IconBox Icon={FaVuejs} color='text-green-700' label='Vue.js' />
+          <IconBox Icon={FaReact} color='text-sky-700' label='React' />
+          <IconBox Icon={FaAngular} color='text-red-800' label='Angular' />
+          <IconBox Icon={DiDjango} color='text-green-500' label='Django' />
+
+          {/* Herramientas */}
+          <IconBox Icon={SiPostgresql} color='text-blue-500' label='PostgreSQL' />
+          <IconBox Icon={SiAzuredevops} color='text-blue-500' label='Azure DevOps' />
+          <IconBox Icon={SiPostman} color='text-orange-500' label='Postman' />
+          <IconBox Icon={SiMicrosoftazure} color='text-blue-500' label='Microsoft Azure' />
+          <IconBox Icon={BsGit} color='text-red-500' label='Git' />
+          <IconBox Icon={TbBrandVscode} color='text-blue-500' label='VS Code' />
         </div>
       </div>
     </section>
@@ -107,5 +54,4 @@ const Skills = () => {
 };
 
 export default Skills;
-
 
