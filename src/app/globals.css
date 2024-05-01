@@ -47,3 +47,22 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.card {
+  padding: 20px;
+  width: 330px;
+  min-height: 370px;
+  border-radius: 20px;
+  transition: 0.5s;
+  background: #240c61;
+}
+
+.card:hover {
+  translate: 0 -15px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 15px 0 0 10px;
+}
