@@ -22,8 +22,8 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
       />
     </div>
 
-    <div className="p-8">
-      <p className="card-title uppercase tracking-wide text-sm text-indigo-500 font-semibold">{title}</p>
+    <div className="p-8 text-white">
+      <h2 className="card-title uppercase tracking-wide text-sm text-indigo-500 font-semibold">{title}</h2>
       <p className="block mt-1 text-lg leading-tight font-medium">{subtitle}</p>
       <p className="card-body mt-2">{description}</p>
       <div className="footer flex flex-row justify-center p-3">
