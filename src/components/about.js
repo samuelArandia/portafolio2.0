@@ -25,17 +25,22 @@ function About() {
             <Image src={svg} alt="perfil" width={500} height={500}/>
           </div>
           <div className="md:w-1/2 md:pl-16" >
-            <h3 className="text-2xl p-5 md:p-0 mb-6 md:mt-0">
-              ¡Hola! Soy desarrollador de software y vivo en Chile. 
-              Estudié en el instituto AIEP y me considero autodidacta y comunicativo. 
-              Me encanta programar y siempre trato de aprender cosas nuevas para mejorar mis habilidades. 
-              <br/>Me gusta trabajar en equipo y colaborar con otros desarrolladores para resolver problemas y aprender de ellos. 
-              Fuera del trabajo, disfruto de leer, escuchar música y hacer ejercicio, sobre todo correr y hacer senderismo. También me encanta el rap y la música lofi.
-              <br/><b className="">¿Qué música te gusta a ti?</b>
+            <h3 className="text-2xl p-5 md:p-0 mb-6 md:mt-0  leading-relaxed space-y-4">
+              ¡Hola! Soy desarrollador de software y resido en Santiago de Chile.
+              Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello. 
+              También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.
+              <br/>
+              Amo programar y siempre estoy buscando aprender cosas nuevas para perfeccionar mis habilidades.
+              Me gusta trabajar en equipo y colaborar con otros desarrolladores para resolver problemas y compartir conocimientos.
+              <br/>
+              Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y hacer senderismo.
+              También me encanta la música rap y alternativa.
+              <br/>
+              <b className="">¿Qué tipo de música te gusta?</b>
             </h3>
             <div className="flex justify-center mt-8" >
             <Link to={"Contact"} smooth={true} duration={500} offset={-70}  className="text-white shadow-lg shadow-indigo-500/40 rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300">
-              Cuentame
+              Cuentame más
             </Link>
           </div>
           </div>

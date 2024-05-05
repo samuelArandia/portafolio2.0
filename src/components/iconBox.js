@@ -3,8 +3,8 @@ import React from 'react';
 const IconBox = ({ Icon, color, label }) => {
   return (
     <div
-      className="m-2 rounded-xl shadow-indigo-500/40 overflow-hidden flex flex-col justify-center items-center p-5"
-      style={{ background: "#240c61", width: "100%" }}
+      className="m-2 rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden flex flex-col justify-center items-center p-5 bg-gray-900"
+      style={{ width: "100%" }}
     >
       <Icon
         className={`text-5xl sm:text-6xl md:text-8xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 cursor-pointer ${color}`}

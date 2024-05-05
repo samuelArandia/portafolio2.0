@@ -41,9 +41,8 @@ function Inicio() {
                 repeat={Infinity}
               />
               <h4 className="text-lg font-light">
-                Formado para construir sobre bases y fundamentos.
-                <br/>Apto para un puesto de trabajo
-                desafiante y dinámico para continuar sumando experiencia y conocimientos.
+                <br />Estoy preparado para afrontar desafíos y proyectos de alto impacto.
+                <br />Siempre estoy buscando aprender y crecer como profesional, aportando experiencia y creatividad.
               </h4>
             </div>
             <div className="mt-8 justify-between text-center">

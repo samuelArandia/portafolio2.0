@@ -6,23 +6,23 @@ export const navLinks = [
         title: "Inicio",
     },
     {
-        id: "About",
-        Link: "/about",
-        title: "Sobre mi",
-    },
-    {
         id: "Portafolio",
-        Link: "/porfolio",
+        Link: "/Portafolio",
         title: "Portafolio",
     },
     {
+        id: "About",
+        Link: "/About",
+        title: "Sobre mi",
+    },
+    {
         id: "Skills",
-        Link: "/skills",
+        Link: "/Skills",
         title: "Habilidades",
     },
     {
         id: "Contact",
-        Link: "/contact",
+        Link: "/Contact",
         title: "Contacto",
     },
 ];

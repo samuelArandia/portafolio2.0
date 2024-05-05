@@ -50,11 +50,10 @@ a {
 
 .card {
   padding: 20px;
-  width: 330px;
+  width: 100%;
   min-height: 370px;
   border-radius: 20px;
   transition: 0.5s;
-  background: #240c61;
 }
 
 .card:hover {

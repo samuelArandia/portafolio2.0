@@ -8,10 +8,10 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    className="card block max-w-md m-3 rounded-xl shadow-lg shadow-indigo-500/40 hover:-translate-y-1 hover:scale-110 duration-300"
+    className="card block max-w-md m-3 rounded-xl shadow-lg shadow-indigo-500/40 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-900"
     data-aos="zoom-in"
   >
-    <div className="card-image flex justify-center p-2 text-center" style={{ height: '200px', width: '100%' }}>
+    <div className="flex justify-center p-2 text-center" style={{ height: '200px', width: 'auto' }}>
       <Image
         src={imageSrc || "/placeholder.png"}
         alt={`Portada ${title}`}
@@ -23,7 +23,7 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
     </div>
 
     <div className="p-8 text-white">
-      <h2 className="card-title uppercase tracking-wide text-sm text-indigo-500 font-semibold">{title}</h2>
+      <h2 className="card-title uppercase bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">{title}</h2>
       <p className="block mt-1 text-lg leading-tight font-medium">{subtitle}</p>
       <p className="card-body mt-2">{description}</p>
       <div className="footer flex flex-row justify-center p-3">

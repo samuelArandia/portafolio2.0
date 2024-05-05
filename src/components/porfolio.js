@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import PorfolioCard from "./porfolioCard";
-import { FaPython, FaVuejs, FaReact } from "react-icons/fa";
+import { FaVuejs, FaReact } from "react-icons/fa";
 import { BsBootstrap, BsFolder2Open } from "react-icons/bs";
-import { SiMicrosoftazure, SiPostgresql, SiTailwindcss } from "react-icons/si";
+import { SiPostgresql, SiTailwindcss } from "react-icons/si";
 import { DiCss3, DiDjango, DiJavascript } from "react-icons/di";
 import { TbBrandNextjs, TbBrandGolang } from "react-icons/tb";
 import { AiFillHtml5 } from "react-icons/ai";
@@ -22,6 +22,14 @@ const Portafolio = () => {
       technologies: [FaVuejs, TbBrandGolang, SiTailwindcss],
     },
     {
+      imageSrc: "/SILL.png",
+      title: "Sill",
+      subtitle: "Eleva SPA",
+      link: "https://center.sill.cl/login",
+      description: "Aplicación para la gestión y control de inventario de equipos tecnológicos.",
+      technologies: [FaVuejs, BsBootstrap, DiDjango, SiPostgresql],
+    },
+    {
       imageSrc: "/atm.png",
       title: "ATM",
       subtitle: "A Todo Makina SPA",
@@ -30,12 +38,12 @@ const Portafolio = () => {
       technologies: [DiJavascript, FaVuejs, BsBootstrap],
     },
     {
-      imageSrc: "/SILL.png",
-      title: "Sill",
-      subtitle: "Eleva SPA",
-      link: "https://center.sill.cl/login",
-      description: "Aplicación para la gestión y control de inventario de equipos tecnológicos.",
-      technologies: [FaVuejs, FaPython, BsBootstrap, DiDjango, SiPostgresql],
+      imageSrc: "/portafolio.png",
+      title: "Mi Portafolio",
+      subtitle: "Personal",
+      link: "https://samuelarandia.vercel.app",
+      description: "Portafolio personal basado en experiencias previas.",
+      technologies: [FaReact, DiJavascript, SiTailwindcss, TbBrandNextjs ],
     },
     {
       imageSrc: "/platzi.png",
@@ -44,14 +52,6 @@ const Portafolio = () => {
       link: "https://samuelarandia.github.io/curso-practico-javascript/",
       description: "Proyecto para calcular distintas medidas de figuras geométricas.",
       technologies: [DiJavascript, AiFillHtml5, DiCss3],
-    },
-    {
-      imageSrc: "/portafolio.png",
-      title: "Mi Portafolio",
-      subtitle: "Personal",
-      link: "https://samuelarandia.com",
-      description: "Portafolio personal basado en experiencias previas.",
-      technologies: [FaReact, DiJavascript, SiTailwindcss, TbBrandNextjs, SiMicrosoftazure],
     },
   ];
 
@@ -76,9 +76,9 @@ const Portafolio = () => {
         ))}
       </div>
       <div className="p-5 text-center">
-        <h2 className="text-teal-500 text-lg">
+        <h2 className="text-lg text-indigo-500">
           Esta sección se actualizará con nuevos proyectos. Para ver más, visita mi 
-          <a href="https://github.com/samuelArandia">GitHub</a>.
+          <a href="https://github.com/samuelArandia"> GitHub</a>.
         </h2>
       </div>
     </section>

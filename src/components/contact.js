@@ -55,10 +55,9 @@ function Contact() {
         <RiContactsLine className="text-4xl text-indigo-500 mx-5" />
         <h1 className="text-3xl text-center">Contáctame</h1>
       </div>
-        <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center m-10 p-10">
+        <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center m-10 p-10 bg-gray-900 text-white">
         <div >
           <p className="text-xl text-center my-2">Si tienes alguna duda o quieres contactarme, puedes hacerlo a través de este formulario.</p>
-          {/* código del formulario de contacto */}
         </div>
           <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
             <div className="mb-4">
