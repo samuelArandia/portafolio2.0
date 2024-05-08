@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { FaVuejs, FaPython, FaHtml5, FaReact, FaCss3Alt, FaAngular, FaJava } from 'react-icons/fa';
 import { GiSkills } from 'react-icons/gi';
 import { DiDjango } from 'react-icons/di';
-import { SiPostgresql, SiTailwindcss, SiTypescript, SiAzuredevops, SiPostman, SiJavascript, SiMicrosoftazure } from 'react-icons/si';
-import { BsBootstrap, BsGit } from 'react-icons/bs';
+import { SiPostgresql,SiNestjs,SiJetbrains , SiSpringboot ,SiTypescript, SiAzuredevops,SiPostman , SiJavascript, SiMicrosoftazure, SiDocker  } from 'react-icons/si';
+import { BsGit } from 'react-icons/bs';
 import { TbBrandVscode } from 'react-icons/tb';
+import { GrGraphQl } from "react-icons/gr";
+import { FaGithub } from "react-icons/fa";
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import IconBox from './iconBox'; // El nuevo componente
@@ -39,14 +41,20 @@ const Skills = () => {
           <IconBox Icon={FaReact} color='text-sky-700' label='React' />
           <IconBox Icon={FaAngular} color='text-red-800' label='Angular' />
           <IconBox Icon={DiDjango} color='text-green-500' label='Django' />
+          <IconBox Icon={GrGraphQl} color='text-pink-500' label='GraphQL' />
+          <IconBox Icon={SiNestjs} color='text-red-500' label='NestJS' />
+          <IconBox Icon={SiSpringboot} color='text-green-500' label='Spring Boot' />
 
           {/* Herramientas */}
           <IconBox Icon={SiPostgresql} color='text-blue-500' label='PostgreSQL' />
           <IconBox Icon={SiAzuredevops} color='text-blue-500' label='Azure DevOps' />
-          <IconBox Icon={SiPostman} color='text-orange-500' label='Postman' />
           <IconBox Icon={SiMicrosoftazure} color='text-blue-500' label='Microsoft Azure' />
           <IconBox Icon={BsGit} color='text-red-500' label='Git' />
           <IconBox Icon={TbBrandVscode} color='text-blue-500' label='VS Code' />
+          <IconBox Icon={SiPostman} color='text-orange-500' label='Postman' />
+          <IconBox Icon={SiJetbrains} color='text-gray-500' label='JetBrains' />
+          <IconBox Icon={SiDocker} color='text-blue-500' label='Docker' />
+          <IconBox Icon={FaGithub} color='text-gray-500' label='GitHub' />
         </div>
       </div>
     </section>
