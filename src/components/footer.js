@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { BsTwitterX } from "react-icons/bs";
 import { socialMedia } from "@/constans";
 import { navLinks } from "@/constans";
 import { projects } from "@/constans";
@@ -75,7 +75,7 @@ function Footer() {
                     >
                       {social.id === "social-media-1" && <FaInstagram />}
                       {social.id === "social-media-2" && <FaFacebook />}
-                      {social.id === "social-media-3" && <FaXTwitter />}
+                      {social.id === "social-media-3" && <BsTwitterX />}
                       {social.id === "social-media-4" && <FaLinkedin />}
                       {social.id === "social-media-5" && <FaGithub />}
                     </a>
