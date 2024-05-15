@@ -30,10 +30,10 @@ function About() {
               Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello. 
               También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.
               <br/>
-              Amo programar y siempre estoy buscando aprender cosas nuevas para perfeccionar mis habilidades.
-              Me gusta trabajar en equipo y colaborar con otros desarrolladores para resolver problemas y compartir conocimientos.
+              Disfruto desarrollar proyectos y siempre estoy en la búsqueda de oportunidades para aprender nuevas habilidades y perfeccionar mis conocimientos. 
+              Me destaco en el trabajo en equipo, donde colaboro estrechamente con otros desarrolladores para resolver desafíos y compartir experiencias. 
               <br/>
-              Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y hacer senderismo.
+              Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y salir a trotar.
               También me encanta la música rap y alternativa.
               <br/>
               <b className="">¿Qué tipo de música te gusta?</b>
