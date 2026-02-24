@@ -38,24 +38,21 @@ function Inicio() {
                 <br />Siempre estoy buscando aprender y crecer como profesional, aportando experiencia y creatividad.
               </h4>
             </div>
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-3">
               <button
                 onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
-                className="text-white rounded-lg px-5 py-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-105 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40 cursor-pointer"
+                className="text-white rounded-lg px-6 py-3 font-medium transition-all duration-300 bg-indigo-500 hover:-translate-y-1 hover:bg-indigo-600 shadow-lg shadow-indigo-500/30 cursor-pointer"
               >
                 Descargar CV
               </button>
-              <button
-                className="text-white rounded-lg px-5 py-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-105 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40 cursor-pointer"
+              <Link
+                to={contactId} smooth={true} duration={500} offset={-70}
+                className="rounded-lg px-6 py-3 font-medium transition-all duration-300 border-2 border-indigo-500 text-indigo-500 hover:-translate-y-1 hover:bg-indigo-500 hover:text-white cursor-pointer text-center"
               >
-                <Link
-                  to={contactId} smooth={true} duration={500} offset={-70}
-                >
-                  Escríbeme
-                </Link>
-              </button>
+                Escríbeme
+              </Link>
             </div>
-            <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 mt-6 sm:mt-8">
+            <div className="flex flex-row flex-wrap justify-center md:justify-start gap-4 sm:gap-5 mt-6 sm:mt-8">
               {socialMedia.map((social) => (
                 <a
                   key={social.id}
@@ -63,7 +60,7 @@ function Inicio() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
-                  className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-2xl sm:text-3xl cursor-pointer"
+                  className="p-2 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:bg-indigo-500/10 hover:text-indigo-500 text-2xl sm:text-3xl cursor-pointer"
                 >
                   {social.id === "social-media-1" && <FaInstagram />}
                   {social.id === "social-media-2" && <FaFacebook />}
@@ -75,7 +72,10 @@ function Inicio() {
             </div>
           </div>
           <div className="hidden md:block flex-shrink-0 ml-10 lg:ml-20">
-            <Image style={{ borderRadius: "50%" }} src={perfil} alt="Foto de perfil de Samuel Arandia" width={300} height={200} className="rounded-full w-48 lg:w-64 skew-y-0 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full blur-md opacity-50"></div>
+              <Image src={perfil} alt="Foto de perfil de Samuel Arandia" width={300} height={200} className="relative rounded-full w-48 lg:w-64 shadow-2xl" data-aos="fade-right" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>

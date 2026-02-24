@@ -25,22 +25,25 @@ function About() {
             <Image src={svg} alt="Ilustración de desarrollador web" width={500} height={500}/>
           </div>
           <div className="md:w-1/2 md:pl-10 lg:pl-16 mt-6 md:mt-0">
-            <p className="text-sm sm:text-base md:text-lg p-2 sm:p-5 md:p-0 mb-6 leading-relaxed">
-              ¡Hola! Soy desarrollador de software y resido en Santiago de Chile.
-              Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello.
-              También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.
-              <br/><br/>
-              Disfruto desarrollar proyectos y siempre estoy en la búsqueda de oportunidades para aprender nuevas habilidades y perfeccionar mis conocimientos.
-              Me destaco en el trabajo en equipo, donde colaboro estrechamente con otros desarrolladores para resolver desafíos y compartir experiencias.
-              <br/><br/>
-              Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y salir a trotar.
-              También me encanta la música rap y alternativa.
-              <br/><br/>
-              <b>¿Qué tipo de música te gusta?</b>
-            </p>
-            <div className="flex justify-center mt-6 sm:mt-8">
-              <Link to={"Contact"} smooth={true} duration={500} offset={-70} className="text-white shadow-lg shadow-indigo-500/40 rounded-lg px-5 py-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-105 hover:bg-indigo-700 duration-300">
-                Cuentame más
+            <div className="space-y-4 p-2 sm:p-5 md:p-0 text-sm sm:text-base md:text-lg leading-relaxed">
+              <p>
+                ¡Hola! Soy desarrollador de software y resido en Santiago de Chile.
+                Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello.
+                También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.
+              </p>
+              <p>
+                Disfruto desarrollar proyectos y siempre estoy en la búsqueda de oportunidades para aprender nuevas habilidades y perfeccionar mis conocimientos.
+                Me destaco en el trabajo en equipo, donde colaboro estrechamente con otros desarrolladores para resolver desafíos y compartir experiencias.
+              </p>
+              <p>
+                Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y salir a trotar.
+                También me encanta la música rap y alternativa.
+              </p>
+              <p className="font-semibold text-indigo-500">¿Qué tipo de música te gusta?</p>
+            </div>
+            <div className="flex justify-center md:justify-start mt-6 sm:mt-8">
+              <Link to={"Contact"} smooth={true} duration={500} offset={-70} className="rounded-lg px-6 py-3 font-medium transition-all duration-300 border-2 border-indigo-500 text-indigo-500 hover:-translate-y-1 hover:bg-indigo-500 hover:text-white cursor-pointer">
+                Cuéntame más
               </Link>
             </div>
           </div>

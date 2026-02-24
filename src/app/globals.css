@@ -2,12 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+::selection {
+  background-color: rgba(99, 102, 241, 0.3);
+  color: inherit;
 }
 
 a {
@@ -18,42 +27,20 @@ a {
 * {
   box-sizing: border-box;
 }
+
 @font-face {
   font-family: "burtons";
   src: url("../../public/Burtons.otf");
 }
 
-.spinner {
-  background-image: linear-gradient(rgb(186, 66, 255) 35%,rgb(0, 225, 255));
-  width: 100px;
-  height: 100px;
-  animation: spinning82341 1.7s linear infinite;
-  text-align: center;
-  border-radius: 50px;
-  filter: blur(1px);
-  box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
-}
-
-.spinner1 {
-  background-color: rgb(36, 36, 36);
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  filter: blur(10px);
-}
-
-@keyframes spinning82341 {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* Portfolio Cards */
 .card {
   padding: 12px;
   width: 100%;
   min-height: 300px;
   border-radius: 20px;
-  transition: 0.5s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
 }
 
 @media (min-width: 640px) {
@@ -64,7 +51,9 @@ a {
 }
 
 .card:hover {
-  translate: 0 -10px;
+  translate: 0 -8px;
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.25);
 }
 
 .card-title {
@@ -80,6 +69,7 @@ a {
   }
 }
 
+/* Skills Scroller */
 .scroller {
   max-width: 100%;
 }
@@ -137,4 +127,27 @@ a {
   to {
     transform: translate(calc(-50% - 0.5rem));
   }
+}
+
+/* Focus styles */
+input:focus,
+textarea:focus {
+  border-color: #818cf8 !important;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+/* Success alert animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  animation: slideDown 0.3s ease-out;
 }

@@ -1,11 +1,10 @@
 "use client"
 import React, { useState } from "react";
 import Image from "next/image";
-import { FaHamburger } from "react-icons/fa";
+import { HiMenuAlt3 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai"
 import { navLinks } from "@/constants";
-import { BsSun } from "react-icons/bs";
-import { GiDeathStar } from "react-icons/gi"
+import { BsSun, BsMoonStars } from "react-icons/bs";
 import { Link } from 'react-scroll';
 
 function Header({ darkMode, toggleDarkMode}) {
@@ -13,66 +12,48 @@ function Header({ darkMode, toggleDarkMode}) {
   const logoUrl = "/logo.png";
 
   return (
-    <nav className="w-full flex py-2 px-4 sm:px-0 justify-between items-center navbar relative z-50" aria-label="Navegación principal">
+    <nav className="w-full flex py-3 px-5 sm:px-8 justify-between items-center sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border-b border-gray-200/20" aria-label="Navegación principal">
       <a href="/" className="cursor-pointer">
-        <Image src={logoUrl} alt="Samuel Arandia - Inicio" width={124} height={32} className="ml-2 sm:ml-5"/>
+        <Image src={logoUrl} alt="Samuel Arandia - Inicio" width={110} height={28} className=""/>
       </a>
-      <ul className="list-none sm:flex hidden justify-end items-center flex-1">
-        {navLinks.map((nav, index) => (
-          <li key={nav.id} className={`cursor-pointer text-base lg:text-lg mr-5 lg:mr-10 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300${index === navLinks.length - 1 ? ' mr-0': ''}`}>
+      <ul className="list-none sm:flex hidden justify-end items-center flex-1 gap-1 lg:gap-2">
+        {navLinks.map((nav) => (
+          <li key={nav.id} className="cursor-pointer">
             <Link to={nav.id} smooth={true} duration={500} offset={-70}
-              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300">
+              className="px-3 py-2 rounded-lg text-sm lg:text-base font-medium transition-all duration-200 hover:bg-indigo-500/10 hover:text-indigo-500">
               {nav.title}
             </Link>
           </li>
         ))}
-        {
-          darkMode ? (
-            <li>
-              <BsSun onClick={toggleDarkMode} aria-label="Cambiar a modo claro" className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-2xl cursor-pointer ml-4 mr-5 lg:mr-10" />
-            </li>
-          ) : (
-            <li>
-              <GiDeathStar onClick={toggleDarkMode} aria-label="Cambiar a modo oscuro" className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-2xl cursor-pointer ml-4 mr-5 lg:mr-10" />
-            </li>
-          )
-        }
+        <li>
+          <button onClick={toggleDarkMode} aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"} className="p-2 rounded-lg transition-all duration-200 hover:bg-indigo-500/10 hover:text-indigo-500 text-xl cursor-pointer ml-2">
+            {darkMode ? <BsSun /> : <BsMoonStars />}
+          </button>
+        </li>
       </ul>
-      <div className="sm:hidden flex items-center gap-3">
-        {
-          darkMode ? (
-            <BsSun onClick={toggleDarkMode} aria-label="Cambiar a modo claro" className="text-2xl cursor-pointer" />
-          ) : (
-            <GiDeathStar onClick={toggleDarkMode} aria-label="Cambiar a modo oscuro" className="text-2xl cursor-pointer" />
-          )
-        }
-        {
-          !toggle ? (
-            <FaHamburger
-              className="text-2xl cursor-pointer mr-4"
-              onClick={() => setToggle((prev) => !prev)}
-              aria-label="Abrir menú de navegación"
-            />
-          ) : (
-            <AiOutlineClose
-              className="text-2xl cursor-pointer mr-4"
-              onClick={() => setToggle((prev) => !prev)}
-              aria-label="Cerrar menú de navegación"
-            />
-          )
-        }
+      <div className="sm:hidden flex items-center gap-2">
+        <button onClick={toggleDarkMode} aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"} className="p-2 rounded-lg text-xl cursor-pointer">
+          {darkMode ? <BsSun /> : <BsMoonStars />}
+        </button>
+        <button
+          className="p-2 rounded-lg text-2xl cursor-pointer"
+          onClick={() => setToggle((prev) => !prev)}
+          aria-label={toggle ? "Cerrar menú" : "Abrir menú"}
+        >
+          {toggle ? <AiOutlineClose /> : <HiMenuAlt3 />}
+        </button>
       </div>
       <div
           className={`${
             !toggle ? "hidden" : "flex"
-          } p-6 bg-gray-900 absolute top-16 right-0 mx-4 my-2 min-w-[160px] rounded-xl shadow-lg shadow-indigo-500/40 z-50`}
+          } p-5 bg-gray-900/95 backdrop-blur-md absolute top-16 right-4 left-4 sm:left-auto sm:min-w-[200px] rounded-xl shadow-xl shadow-indigo-500/20 z-50 border border-gray-700/50`}
         >
-        <ul className="list-none flex flex-col gap-4">
+        <ul className="list-none flex flex-col gap-1 w-full">
           {navLinks.map((nav) => (
-            <li key={nav.id} className="cursor-pointer text-lg text-white">
+            <li key={nav.id}>
               <Link to={nav.id} smooth={true} duration={500} offset={-70}
                 onClick={() => setToggle(false)}
-                className="transition ease-in-out delay-150 hover:text-indigo-400 duration-300">
+                className="block px-4 py-3 rounded-lg text-base text-white font-medium transition-all duration-200 hover:bg-indigo-500/20 hover:text-indigo-400 cursor-pointer">
                 {nav.title}
               </Link>
             </li>

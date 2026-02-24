@@ -47,38 +47,49 @@ const Skills = () => {
       <p className='text-sm sm:text-base md:text-lg mb-6 sm:mb-8 text-center px-2'>
         Estas son algunas de las tecnologías y lenguajes de programación en las que tengo experiencia y herramientas que uso diariamente.
       </p>
-      <div className='scroller' data-direction='left' data-speed='slow'>
-        <div className='scroller__inner'>
-          <IconBox Icon={FaHtml5} color='text-red-500' label='HTML' />
-          <IconBox Icon={FaCss3Alt} color='text-blue-500' label='CSS' />
-          <IconBox Icon={SiJavascript} color='text-yellow-500' label='JavaScript' />
-          <IconBox Icon={SiTypescript} color='text-blue-500' label='TypeScript' />
-          <IconBox Icon={FaPython} color='text-blue-500' label='Python' />
-          <IconBox Icon={FaJava} color='text-red-500' label='Java' />
+      <div className='space-y-6 sm:space-y-8'>
+        <div>
+          <h3 className='text-xs sm:text-sm font-semibold uppercase tracking-widest text-indigo-400 mb-3 sm:mb-4 text-center'>Lenguajes de Programación</h3>
+          <div className='scroller' data-direction='left' data-speed='slow'>
+            <div className='scroller__inner'>
+              <IconBox Icon={FaHtml5} color='text-red-500' label='HTML' />
+              <IconBox Icon={FaCss3Alt} color='text-blue-500' label='CSS' />
+              <IconBox Icon={SiJavascript} color='text-yellow-500' label='JavaScript' />
+              <IconBox Icon={SiTypescript} color='text-blue-500' label='TypeScript' />
+              <IconBox Icon={FaPython} color='text-blue-500' label='Python' />
+              <IconBox Icon={FaJava} color='text-red-500' label='Java' />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='scroller' data-direction='right' data-speed='slow'>
-        <div className='scroller__inner'>
-          <IconBox Icon={FaVuejs} color='text-green-700' label='Vue.js' />
-          <IconBox Icon={FaReact} color='text-sky-700' label='React' />
-          <IconBox Icon={FaAngular} color='text-red-800' label='Angular' />
-          <IconBox Icon={DiDjango} color='text-green-500' label='Django' />
-          <IconBox Icon={GrGraphQl} color='text-pink-500' label='GraphQL' />
-          <IconBox Icon={SiNestjs} color='text-red-500' label='NestJS' />
-          <IconBox Icon={SiSpringboot} color='text-green-500' label='Spring Boot' />
+        <div>
+          <h3 className='text-xs sm:text-sm font-semibold uppercase tracking-widest text-indigo-400 mb-3 sm:mb-4 text-center'>Frameworks y Librerías</h3>
+          <div className='scroller' data-direction='right' data-speed='slow'>
+            <div className='scroller__inner'>
+              <IconBox Icon={FaVuejs} color='text-green-700' label='Vue.js' />
+              <IconBox Icon={FaReact} color='text-sky-700' label='React' />
+              <IconBox Icon={FaAngular} color='text-red-800' label='Angular' />
+              <IconBox Icon={DiDjango} color='text-green-500' label='Django' />
+              <IconBox Icon={GrGraphQl} color='text-pink-500' label='GraphQL' />
+              <IconBox Icon={SiNestjs} color='text-red-500' label='NestJS' />
+              <IconBox Icon={SiSpringboot} color='text-green-500' label='Spring Boot' />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='scroller' data-direction='left' data-speed='slow'>
-        <div className='scroller__inner'>
-          <IconBox Icon={SiPostgresql} color='text-blue-500' label='PostgreSQL' />
-          <IconBox Icon={SiAzuredevops} color='text-blue-500' label='Azure DevOps' />
-          <IconBox Icon={SiMicrosoftazure} color='text-blue-500' label='Microsoft Azure' />
-          <IconBox Icon={BsGit} color='text-red-500' label='Git' />
-          <IconBox Icon={TbBrandVscode} color='text-blue-500' label='VS Code' />
-          <IconBox Icon={SiPostman} color='text-orange-500' label='Postman' />
-          <IconBox Icon={SiJetbrains} color='text-gray-500' label='JetBrains' />
-          <IconBox Icon={SiDocker} color='text-blue-500' label='Docker' />
-          <IconBox Icon={FaGithub} color='text-gray-500' label='GitHub' />
+        <div>
+          <h3 className='text-xs sm:text-sm font-semibold uppercase tracking-widest text-indigo-400 mb-3 sm:mb-4 text-center'>Herramientas y Bases de Datos</h3>
+          <div className='scroller' data-direction='left' data-speed='slow'>
+            <div className='scroller__inner'>
+              <IconBox Icon={SiPostgresql} color='text-blue-500' label='PostgreSQL' />
+              <IconBox Icon={SiAzuredevops} color='text-blue-500' label='Azure DevOps' />
+              <IconBox Icon={SiMicrosoftazure} color='text-blue-500' label='Microsoft Azure' />
+              <IconBox Icon={BsGit} color='text-red-500' label='Git' />
+              <IconBox Icon={TbBrandVscode} color='text-blue-500' label='VS Code' />
+              <IconBox Icon={SiPostman} color='text-orange-500' label='Postman' />
+              <IconBox Icon={SiJetbrains} color='text-gray-500' label='JetBrains' />
+              <IconBox Icon={SiDocker} color='text-blue-500' label='Docker' />
+              <IconBox Icon={FaGithub} color='text-gray-500' label='GitHub' />
+            </div>
+          </div>
         </div>
       </div>
     </section>
