@@ -4,26 +4,26 @@ import Image from "next/image";
 
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
-import { socialMedia } from "@/constans";
-import { navLinks } from "@/constans";
-import { projects } from "@/constans";
-import { Link } from "react-scroll";  
+import { socialMedia } from "@/constants";
+import { navLinks } from "@/constants";
+import { projects } from "@/constants";
+import { Link } from "react-scroll";
 
 function Footer() {
   const logoUrl = "/logo.png";
   const year = new Date().getFullYear();
 
-    return ( 
+    return (
       <footer className="mt-20" id="Contact">
       <div className="">
         <div className="flex flex-wrap justify-around text-center ">
           <div className="w-full md:w-1/4 text-center md:text-left">
             <h2 className="text-2xl text-indigo-400">Sobre mí</h2>
             <div className="">
-              <p>Mi nombre es Samuel Arandia, soy  Técnico en Programación y Análisis de Sistemas, titutado en Instituto AIEP y actuamente me encuentro viviendo en Santiago de chile.</p>
+              <p>Mi nombre es Samuel Arandia, soy Técnico en Programación y Análisis de Sistemas, titulado en Instituto AIEP y actualmente me encuentro viviendo en Santiago de Chile.</p>
             </div>
             <div className="w-full">
-              <Image src={logoUrl} alt="Logo" width={100} height={100}/>
+              <Image src={logoUrl} alt="Samuel Arandia Logo" width={100} height={100}/>
             </div>
           </div>
           <div className="">
@@ -32,8 +32,7 @@ function Footer() {
               <ul className="list-none">
                 {projects.map((project) => (
                   <li key={project.id} className="cursor-pointer text-xl ">
-                    <a 
-                      key={project.id}
+                    <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -71,6 +70,7 @@ function Footer() {
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
                       className=" mr-10 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-3xl cursor-pointer"
                     >
                       {social.id === "social-media-1" && <FaInstagram />}

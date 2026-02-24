@@ -1,23 +1,16 @@
 "use client"
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
-import { socialMedia } from "@/constans";
+import { socialMedia } from "@/constants";
 import { TypeAnimation } from "react-type-animation";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-scroll";
-import '../app/globals.css'
 
 function Inicio() {
   const perfil = "/perfil.png";
-
-  const buttonRef = useRef(null);
-
-  useEffect(() => {
-    buttonRef.current.focus();
-  }, []);
 
   useEffect(() => {
     Aos.init();
@@ -47,12 +40,8 @@ function Inicio() {
               </h4>
             </div>
             <div className="mt-8 justify-between text-center">
-              {/* descargar archivo pdf */}
               <button
-                ref={buttonRef}
                 onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
-                download="CvSamuelArandia"
-                target="_blank"
                 className="text-white rounded-lg p-3 m-3 transition ease-in-out delay-150 bg-indigo-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-700 duration-300 shadow-lg shadow-indigo-500/40 cursor-pointer"
               >
                 Descargar CV
@@ -75,6 +64,7 @@ function Inicio() {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
                     className="m-5 md:m-10 md:mr-10 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-indigo-700 duration-300 text-3xl cursor-pointer"
                   >
                     {social.id === "social-media-1" && <FaInstagram />}
@@ -88,7 +78,7 @@ function Inicio() {
             </div>
           </div>
           <div className=" w-auto ml-20 hidden md:block">
-            <Image  style={{ borderRadius: "50%" }} src={perfil} alt="perfil" width={300} height={200} className="rounded-full w-64 skew-y-0 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
+            <Image style={{ borderRadius: "50%" }} src={perfil} alt="Foto de perfil de Samuel Arandia" width={300} height={200} className="rounded-full w-64 skew-y-0 shadow-lg shadow-indigo-500/40" data-aos="fade-right" loading="lazy" />
           </div>
         </div>
       </div>

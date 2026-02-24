@@ -3,26 +3,20 @@ import React, { useState, useEffect } from "react";
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Inicio from '@/components/home'
-import Portafolio from '@/components/porfolio'
+import Portafolio from '@/components/portfolio'
 import About from '@/components/about'
 import Skills from '@/components/skills'
 import Contact from '@/components/contact'
 import Aos from "aos";
 import "aos/dist/aos.css";
-import Loader from "@/components/loader";
 
 function Home() {
   const [darkMode, setDarkMode] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setDarkMode(true);
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
   }, []);
 
   const toggleDarkMode = () => {
@@ -33,14 +27,8 @@ function Home() {
     Aos.init();
   }, []);
 
-  useEffect(() => {
-    return () => setLoading(false);
-  }, []);
-
   return (
-    loading ? <Loader /> :
     <>
-      {/* Fondo condicional basado en darkMode */}
       {darkMode ? (
         <div
           className="fixed inset-0 z-[-10] w-full h-full"
