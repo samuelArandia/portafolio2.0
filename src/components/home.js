@@ -25,11 +25,8 @@ function Inicio() {
 
           {/* Text content */}
           <div className="flex-1 text-center md:text-left">
-            <p className="text-indigo-500 font-medium text-sm sm:text-base mb-2 tracking-wide" data-aos="fade-up">
-              Hola, mi nombre es
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 leading-tight" data-aos="fade-up" data-aos-delay="100">
-              Samuel Arandia
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 leading-tight" data-aos="fade-up">
+              Hola, Soy Samuel Arandia
             </h1>
             <div className="mt-3 sm:mt-4" data-aos="fade-up" data-aos-delay="200">
               <TypeAnimation
