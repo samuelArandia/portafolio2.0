@@ -22,16 +22,16 @@ function About() {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center">
           <div className="md:w-1/2 flex-shrink-0" >
-            <Image src={svg} alt="perfil" width={500} height={500}/>
+            <Image src={svg} alt="Ilustración de desarrollador web" width={500} height={500}/>
           </div>
           <div className="md:w-1/2 md:pl-16" >
             <h3 className="text-2xl p-5 md:p-0 mb-6 md:mt-0  leading-relaxed space-y-4">
               ¡Hola! Soy desarrollador de software y resido en Santiago de Chile.
-              Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello. 
+              Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello.
               También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.
               <br/>
-              Disfruto desarrollar proyectos y siempre estoy en la búsqueda de oportunidades para aprender nuevas habilidades y perfeccionar mis conocimientos. 
-              Me destaco en el trabajo en equipo, donde colaboro estrechamente con otros desarrolladores para resolver desafíos y compartir experiencias. 
+              Disfruto desarrollar proyectos y siempre estoy en la búsqueda de oportunidades para aprender nuevas habilidades y perfeccionar mis conocimientos.
+              Me destaco en el trabajo en equipo, donde colaboro estrechamente con otros desarrolladores para resolver desafíos y compartir experiencias.
               <br/>
               Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y salir a trotar.
               También me encanta la música rap y alternativa.
