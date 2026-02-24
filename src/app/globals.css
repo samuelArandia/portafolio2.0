@@ -35,38 +35,25 @@ a {
 
 /* Portfolio Cards */
 .card {
-  padding: 12px;
   width: 100%;
-  min-height: 300px;
-  border-radius: 20px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid transparent;
 }
 
-@media (min-width: 640px) {
-  .card {
-    padding: 20px;
-    min-height: 370px;
-  }
-}
-
 .card:hover {
-  translate: 0 -8px;
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.25);
+  translate: 0 -10px;
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow:
+    0 25px 50px -12px rgba(99, 102, 241, 0.3),
+    0 0 0 1px rgba(99, 102, 241, 0.1);
 }
 
-.card-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 10px 0 0 8px;
-}
-
-@media (min-width: 640px) {
-  .card-title {
-    font-size: 18px;
-    margin: 15px 0 0 10px;
-  }
+/* Line clamp for card descriptions */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Skills Scroller */

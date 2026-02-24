@@ -31,12 +31,14 @@ const Portafolio = () => {
     Aos.init();
   }, []);
 
-  const projectsWithIcons = projects.map((project) => ({
-    ...project,
-    technologies: project.technologies
-      .map((tech) => techIconMap[tech])
-      .filter(Boolean),
-  }));
+  const projectsWithIcons = projects.map((project) => {
+    const validTechs = project.technologies.filter((tech) => techIconMap[tech]);
+    return {
+      ...project,
+      technologies: validTechs.map((tech) => techIconMap[tech]),
+      techNames: validTechs,
+    };
+  });
 
   return (
     <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-10 md:px-20 lg:px-40" id="Portafolio">

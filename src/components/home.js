@@ -19,40 +19,49 @@ function Inicio() {
   const contactId = "Contact"
 
   return (
-    <section className="md:container min-h-screen md:mx-auto flex items-center" id="Inicio">
-      <div className="px-6 py-16 sm:px-10 sm:py-20 md:px-20 md:py-28 lg:p-40 w-full">
-        <div className="flex flex-col md:flex-row justify-center items-center text-center md:text-left">
-          <div className="m-2 sm:m-5">
-            <div className="flex flex-col">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
-                  Hola, Soy Samuel Arandia
-                </h1>
+    <section className="min-h-[100dvh] flex items-center relative overflow-hidden" id="Inicio">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 py-12 sm:py-16 md:py-20">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-12 lg:gap-20">
+
+          {/* Text content */}
+          <div className="flex-1 text-center md:text-left">
+            <p className="text-indigo-500 font-medium text-sm sm:text-base mb-2 tracking-wide" data-aos="fade-up">
+              Hola, mi nombre es
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 leading-tight" data-aos="fade-up" data-aos-delay="100">
+              Samuel Arandia
+            </h1>
+            <div className="mt-3 sm:mt-4" data-aos="fade-up" data-aos-delay="200">
               <TypeAnimation
-                sequence={['Soy desarrollador de software', 1500, 'Soy analista y programador de sistemas', 1500, 'Bienvenido a mi portafolio', 1500]}
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mt-4"
+                sequence={['Desarrollador de Software', 1500, 'Analista y Programador de Sistemas', 1500, 'Bienvenido a mi portafolio', 1500]}
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-400"
                 cursor={true}
                 repeat={Infinity}
               />
-              <h4 className="text-base sm:text-lg font-light mt-4">
-                Estoy preparado para afrontar desafíos y proyectos de alto impacto.
-                <br />Siempre estoy buscando aprender y crecer como profesional, aportando experiencia y creatividad.
-              </h4>
             </div>
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-3">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-400 mt-4 sm:mt-6 max-w-xl mx-auto md:mx-0 leading-relaxed" data-aos="fade-up" data-aos-delay="300">
+              Estoy preparado para afrontar desafíos y proyectos de alto impacto.
+              Siempre estoy buscando aprender y crecer como profesional, aportando experiencia y creatividad.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="400">
               <button
                 onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
-                className="text-white rounded-lg px-6 py-3 font-medium transition-all duration-300 bg-indigo-500 hover:-translate-y-1 hover:bg-indigo-600 shadow-lg shadow-indigo-500/30 cursor-pointer"
+                className="text-white rounded-xl px-7 py-3.5 font-medium transition-all duration-300 bg-indigo-500 hover:-translate-y-1 hover:bg-indigo-600 shadow-lg shadow-indigo-500/25 cursor-pointer text-sm sm:text-base"
               >
                 Descargar CV
               </button>
               <Link
                 to={contactId} smooth={true} duration={500} offset={-70}
-                className="rounded-lg px-6 py-3 font-medium transition-all duration-300 border-2 border-indigo-500 text-indigo-500 hover:-translate-y-1 hover:bg-indigo-500 hover:text-white cursor-pointer text-center"
+                className="rounded-xl px-7 py-3.5 font-medium transition-all duration-300 border-2 border-indigo-500/50 text-indigo-400 hover:-translate-y-1 hover:bg-indigo-500 hover:text-white hover:border-indigo-500 cursor-pointer text-center text-sm sm:text-base"
               >
                 Escríbeme
               </Link>
             </div>
-            <div className="flex flex-row flex-wrap justify-center md:justify-start gap-4 sm:gap-5 mt-6 sm:mt-8">
+
+            {/* Social links */}
+            <div className="flex flex-row flex-wrap justify-center md:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8" data-aos="fade-up" data-aos-delay="500">
               {socialMedia.map((social) => (
                 <a
                   key={social.id}
@@ -60,7 +69,7 @@ function Inicio() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
-                  className="p-2 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:bg-indigo-500/10 hover:text-indigo-500 text-2xl sm:text-3xl cursor-pointer"
+                  className="p-2.5 rounded-xl border border-gray-700/50 transition-all duration-200 hover:-translate-y-1 hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-lg hover:shadow-indigo-500/10 text-xl sm:text-2xl cursor-pointer text-gray-400"
                 >
                   {social.id === "social-media-1" && <FaInstagram />}
                   {social.id === "social-media-2" && <FaFacebook />}
@@ -71,12 +80,23 @@ function Inicio() {
               ))}
             </div>
           </div>
-          <div className="hidden md:block flex-shrink-0 ml-10 lg:ml-20">
+
+          {/* Profile image */}
+          <div className="flex-shrink-0" data-aos="fade-left" data-aos-delay="200">
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full blur-md opacity-50"></div>
-              <Image src={perfil} alt="Foto de perfil de Samuel Arandia" width={300} height={200} className="relative rounded-full w-48 lg:w-64 shadow-2xl" data-aos="fade-right" loading="lazy" />
+              <div className="absolute -inset-3 bg-gradient-to-r from-pink-500/30 to-violet-500/30 rounded-full blur-2xl"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full opacity-20"></div>
+              <Image
+                src={perfil}
+                alt="Foto de perfil de Samuel Arandia"
+                width={300}
+                height={300}
+                className="relative rounded-full w-40 h-40 sm:w-52 sm:h-52 md:w-56 md:h-56 lg:w-72 lg:h-72 object-cover shadow-2xl ring-2 ring-indigo-500/20"
+                loading="lazy"
+              />
             </div>
           </div>
+
         </div>
       </div>
     </section>
