@@ -24,8 +24,8 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
 
     <div className="p-4 sm:p-6 md:p-8 text-white">
       <h2 className="card-title uppercase bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">{title}</h2>
-      <p className="block mt-1 text-base sm:text-lg leading-tight font-medium">{subtitle}</p>
-      <p className="card-body mt-2 text-sm sm:text-base">{description}</p>
+      <p className="block mt-1 text-sm sm:text-base leading-tight font-medium">{subtitle}</p>
+      <p className="card-body mt-2 text-xs sm:text-sm md:text-base">{description}</p>
       <div className="footer flex flex-row justify-center p-2 sm:p-3 gap-2">
         {technologies.map((Icon, index) => (
           <Icon key={index} className="text-2xl sm:text-3xl" />
