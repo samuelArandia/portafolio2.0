@@ -39,23 +39,23 @@ const Portafolio = () => {
   }));
 
   return (
-    <section className="min-h-screen px-10 md:px-40" id="Portafolio">
-      <div className="text-center p-10 mt-20 md:mt-0 md:p-0">
-        <div className="flex text-center justify-center">
-          <BsFolder2Open className="text-4xl text-indigo-500 mx-2" />
-          <h1 className="text-3xl mb-20">Portafolio</h1>
+    <section className="min-h-screen px-4 sm:px-10 md:px-20 lg:px-40" id="Portafolio">
+      <div className="text-center p-4 sm:p-10 mt-10 md:mt-0 md:p-0">
+        <div className="flex text-center justify-center items-center">
+          <BsFolder2Open className="text-3xl sm:text-4xl text-indigo-500 mx-2" />
+          <h1 className="text-2xl sm:text-3xl mb-10 sm:mb-20">Portafolio</h1>
         </div>
-        <h5 className="text-2xl">
+        <h5 className="text-lg sm:text-2xl">
           Conoce mi portafolio. Estos son algunos de los proyectos en los que he participado y también algunos realizados en cursos.
         </h5>
       </div>
-      <div className="flex flex-row flex-wrap justify-around w-auto mt-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-5">
         {projectsWithIcons.map((project) => (
           <PortfolioCard key={project.id} {...project} />
         ))}
       </div>
       <div className="p-5 text-center">
-        <h2 className="text-lg text-indigo-500">
+        <h2 className="text-base sm:text-lg text-indigo-500">
           Esta sección se actualizará con nuevos proyectos. Para ver más, visita mi
           <a href="https://github.com/samuelArandia"> GitHub</a>.
         </h2>
