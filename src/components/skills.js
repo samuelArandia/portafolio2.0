@@ -39,28 +39,26 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className='min-h-screen mt-20 px-10 md:px-40' id='Skills'>
-      <div className='flex text-center justify-center my-20'>
-        <GiSkills className='text-4xl text-indigo-500 mx-5' />
-        <h1 className='text-3xl text-center'>Habilidades</h1>
+    <section className='min-h-screen mt-10 sm:mt-20 px-4 sm:px-10 md:px-20 lg:px-40' id='Skills'>
+      <div className='flex text-center justify-center items-center my-10 sm:my-20'>
+        <GiSkills className='text-3xl sm:text-4xl text-indigo-500 mx-3 sm:mx-5' />
+        <h1 className='text-2xl sm:text-3xl text-center'>Habilidades</h1>
       </div>
-      <p className='text-lg mb-4 text-center'>
+      <p className='text-base sm:text-lg mb-4 text-center px-2'>
         Estas son algunas de las tecnologías y lenguajes de programación en las que tengo experiencia y herramientas que uso diariamente.
       </p>
       <div className='scroller' data-direction='left' data-speed='slow'>
         <div className='scroller__inner'>
-          {/* Lenguajes de Programación */}
           <IconBox Icon={FaHtml5} color='text-red-500' label='HTML' />
           <IconBox Icon={FaCss3Alt} color='text-blue-500' label='CSS' />
           <IconBox Icon={SiJavascript} color='text-yellow-500' label='JavaScript' />
           <IconBox Icon={SiTypescript} color='text-blue-500' label='TypeScript' />
           <IconBox Icon={FaPython} color='text-blue-500' label='Python' />
           <IconBox Icon={FaJava} color='text-red-500' label='Java' />
-          </div>
+        </div>
       </div>
       <div className='scroller' data-direction='right' data-speed='slow'>
         <div className='scroller__inner'>
-          {/* Frameworks */}
           <IconBox Icon={FaVuejs} color='text-green-700' label='Vue.js' />
           <IconBox Icon={FaReact} color='text-sky-700' label='React' />
           <IconBox Icon={FaAngular} color='text-red-800' label='Angular' />
@@ -68,11 +66,10 @@ const Skills = () => {
           <IconBox Icon={GrGraphQl} color='text-pink-500' label='GraphQL' />
           <IconBox Icon={SiNestjs} color='text-red-500' label='NestJS' />
           <IconBox Icon={SiSpringboot} color='text-green-500' label='Spring Boot' />
-          </div>
+        </div>
       </div>
       <div className='scroller' data-direction='left' data-speed='slow'>
         <div className='scroller__inner'>
-          {/* Herramientas */}
           <IconBox Icon={SiPostgresql} color='text-blue-500' label='PostgreSQL' />
           <IconBox Icon={SiAzuredevops} color='text-blue-500' label='Azure DevOps' />
           <IconBox Icon={SiMicrosoftazure} color='text-blue-500' label='Microsoft Azure' />
@@ -89,4 +86,3 @@ const Skills = () => {
 };
 
 export default Skills;
-

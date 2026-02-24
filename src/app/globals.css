@@ -49,33 +49,53 @@ a {
 }
 
 .card {
-  padding: 20px;
+  padding: 12px;
   width: 100%;
-  min-height: 370px;
+  min-height: 300px;
   border-radius: 20px;
   transition: 0.5s;
 }
 
+@media (min-width: 640px) {
+  .card {
+    padding: 20px;
+    min-height: 370px;
+  }
+}
+
 .card:hover {
-  translate: 0 -15px;
+  translate: 0 -10px;
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin: 15px 0 0 10px;
+  margin: 10px 0 0 8px;
 }
 
+@media (min-width: 640px) {
+  .card-title {
+    font-size: 18px;
+    margin: 15px 0 0 10px;
+  }
+}
 
 .scroller {
   max-width: 100%;
 }
 
 .scroller__inner {
-  padding-block: 1rem;
+  padding-block: 0.5rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .scroller__inner {
+    padding-block: 1rem;
+    gap: 1rem;
+  }
 }
 
 .scroller[data-animated="true"] {
