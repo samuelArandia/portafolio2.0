@@ -39,15 +39,15 @@ const Portafolio = () => {
   }));
 
   return (
-    <section className="min-h-screen px-4 sm:px-10 md:px-20 lg:px-40" id="Portafolio">
-      <div className="text-center p-4 sm:p-10 mt-10 md:mt-0 md:p-0">
-        <div className="flex text-center justify-center items-center">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-10 md:px-20 lg:px-40" id="Portafolio">
+      <div className="text-center mb-8 sm:mb-12">
+        <div className="flex text-center justify-center items-center mb-6 sm:mb-8">
           <BsFolder2Open className="text-3xl sm:text-4xl text-indigo-500 mx-2" />
-          <h1 className="text-2xl sm:text-3xl mb-10 sm:mb-20">Portafolio</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl">Portafolio</h1>
         </div>
-        <h5 className="text-lg sm:text-2xl">
+        <p className="text-base sm:text-lg md:text-xl">
           Conoce mi portafolio. Estos son algunos de los proyectos en los que he participado y también algunos realizados en cursos.
-        </h5>
+        </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-5">
         {projectsWithIcons.map((project) => (

@@ -49,14 +49,14 @@ function Contact() {
   };
 
   return (
-    <section className="min-h-screen px-4 sm:px-10 md:px-20 lg:px-40 mt-10" id="Contact">
-      <div className="flex flex-row text-center justify-center items-center">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-10 md:px-20 lg:px-40" id="Contact">
+      <div className="flex flex-row text-center justify-center items-center mb-6 sm:mb-8">
         <RiContactsLine className="text-3xl sm:text-4xl text-indigo-500 mx-3 sm:mx-5" />
-        <h1 className="text-2xl sm:text-3xl text-center">Contáctame</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl text-center">Contáctame</h1>
       </div>
-        <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center mx-2 sm:mx-10 my-6 sm:my-10 p-4 sm:p-8 md:p-10 bg-gray-900 text-white">
+        <div className="rounded-xl shadow-lg shadow-indigo-500/40 overflow-hidden text-center mx-0 sm:mx-10 p-4 sm:p-8 md:p-10 bg-gray-900 text-white">
         <div>
-          <p className="text-base sm:text-xl text-center my-2">Si tienes alguna duda o quieres contactarme, puedes hacerlo a través de este formulario.</p>
+          <p className="text-sm sm:text-base md:text-lg text-center my-2">Si tienes alguna duda o quieres contactarme, puedes hacerlo a través de este formulario.</p>
         </div>
           <form className="max-w-lg mx-auto mt-4" onSubmit={handleSubmit}>
             <div className="mb-4">

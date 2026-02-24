@@ -19,17 +19,17 @@ function Inicio() {
   const contactId = "Contact"
 
   return (
-    <section className="md:container min-h-screen md:mx-auto" id="Inicio">
-      <div className="px-6 py-20 sm:px-10 sm:py-28 md:p-40">
+    <section className="md:container min-h-screen md:mx-auto flex items-center" id="Inicio">
+      <div className="px-6 py-16 sm:px-10 sm:py-20 md:px-20 md:py-28 lg:p-40 w-full">
         <div className="flex flex-col md:flex-row justify-center items-center text-center md:text-left">
           <div className="m-2 sm:m-5">
             <div className="flex flex-col">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
                   Hola, Soy Samuel Arandia
                 </h1>
               <TypeAnimation
                 sequence={['Soy desarrollador de software', 1500, 'Soy analista y programador de sistemas', 1500, 'Bienvenido a mi portafolio', 1500]}
-                className="text-xl sm:text-2xl md:text-3xl font-semibold mt-4"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mt-4"
                 cursor={true}
                 repeat={Infinity}
               />

@@ -14,11 +14,11 @@ function Footer() {
   const year = new Date().getFullYear();
 
     return (
-      <footer className="mt-10 sm:mt-20 px-4 sm:px-6" id="Contact">
+      <footer className="pt-10 sm:pt-16 px-4 sm:px-6" id="Footer">
       <div>
         <div className="flex flex-col sm:flex-row flex-wrap justify-around text-center gap-6 sm:gap-4">
           <div className="w-full sm:w-auto md:w-1/4 text-center sm:text-left">
-            <h2 className="text-xl sm:text-2xl text-indigo-400">Sobre mí</h2>
+            <h2 className="text-lg sm:text-xl md:text-2xl text-indigo-400">Sobre mí</h2>
             <div>
               <p className="text-sm sm:text-base mt-2">Mi nombre es Samuel Arandia, soy Técnico en Programación y Análisis de Sistemas, titulado en Instituto AIEP y actualmente me encuentro viviendo en Santiago de Chile.</p>
             </div>
@@ -27,10 +27,10 @@ function Footer() {
             </div>
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl text-indigo-400 mb-2 sm:m-3">Portafolio</h2>
+            <h2 className="text-lg sm:text-xl md:text-2xl text-indigo-400 mb-2 sm:m-3">Portafolio</h2>
             <ul className="list-none space-y-1">
               {projects.map((project) => (
-                <li key={project.id} className="cursor-pointer text-base sm:text-xl">
+                <li key={project.id} className="cursor-pointer text-sm sm:text-base md:text-lg">
                   <a
                     href={project.link}
                     target="_blank"
@@ -44,10 +44,10 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h2 className="text-indigo-400 text-xl sm:text-2xl mb-2 sm:m-3">Menú</h2>
+            <h2 className="text-indigo-400 text-lg sm:text-xl md:text-2xl mb-2 sm:m-3">Menú</h2>
             <ul className="list-none space-y-1">
               {navLinks.map((nav) => (
-                <li key={nav.id} className="cursor-pointer text-base sm:text-xl">
+                <li key={nav.id} className="cursor-pointer text-sm sm:text-base md:text-lg">
                   <Link to={nav.id} smooth={true} duration={500} offset={-70}
                     className="transition ease-in-out delay-150 hover:text-indigo-700 duration-300">
                     {nav.title}
@@ -59,7 +59,7 @@ function Footer() {
         </div>
           <div className="mt-6 sm:mt-8">
             <div className="flex flex-col">
-              <h2 className="text-indigo-400 text-xl sm:text-2xl mb-3 sm:m-5 text-center">Sígueme</h2>
+              <h2 className="text-indigo-400 text-lg sm:text-xl md:text-2xl mb-3 sm:m-5 text-center">Sígueme</h2>
               <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 p-3 sm:p-5">
                 {socialMedia.map((social) => (
                   <a

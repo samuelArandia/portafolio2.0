@@ -39,12 +39,12 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className='min-h-screen mt-10 sm:mt-20 px-4 sm:px-10 md:px-20 lg:px-40' id='Skills'>
-      <div className='flex text-center justify-center items-center my-10 sm:my-20'>
+    <section className='py-16 sm:py-20 md:py-24 px-4 sm:px-10 md:px-20 lg:px-40' id='Skills'>
+      <div className='flex text-center justify-center items-center mb-6 sm:mb-10'>
         <GiSkills className='text-3xl sm:text-4xl text-indigo-500 mx-3 sm:mx-5' />
-        <h1 className='text-2xl sm:text-3xl text-center'>Habilidades</h1>
+        <h1 className='text-2xl sm:text-3xl md:text-4xl text-center'>Habilidades</h1>
       </div>
-      <p className='text-base sm:text-lg mb-4 text-center px-2'>
+      <p className='text-sm sm:text-base md:text-lg mb-6 sm:mb-8 text-center px-2'>
         Estas son algunas de las tecnologías y lenguajes de programación en las que tengo experiencia y herramientas que uso diariamente.
       </p>
       <div className='scroller' data-direction='left' data-speed='slow'>
