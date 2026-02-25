@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaChevronUp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaChevronUp, FaEnvelope, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { socialMedia, navLinks, projects } from "@/constants";
 import { Link } from "react-scroll";
@@ -37,10 +37,16 @@ function Footer() {
               <div className="flex items-center gap-3 mb-4">
                 <Image src={logoUrl} alt="Samuel Arandia Logo" width={90} height={24} />
               </div>
-              <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-muted)' }}>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
                 {t('footer.aboutText')}
               </p>
-              <div className="flex items-center gap-2 text-xs mb-2" style={{ color: 'var(--text-muted)' }}>
+              {/* Brand tagline */}
+              <span className="font-mono text-xs inline-block px-3 py-1 rounded-full border"
+                style={{ color: 'var(--accent-primary)', borderColor: 'var(--glass-border)', background: 'var(--glass-bg)' }}
+              >
+                {t('hero.tagline')}
+              </span>
+              <div className="flex items-center gap-2 text-xs mt-4 mb-2" style={{ color: 'var(--text-muted)' }}>
                 <FaEnvelope className="text-[var(--accent-primary)] text-sm" />
                 <a href="mailto:samuelarandia@gmail.com" className="hover:text-[var(--accent-primary)] transition-colors">
                   samuelarandia@gmail.com
@@ -129,10 +135,11 @@ function Footer() {
             <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
               &copy; {year} Samuel Arandia. {t('footer.copyright')}
             </p>
-            <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-muted)' }}>
-              <span className="inline-block w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--accent-primary)' }} />
-              {t('contact.locationValue')}
-            </div>
+            <p className="text-xs flex items-center gap-1.5" style={{ color: 'var(--text-muted)' }}>
+              {t('footer.builtWith')}
+              <FaHeart className="text-[var(--accent-primary)] text-[10px]" />
+              <span className="font-mono" style={{ color: 'var(--accent-primary)' }}>samuel.dev</span>
+            </p>
           </div>
         </div>
       </footer>

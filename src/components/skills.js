@@ -104,7 +104,7 @@ function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
               style={{
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                 color: tech.color,
-                filter: `drop-shadow(0 0 0px transparent)`,
+                filter: 'drop-shadow(0 0 0px transparent)',
               }}
               onMouseEnter={(e) => { e.currentTarget.style.filter = `drop-shadow(0 0 16px ${tech.color}80)`; }}
               onMouseLeave={(e) => { e.currentTarget.style.filter = 'drop-shadow(0 0 0px transparent)'; }}
@@ -134,8 +134,9 @@ const Skills = () => {
       <div className='max-w-6xl mx-auto'>
         {/* Section Header */}
         <div className='text-center mb-12 sm:mb-16' data-aos='fade-up'>
+          <span className="section-number">{t('skills.section')} {'//'}</span>
           <h2
-            className='font-display font-bold'
+            className='font-display font-bold mt-2'
             style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
             {t('skills.title')}

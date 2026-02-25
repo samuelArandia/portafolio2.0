@@ -60,8 +60,9 @@ function About() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+          <span className="section-number">{t('about.section')} {'//'}</span>
           <h2
-            className="font-display font-bold"
+            className="font-display font-bold mt-2"
             style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
             {t('about.title')}
@@ -92,7 +93,7 @@ function About() {
             </div>
 
             {/* Counters */}
-            <div className="grid grid-cols-3 gap-4 mt-8 p-5 rounded-2xl" style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }} data-aos="fade-up" data-aos-delay="200">
+            <div className="grid grid-cols-3 gap-4 mt-8 p-5 rounded-2xl gradient-border-top" style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }} data-aos="fade-up" data-aos-delay="200">
               <AnimatedCounter target={3} label={t('about.yearsExp')} suffix="+" />
               <AnimatedCounter target={5} label={t('about.projectsCompleted')} suffix="+" />
               <AnimatedCounter target={15} label={t('about.technologies')} suffix="+" />
