@@ -21,8 +21,8 @@ function Inicio() {
   return (
     <section className="min-h-[100dvh] flex items-center relative overflow-hidden" id="Inicio">
       {/* Ambient glow effects */}
-      <div className="absolute top-1/4 -left-32 w-72 h-72 bg-[var(--accent-primary)] rounded-full opacity-[0.04] blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-72 h-72 bg-[var(--accent-secondary)] rounded-full opacity-[0.04] blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 -left-32 w-72 h-72 rounded-full opacity-[0.04] blur-[100px] pointer-events-none" style={{ background: 'var(--accent-primary)' }} />
+      <div className="absolute bottom-1/4 -right-32 w-72 h-72 rounded-full opacity-[0.04] blur-[100px] pointer-events-none" style={{ background: 'var(--accent-secondary)' }} />
 
       <div className="w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12">
         <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-12 lg:gap-20">
@@ -45,16 +45,16 @@ function Inicio() {
                   'Analista y Programador de Sistemas', 1500,
                   'Bienvenido a mi portafolio', 1500,
                 ]}
-                className="font-display font-semibold text-[var(--text-secondary)]"
-                style={{ fontSize: 'clamp(1rem, 2.5vw, 1.75rem)' }}
+                className="font-display font-semibold"
+                style={{ fontSize: 'clamp(1rem, 2.5vw, 1.75rem)', color: 'var(--text-secondary)' }}
                 cursor={true}
                 repeat={Infinity}
               />
             </div>
 
             <p
-              className="text-[var(--text-muted)] mt-5 max-w-lg mx-auto md:mx-0 leading-relaxed"
-              style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)' }}
+              className="mt-5 max-w-lg mx-auto md:mx-0 leading-relaxed"
+              style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-muted)' }}
               data-aos="fade-up"
               data-aos-delay="200"
               data-aos-duration="600"
@@ -77,7 +77,8 @@ function Inicio() {
                 smooth={true}
                 duration={500}
                 offset={-80}
-                className="px-7 py-3 rounded-xl font-medium text-sm border border-[var(--accent-primary)]/30 text-[var(--accent-primary)] hover:-translate-y-0.5 hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300 cursor-pointer text-center"
+                className="px-7 py-3 rounded-xl font-medium text-sm hover:-translate-y-0.5 transition-all duration-300 cursor-pointer text-center border"
+                style={{ borderColor: 'var(--card-border)', color: 'var(--accent-primary)' }}
               >
                 Escríbeme
               </Link>
@@ -92,7 +93,8 @@ function Inicio() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
-                  className="p-2.5 rounded-xl border border-white/[0.08] text-[var(--text-muted)] text-lg transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent-primary)]/30 hover:text-[var(--accent-primary)] hover:shadow-lg hover:shadow-[var(--accent-primary)]/10 cursor-pointer"
+                  className="p-2.5 rounded-xl border text-lg transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--accent-primary)] cursor-pointer"
+                  style={{ borderColor: 'var(--card-border)', color: 'var(--text-muted)' }}
                 >
                   {social.id === "social-media-1" && <FaInstagram />}
                   {social.id === "social-media-2" && <FaFacebook />}
@@ -107,7 +109,6 @@ function Inicio() {
           {/* Profile image */}
           <div className="flex-shrink-0" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
             <div className="relative">
-              {/* Animated glow */}
               <div className="absolute -inset-4 rounded-full animate-glow-pulse" style={{ background: 'var(--accent-gradient)', opacity: 0.15, filter: 'blur(30px)' }} />
               <div className="absolute -inset-1 rounded-full opacity-20" style={{ background: 'var(--accent-gradient)' }} />
               <Image
@@ -115,7 +116,8 @@ function Inicio() {
                 alt="Foto de perfil de Samuel Arandia"
                 width={300}
                 height={300}
-                className="relative rounded-full w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover shadow-2xl ring-2 ring-[var(--accent-primary)]/20"
+                className="relative rounded-full w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover shadow-2xl"
+                style={{ boxShadow: '0 0 0 2px var(--card-border)' }}
                 priority
               />
             </div>

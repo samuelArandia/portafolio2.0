@@ -41,7 +41,7 @@ function AnimatedCounter({ target, label, suffix = "" }) {
       <div className="text-2xl sm:text-3xl font-bold font-display text-accent-gradient counter-value">
         {count}{suffix}
       </div>
-      <div className="text-xs sm:text-sm text-[var(--text-muted)] mt-1">{label}</div>
+      <div className="text-xs sm:text-sm mt-1" style={{ color: 'var(--text-muted)' }}>{label}</div>
     </div>
   );
 }
@@ -59,8 +59,8 @@ function About() {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
           <h2
-            className="font-display font-bold text-[var(--text-primary)]"
-            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+            className="font-display font-bold"
+            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
             Sobre mí
           </h2>
@@ -82,7 +82,7 @@ function About() {
 
           {/* Text */}
           <div className="md:w-7/12" data-aos="fade-left" data-aos-duration="700">
-            <div className="space-y-4 text-[var(--text-secondary)] leading-relaxed" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1rem)' }}>
+            <div className="space-y-4 leading-relaxed" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1rem)', color: 'var(--text-secondary)' }}>
               <p>
                 ¡Hola! Soy desarrollador de software y resido en Santiago de Chile.
                 Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello.
@@ -96,7 +96,7 @@ function About() {
                 Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y salir a trotar.
                 También me encanta la música rap y alternativa.
               </p>
-              <p className="font-semibold text-[var(--accent-primary)]">¿Qué tipo de música te gusta?</p>
+              <p className="font-semibold" style={{ color: 'var(--accent-primary)' }}>¿Qué tipo de música te gusta?</p>
             </div>
 
             {/* Counters */}
