@@ -7,45 +7,45 @@
 
 /* ===== CSS Variables - Dark (default) ===== */
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: #1a1a2e;
+  --bg-primary: #071620;
+  --bg-secondary: #0a1e2d;
+  --bg-card: #012340;
 
-  --accent-primary: #e040fb;
-  --accent-secondary: #7c3aed;
-  --accent-gradient: linear-gradient(135deg, #e040fb, #7c3aed);
+  --accent-primary: #03A63C;
+  --accent-secondary: #025939;
+  --accent-gradient: linear-gradient(135deg, #03A63C, #025939);
 
-  --text-primary: #f0f0f0;
-  --text-secondary: #a0a0b0;
-  --text-muted: #6b6b80;
+  --text-primary: #e8f0f0;
+  --text-secondary: #8aa0a8;
+  --text-muted: #4a6670;
 
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --card-border: rgba(255, 255, 255, 0.06);
-  --nav-bg: rgba(10, 10, 15, 0.85);
+  --nav-bg: rgba(7, 22, 32, 0.85);
   --dot-color: rgba(255, 255, 255, 0.03);
   --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
-  --card-shadow-hover: 0 8px 40px rgba(224, 64, 251, 0.12), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 8px 40px rgba(3, 166, 60, 0.12), 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== CSS Variables - Light ===== */
 [data-theme="light"] {
-  --bg-primary: #fafafa;
-  --bg-secondary: #f0f0f2;
+  --bg-primary: #f5faf6;
+  --bg-secondary: #edf5ef;
   --bg-card: #ffffff;
 
-  --accent-primary: #c026d3;
-  --accent-secondary: #7c3aed;
-  --accent-gradient: linear-gradient(135deg, #c026d3, #7c3aed);
+  --accent-primary: #027333;
+  --accent-secondary: #012340;
+  --accent-gradient: linear-gradient(135deg, #027333, #012340);
 
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a5a;
-  --text-muted: #8a8a9a;
+  --text-primary: #071620;
+  --text-secondary: #2a3a42;
+  --text-muted: #6a7a82;
 
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(0, 0, 0, 0.08);
   --card-border: rgba(0, 0, 0, 0.08);
-  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-bg: rgba(245, 250, 246, 0.85);
   --dot-color: rgba(0, 0, 0, 0.06);
   --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
   --card-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -71,7 +71,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(224, 64, 251, 0.25);
+  background-color: rgba(3, 166, 60, 0.25);
   color: inherit;
 }
 
@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 input:focus,
 textarea:focus {
   border-color: var(--accent-primary) !important;
-  box-shadow: 0 0 0 3px rgba(224, 64, 251, 0.15);
+  box-shadow: 0 0 0 3px rgba(3, 166, 60, 0.15);
   outline: none;
 }
 

@@ -157,7 +157,7 @@ function Footer() {
         className={`fixed bottom-6 right-6 z-40 p-3 rounded-xl text-white transition-all duration-300 cursor-pointer ${
           showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'
         }`}
-        style={{ background: 'var(--accent-gradient)', boxShadow: '0 4px 20px rgba(224, 64, 251, 0.3)' }}
+        style={{ background: 'var(--accent-gradient)', boxShadow: '0 4px 20px rgba(3, 166, 60, 0.3)' }}
       >
         <FaChevronUp className="text-sm" />
       </button>

@@ -106,7 +106,7 @@ function Inicio() {
               <button
                 onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
                 className="px-7 py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
-                style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(224, 64, 251, 0.25)' }}
+                style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(3, 166, 60, 0.25)' }}
               >
                 {t('hero.downloadCV')}
               </button>
