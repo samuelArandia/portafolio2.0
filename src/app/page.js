@@ -11,11 +11,11 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 function Home() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode(true);
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      setDarkMode(false);
     }
   }, []);
 
@@ -24,24 +24,33 @@ function Home() {
   };
 
   useEffect(() => {
-    Aos.init();
+    Aos.init({ once: true, duration: 600, easing: 'ease-out' });
   }, []);
 
   return (
     <>
+      {/* Background */}
       {darkMode ? (
         <div
-          className="fixed inset-0 z-[-10] w-full h-full"
-          style={{ backgroundColor: '#000000', backgroundImage: 'radial-gradient(#ffffff33 1px, #00091d 1px)', backgroundSize: '20px 20px', backgroundAttachment: 'fixed' }}
-        ></div>
+          className="fixed inset-0 z-[-10]"
+          style={{
+            backgroundColor: 'var(--bg-primary)',
+            backgroundImage: 'radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        />
       ) : (
         <div
-          className="fixed inset-0 z-[-10] w-full h-full"
-          style={{ backgroundColor: 'rgb(255 255 255)', backgroundImage: 'radial-gradient(#e5e7eb 1px,transparent 1px)', backgroundSize: '16px 16px', backgroundAttachment: 'fixed' }}
-        ></div>
+          className="fixed inset-0 z-[-10]"
+          style={{
+            backgroundColor: '#fafafa',
+            backgroundImage: 'radial-gradient(#e0e0e0 1px, transparent 1px)',
+            backgroundSize: '20px 20px',
+          }}
+        />
       )}
 
-      <main className={`${darkMode ? 'text-white' : 'text-gray-800'}`}>
+      <main className={darkMode ? 'text-[var(--text-primary)]' : 'text-gray-800'}>
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <div className="relative z-10">
           <Inicio />
