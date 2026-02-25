@@ -48,7 +48,7 @@ function AnimatedCounter({ target, label, suffix = "" }) {
 }
 
 function About() {
-  const svg = "/Web Developer_Monochromatic.svg";
+  const profileImg = "/perfil.png";
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -72,15 +72,19 @@ function About() {
 
         {/* Content */}
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-          {/* Illustration */}
-          <div className="md:w-5/12 flex-shrink-0" data-aos="fade-right" data-aos-duration="700">
-            <Image
-              src={svg}
-              alt={t('about.illustrationAlt')}
-              width={450}
-              height={450}
-              className="w-full max-w-[320px] sm:max-w-[400px] mx-auto"
-            />
+          {/* Profile image */}
+          <div className="md:w-5/12 flex-shrink-0 flex justify-center" data-aos="fade-right" data-aos-duration="700">
+            <div className="relative">
+              <div className="absolute -inset-3 rounded-2xl opacity-15 blur-2xl" style={{ background: 'var(--accent-gradient)' }} />
+              <Image
+                src={profileImg}
+                alt={t('about.illustrationAlt')}
+                width={400}
+                height={400}
+                className="relative rounded-2xl w-full max-w-[280px] sm:max-w-[340px] object-cover shadow-2xl"
+                style={{ border: '2px solid var(--glass-border)' }}
+              />
+            </div>
           </div>
 
           {/* Text */}
