@@ -33,28 +33,32 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
             {title}
           </h3>
           <div className="w-10 h-0.5 rounded-full mb-3" style={{ background: 'var(--accent-gradient)' }} />
-          <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
             {description}
           </p>
 
           {/* Tech tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-5">
             {technologies.map((Icon, i) => (
               <span
                 key={i}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-200"
-                style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)' }}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
+                style={{
+                  color: 'var(--text-secondary)',
+                  background: 'var(--glass-bg)',
+                  border: '1px solid var(--glass-border)',
+                }}
               >
-                <Icon className="text-xs" />
+                <Icon className="text-sm" style={{ color: 'var(--accent-primary)' }} />
                 {techNames && techNames[i] && <span>{techNames[i]}</span>}
               </span>
             ))}
           </div>
 
-          <div className="flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 group-hover:text-[var(--accent-primary)]"
-            style={{ color: 'var(--text-secondary)' }}
+          <div className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 group-hover:text-[var(--accent-primary)]"
+            style={{ color: 'var(--text-primary)' }}
           >
-            {t('portfolio.viewProject')} <FiExternalLink className="text-sm" />
+            {t('portfolio.viewProject')} <FiExternalLink className="text-sm transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
         </div>
 
