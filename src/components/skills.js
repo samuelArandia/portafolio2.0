@@ -11,34 +11,34 @@ import 'aos/dist/aos.css';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 const languages = [
-  { name: "HTML", Icon: FaHtml5 },
-  { name: "CSS", Icon: FaCss3Alt },
-  { name: "JavaScript", Icon: SiJavascript },
-  { name: "TypeScript", Icon: SiTypescript },
-  { name: "Python", Icon: FaPython },
-  { name: "Java", Icon: FaJava },
+  { name: "HTML", Icon: FaHtml5, color: "#E34F26" },
+  { name: "CSS", Icon: FaCss3Alt, color: "#1572B6" },
+  { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+  { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
+  { name: "Python", Icon: FaPython, color: "#3776AB" },
+  { name: "Java", Icon: FaJava, color: "#ED8B00" },
 ];
 
 const frameworksList = [
-  { name: "Vue.js", Icon: FaVuejs },
-  { name: "React", Icon: FaReact },
-  { name: "Angular", Icon: FaAngular },
-  { name: "Django", Icon: DiDjango },
-  { name: "GraphQL", Icon: GrGraphQl },
-  { name: "NestJS", Icon: SiNestjs },
-  { name: "Spring Boot", Icon: SiSpringboot },
+  { name: "Vue.js", Icon: FaVuejs, color: "#4FC08D" },
+  { name: "React", Icon: FaReact, color: "#61DAFB" },
+  { name: "Angular", Icon: FaAngular, color: "#DD0031" },
+  { name: "Django", Icon: DiDjango, color: "#092E20" },
+  { name: "GraphQL", Icon: GrGraphQl, color: "#E10098" },
+  { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
+  { name: "Spring Boot", Icon: SiSpringboot, color: "#6DB33F" },
 ];
 
 const toolsList = [
-  { name: "PostgreSQL", Icon: SiPostgresql },
-  { name: "Azure DevOps", Icon: SiAzuredevops },
-  { name: "Microsoft Azure", Icon: SiMicrosoftazure },
-  { name: "Git", Icon: BsGit },
-  { name: "VS Code", Icon: TbBrandVscode },
-  { name: "Postman", Icon: SiPostman },
-  { name: "JetBrains", Icon: SiJetbrains },
-  { name: "Docker", Icon: SiDocker },
-  { name: "GitHub", Icon: FaGithub },
+  { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+  { name: "Azure DevOps", Icon: SiAzuredevops, color: "#0078D7" },
+  { name: "Microsoft Azure", Icon: SiMicrosoftazure, color: "#0089D6" },
+  { name: "Git", Icon: BsGit, color: "#F05032" },
+  { name: "VS Code", Icon: TbBrandVscode, color: "#007ACC" },
+  { name: "Postman", Icon: SiPostman, color: "#FF6C37" },
+  { name: "JetBrains", Icon: SiJetbrains, color: "#FE315D" },
+  { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+  { name: "GitHub", Icon: FaGithub, color: "#8b5cf6" },
 ];
 
 function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
@@ -97,21 +97,20 @@ function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
         {allItems.map((tech, i) => (
           <div
             key={`${tech.name}-${i}`}
-            className="flex flex-col items-center mx-5 sm:mx-7 md:mx-9 flex-shrink-0 group"
+            className="flex flex-col items-center mx-6 sm:mx-8 md:mx-10 lg:mx-12 flex-shrink-0 group"
           >
             <tech.Icon
-              className="transition-all duration-300 group-hover:text-[var(--accent-primary)] group-hover:scale-125"
+              className="transition-all duration-300 group-hover:scale-[1.3]"
               style={{
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                color: 'var(--text-muted)',
-                opacity: 0.55,
-                filter: 'drop-shadow(0 0 0px transparent)',
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                color: tech.color,
+                filter: `drop-shadow(0 0 0px transparent)`,
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.filter = 'drop-shadow(0 0 12px rgba(224, 64, 251, 0.4))'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.filter = `drop-shadow(0 0 16px ${tech.color}80)`; }}
               onMouseLeave={(e) => { e.currentTarget.style.filter = 'drop-shadow(0 0 0px transparent)'; }}
             />
             <span
-              className="mt-2 text-[10px] sm:text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="mt-2.5 text-xs sm:text-sm font-medium transition-all duration-300 opacity-60 group-hover:opacity-100"
               style={{ color: 'var(--text-secondary)' }}
             >
               {tech.name}
@@ -147,10 +146,10 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className='space-y-10 sm:space-y-12'>
+        <div className='space-y-12 sm:space-y-14 md:space-y-16'>
           {/* Languages */}
           <div data-aos='fade-up' data-aos-delay='100'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-5 text-center' style={{ color: 'var(--accent-primary)' }}>
+            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
               {t('skills.languages')}
             </h3>
             <SkillMarquee items={languages} direction="left" speed="30s" />
@@ -158,7 +157,7 @@ const Skills = () => {
 
           {/* Frameworks */}
           <div data-aos='fade-up' data-aos-delay='200'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-5 text-center' style={{ color: 'var(--accent-primary)' }}>
+            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
               {t('skills.frameworks')}
             </h3>
             <SkillMarquee items={frameworksList} direction="right" speed="35s" />
@@ -166,7 +165,7 @@ const Skills = () => {
 
           {/* Tools */}
           <div data-aos='fade-up' data-aos-delay='300'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-5 text-center' style={{ color: 'var(--accent-primary)' }}>
+            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
               {t('skills.tools')}
             </h3>
             <SkillMarquee items={toolsList} direction="left" speed="40s" />
