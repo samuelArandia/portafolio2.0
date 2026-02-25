@@ -49,7 +49,7 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
                   border: '1px solid var(--glass-border)',
                 }}
               >
-                <Icon className="text-sm" style={{ color: 'var(--accent-primary)' }} />
+                <span className="tech-icon-accent flex items-center"><Icon className="text-sm" /></span>
                 {techNames && techNames[i] && <span>{techNames[i]}</span>}
               </span>
             ))}
