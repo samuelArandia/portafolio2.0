@@ -75,7 +75,7 @@ function Contact() {
             <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
                 <FaEnvelope className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
@@ -89,7 +89,7 @@ function Contact() {
             <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
                 <FaMapMarkerAlt className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
@@ -101,7 +101,7 @@ function Contact() {
             <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
                 <FaLinkedin className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
@@ -115,7 +115,7 @@ function Contact() {
             <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
                 <FaGithub className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
@@ -185,7 +185,7 @@ function Contact() {
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-                  style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(224, 64, 251, 0.2)' }}
+                  style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(3, 166, 60, 0.2)' }}
                 >
                   {isSubmitting ? t('contact.sending') : t('contact.send')}
                 </button>

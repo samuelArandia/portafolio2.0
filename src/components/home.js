@@ -31,19 +31,6 @@ function Inicio() {
 
           {/* Text content */}
           <div className="flex-1 text-center md:text-left">
-            {/* Status badge */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border"
-              style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}
-              data-aos="fade-up"
-              data-aos-duration="600"
-            >
-              <span className="status-dot w-2 h-2 rounded-full bg-green-400" />
-              <span className="font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
-                {t('hero.status')}
-              </span>
-            </div>
-
             {/* Greeting */}
             <h1
               data-aos="fade-up"
@@ -106,7 +93,7 @@ function Inicio() {
               <button
                 onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
                 className="px-7 py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
-                style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(224, 64, 251, 0.25)' }}
+                style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(3, 166, 60, 0.25)' }}
               >
                 {t('hero.downloadCV')}
               </button>

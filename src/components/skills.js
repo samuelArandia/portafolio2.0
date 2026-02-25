@@ -38,7 +38,7 @@ const toolsList = [
   { name: "Postman", Icon: SiPostman, color: "#FF6C37" },
   { name: "JetBrains", Icon: SiJetbrains, color: "#FE315D" },
   { name: "Docker", Icon: SiDocker, color: "#2496ED" },
-  { name: "GitHub", Icon: FaGithub, color: "#8b5cf6" },
+  { name: "GitHub", Icon: FaGithub, color: "#025939" },
 ];
 
 function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
