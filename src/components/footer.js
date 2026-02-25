@@ -27,8 +27,14 @@ function Footer() {
 
   return (
     <>
-      <footer className="pt-16 pb-8 px-5 sm:px-8 border-t" style={{ borderColor: 'var(--card-border)', background: 'var(--bg-secondary)' }} id="Footer">
-        <div className="max-w-6xl mx-auto">
+      <footer className="relative pt-16 pb-8 px-5 sm:px-8 overflow-hidden" id="Footer">
+        {/* Corner gradient glows */}
+        <div className="pointer-events-none absolute top-0 left-0 w-[280px] h-[280px] rounded-full opacity-[0.07]"
+          style={{ background: 'radial-gradient(circle, var(--accent-primary), transparent 70%)' }} />
+        <div className="pointer-events-none absolute bottom-0 right-0 w-[280px] h-[280px] rounded-full opacity-[0.07]"
+          style={{ background: 'radial-gradient(circle, var(--accent-secondary), transparent 70%)' }} />
+
+        <div className="relative max-w-6xl mx-auto">
           {/* Main grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
@@ -131,7 +137,7 @@ function Footer() {
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-12 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderColor: 'var(--card-border)' }}>
+          <div className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
               &copy; {year} Samuel Arandia. {t('footer.copyright')}
             </p>
