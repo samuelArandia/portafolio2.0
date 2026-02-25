@@ -77,6 +77,9 @@ const translations = {
       closeNotification: "Cerrar notificacion",
     },
     footer: {
+      aboutText: "Desarrollador de software en Santiago de Chile. Tecnico en Programacion y Analisis de Sistemas, en constante aprendizaje.",
+      projectsTitle: "Proyectos",
+      navigationTitle: "Navegacion",
       copyright: "Todos los derechos reservados.",
       scrollTop: "Volver arriba",
       visitSocial: "Visitar red social",
@@ -160,6 +163,9 @@ const translations = {
       closeNotification: "Close notification",
     },
     footer: {
+      aboutText: "Software developer based in Santiago, Chile. Systems Analyst & Programmer, constantly learning and growing.",
+      projectsTitle: "Projects",
+      navigationTitle: "Navigation",
       copyright: "All rights reserved.",
       scrollTop: "Scroll to top",
       visitSocial: "Visit social media",
