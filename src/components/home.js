@@ -8,9 +8,11 @@ import { TypeAnimation } from "react-type-animation";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-scroll";
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function Inicio() {
   const perfil = "/perfil.png";
+  const { locale, t } = useLanguage();
 
   useEffect(() => {
     Aos.init({ once: true });
@@ -35,15 +37,16 @@ function Inicio() {
               data-aos="fade-up"
               data-aos-duration="600"
             >
-              Hola, Soy Samuel Arandia
+              {t('hero.greeting')}
             </h1>
 
             <div className="mt-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="600">
               <TypeAnimation
+                key={locale}
                 sequence={[
-                  'Desarrollador de Software', 1500,
-                  'Analista y Programador de Sistemas', 1500,
-                  'Bienvenido a mi portafolio', 1500,
+                  t('hero.role1'), 1500,
+                  t('hero.role2'), 1500,
+                  t('hero.role3'), 1500,
                 ]}
                 className="font-display font-semibold"
                 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.75rem)', color: 'var(--text-secondary)' }}
@@ -59,8 +62,7 @@ function Inicio() {
               data-aos-delay="200"
               data-aos-duration="600"
             >
-              Estoy preparado para afrontar desafíos y proyectos de alto impacto.
-              Siempre estoy buscando aprender y crecer como profesional, aportando experiencia y creatividad.
+              {t('hero.description')}
             </p>
 
             {/* CTA Buttons */}
@@ -70,7 +72,7 @@ function Inicio() {
                 className="px-7 py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
                 style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(224, 64, 251, 0.25)' }}
               >
-                Descargar CV
+                {t('hero.downloadCV')}
               </button>
               <Link
                 to={contactId}
@@ -80,7 +82,7 @@ function Inicio() {
                 className="px-7 py-3 rounded-xl font-medium text-sm hover:-translate-y-0.5 transition-all duration-300 cursor-pointer text-center border"
                 style={{ borderColor: 'var(--card-border)', color: 'var(--accent-primary)' }}
               >
-                Escríbeme
+                {t('hero.writeMe')}
               </Link>
             </div>
 
@@ -92,7 +94,7 @@ function Inicio() {
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
+                  aria-label={t('hero.visitSocial')}
                   className="p-2.5 rounded-xl border text-lg transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--accent-primary)] cursor-pointer"
                   style={{ borderColor: 'var(--card-border)', color: 'var(--text-muted)' }}
                 >
@@ -113,7 +115,7 @@ function Inicio() {
               <div className="absolute -inset-1 rounded-full opacity-20" style={{ background: 'var(--accent-gradient)' }} />
               <Image
                 src={perfil}
-                alt="Foto de perfil de Samuel Arandia"
+                alt={t('hero.profileAlt')}
                 width={300}
                 height={300}
                 className="relative rounded-full w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover shadow-2xl"

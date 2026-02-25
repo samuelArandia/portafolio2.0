@@ -4,6 +4,7 @@ import { BsFillSendCheckFill } from "react-icons/bs";
 import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin } from "react-icons/fa";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function Contact() {
   const [name, setName] = useState("");
@@ -11,6 +12,7 @@ function Contact() {
   const [message, setMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     Aos.init({ once: true });
@@ -37,11 +39,11 @@ function Contact() {
         setName("");
         setMessage("");
       } else {
-        alert('Error al enviar el correo electrónico');
+        alert(t('contact.error'));
       }
     })
     .catch(() => {
-      alert('Error al enviar el correo electrónico');
+      alert(t('contact.error'));
     })
     .finally(() => {
       setIsSubmitting(false);
@@ -57,11 +59,11 @@ function Contact() {
             className="font-display font-bold"
             style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
-            Contáctame
+            {t('contact.title')}
           </h2>
           <div className="section-divider mx-auto mt-3 mb-5" />
           <p className="max-w-2xl mx-auto" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
-            ¿Tienes un proyecto en mente o quieres colaborar? No dudes en escribirme.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -76,7 +78,7 @@ function Contact() {
                 <FaEnvelope className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
-                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>Email</h3>
+                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>{t('contact.email')}</h3>
                 <a href="mailto:samuelarandia@gmail.com" className="text-sm hover:text-[var(--accent-primary)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
                   samuelarandia@gmail.com
                 </a>
@@ -90,8 +92,8 @@ function Contact() {
                 <FaMapMarkerAlt className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
-                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>Ubicación</h3>
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Santiago, Chile</p>
+                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>{t('contact.location')}</h3>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{t('contact.locationValue')}</p>
               </div>
             </div>
 
@@ -132,7 +134,7 @@ function Contact() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label htmlFor="name" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
-                    Nombre
+                    {t('contact.name')}
                   </label>
                   <input
                     type="text"
@@ -140,7 +142,7 @@ function Contact() {
                     name="name"
                     className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200"
                     style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
-                    placeholder="Tu nombre"
+                    placeholder={t('contact.namePlaceholder')}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -148,7 +150,7 @@ function Contact() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
-                    Correo electrónico
+                    {t('contact.emailLabel')}
                   </label>
                   <input
                     type="email"
@@ -156,7 +158,7 @@ function Contact() {
                     name="email"
                     className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200"
                     style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
-                    placeholder="tu@email.com"
+                    placeholder={t('contact.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -164,7 +166,7 @@ function Contact() {
                 </div>
                 <div>
                   <label htmlFor="message" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
-                    Mensaje
+                    {t('contact.message')}
                   </label>
                   <textarea
                     id="message"
@@ -172,7 +174,7 @@ function Contact() {
                     rows="5"
                     className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200 resize-none"
                     style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
-                    placeholder="Cuéntame sobre tu proyecto..."
+                    placeholder={t('contact.messagePlaceholder')}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
@@ -184,17 +186,17 @@ function Contact() {
                   className="w-full py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(224, 64, 251, 0.2)' }}
                 >
-                  {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                  {isSubmitting ? t('contact.sending') : t('contact.send')}
                 </button>
 
                 {showAlert && (
                   <div className="alert-success bg-green-500/10 text-green-400 px-4 py-4 rounded-xl" role="status">
                     <div className="flex items-center justify-center gap-3">
                       <BsFillSendCheckFill className="text-green-400 text-xl flex-shrink-0" />
-                      <span className="text-sm">El correo electrónico ha sido enviado exitosamente.</span>
+                      <span className="text-sm">{t('contact.success')}</span>
                     </div>
-                    <button onClick={() => setShowAlert(false)} className="mt-2 text-xs text-green-500 hover:text-green-300 transition-colors cursor-pointer block mx-auto" aria-label="Cerrar notificación">
-                      Cerrar
+                    <button onClick={() => setShowAlert(false)} className="mt-2 text-xs text-green-500 hover:text-green-300 transition-colors cursor-pointer block mx-auto" aria-label={t('contact.closeNotification')}>
+                      {t('contact.close')}
                     </button>
                   </div>
                 )}

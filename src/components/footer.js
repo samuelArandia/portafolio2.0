@@ -4,11 +4,13 @@ import Image from "next/image";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaChevronUp } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { socialMedia } from "@/constants";
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function Footer() {
   const logoUrl = "/logo.png";
   const year = new Date().getFullYear();
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +39,7 @@ function Footer() {
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
+                aria-label={t('footer.visitSocial')}
                 className="text-xl transition-all duration-200 hover:text-[var(--accent-primary)] hover:-translate-y-0.5 cursor-pointer"
                 style={{ color: 'var(--text-muted)' }}
               >
@@ -55,7 +57,7 @@ function Footer() {
 
           {/* Copyright */}
           <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            © {year} Samuel Arandia. Todos los derechos reservados.
+            &copy; {year} Samuel Arandia. {t('footer.copyright')}
           </p>
         </div>
       </footer>
@@ -63,7 +65,7 @@ function Footer() {
       {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
-        aria-label="Volver arriba"
+        aria-label={t('footer.scrollTop')}
         className={`fixed bottom-6 right-6 z-40 p-3 rounded-xl text-white transition-all duration-300 cursor-pointer ${
           showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'
         }`}
