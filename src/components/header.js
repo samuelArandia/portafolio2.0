@@ -60,11 +60,7 @@ function Header({ darkMode, toggleDarkMode }) {
           scrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-          <a href="/" className="cursor-pointer flex-shrink-0 font-mono text-sm font-semibold hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-primary)' }}>
-            {'<'}<span style={{ color: 'var(--text-primary)' }}>samuel</span>{'.dev />'}
-          </a>
-
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-end items-center">
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((nav) => (
               <Link
@@ -182,9 +178,6 @@ function Header({ darkMode, toggleDarkMode }) {
         <div className="flex md:hidden items-center gap-2 px-3 py-2 rounded-full backdrop-blur-xl border"
           style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
         >
-          <a href="/" className="flex-shrink-0 font-mono text-xs font-semibold" style={{ color: 'var(--accent-primary)' }}>
-            {'</>'}
-          </a>
           {langButton("text-[10px]")}
           <button
             onClick={toggleDarkMode}

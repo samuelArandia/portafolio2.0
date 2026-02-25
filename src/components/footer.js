@@ -38,11 +38,6 @@ function Footer() {
 
             {/* About column */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-mono text-sm font-semibold" style={{ color: 'var(--accent-primary)' }}>
-                  {'<'}<span style={{ color: 'var(--text-primary)' }}>samuel</span>{'.dev />'}
-                </span>
-              </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
                 {t('footer.aboutText')}
               </p>
