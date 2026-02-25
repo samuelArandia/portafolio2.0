@@ -16,11 +16,11 @@
   --accent-gradient: linear-gradient(135deg, #03A63C, #025939);
 
   --text-primary: #e8f0f0;
-  --text-secondary: #8aa0a8;
-  --text-muted: #4a6670;
+  --text-secondary: #94b0b8;
+  --text-muted: #5a7a85;
 
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
   --card-border: rgba(255, 255, 255, 0.06);
   --nav-bg: rgba(7, 22, 32, 0.85);
   --dot-color: rgba(255, 255, 255, 0.03);
