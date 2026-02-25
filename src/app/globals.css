@@ -93,23 +93,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ===== Portfolio Cards ===== */
-.card {
-  width: 100%;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card:hover {
-  translate: 0 -6px;
-  box-shadow:
-    0 25px 50px -12px rgba(224, 64, 251, 0.15),
-    0 0 0 1px rgba(224, 64, 251, 0.1);
-}
-
-[data-theme="light"] .card:hover {
-  box-shadow:
-    0 20px 40px -12px rgba(0, 0, 0, 0.12),
-    0 0 0 1px rgba(192, 38, 211, 0.15);
-}
 
 /* ===== Line Clamp ===== */
 .line-clamp-3 {

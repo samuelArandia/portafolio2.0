@@ -57,10 +57,19 @@ const Portafolio = () => {
           </p>
         </div>
 
-        {/* Projects - large horizontal cards */}
-        <div className="space-y-6 sm:space-y-8">
+        {/* Projects - sticky stacking cards */}
+        <div className="relative">
           {projectsWithIcons.map((project, index) => (
-            <PortfolioCard key={project.id} {...project} index={index} reversed={index % 2 !== 0} />
+            <div
+              key={project.id}
+              className="sticky mb-6 last:mb-0"
+              style={{
+                top: `${90 + index * 20}px`,
+                zIndex: index + 1,
+              }}
+            >
+              <PortfolioCard {...project} index={index} />
+            </div>
           ))}
         </div>
 
