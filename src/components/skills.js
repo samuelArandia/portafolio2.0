@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect } from 'react';
 import { FaVuejs, FaPython, FaHtml5, FaReact, FaCss3Alt, FaAngular, FaJava, FaGithub } from 'react-icons/fa';
 import { DiDjango } from 'react-icons/di';
@@ -8,8 +9,11 @@ import { GrGraphQl } from 'react-icons/gr';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import IconBox from './iconBox';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 const Skills = () => {
+  const { t } = useLanguage();
+
   useEffect(() => {
     Aos.init({ once: true });
   }, []);
@@ -41,11 +45,11 @@ const Skills = () => {
             className='font-display font-bold'
             style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
-            Habilidades
+            {t('skills.title')}
           </h2>
           <div className='section-divider mx-auto mt-3 mb-5' />
           <p className='max-w-2xl mx-auto' style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
-            Tecnologías, lenguajes y herramientas con las que trabajo diariamente.
+            {t('skills.subtitle')}
           </p>
         </div>
 
@@ -53,7 +57,7 @@ const Skills = () => {
           {/* Languages */}
           <div data-aos='fade-up' data-aos-delay='100'>
             <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-4 text-center' style={{ color: 'var(--accent-primary)' }}>
-              Lenguajes de Programación
+              {t('skills.languages')}
             </h3>
             <div className='scroller' data-direction='left' data-speed='slow'>
               <div className='scroller__inner'>
@@ -70,7 +74,7 @@ const Skills = () => {
           {/* Frameworks */}
           <div data-aos='fade-up' data-aos-delay='200'>
             <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-4 text-center' style={{ color: 'var(--accent-primary)' }}>
-              Frameworks y Librerías
+              {t('skills.frameworks')}
             </h3>
             <div className='scroller' data-direction='right' data-speed='slow'>
               <div className='scroller__inner'>
@@ -88,7 +92,7 @@ const Skills = () => {
           {/* Tools */}
           <div data-aos='fade-up' data-aos-delay='300'>
             <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-4 text-center' style={{ color: 'var(--accent-primary)' }}>
-              Herramientas y Bases de Datos
+              {t('skills.tools')}
             </h3>
             <div className='scroller' data-direction='left' data-speed='slow'>
               <div className='scroller__inner'>

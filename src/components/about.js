@@ -4,6 +4,7 @@ import Image from "next/image";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from 'react-scroll';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function AnimatedCounter({ target, label, suffix = "" }) {
   const [count, setCount] = useState(0);
@@ -48,6 +49,7 @@ function AnimatedCounter({ target, label, suffix = "" }) {
 
 function About() {
   const svg = "/Web Developer_Monochromatic.svg";
+  const { t } = useLanguage();
 
   useEffect(() => {
     Aos.init({ once: true });
@@ -62,7 +64,7 @@ function About() {
             className="font-display font-bold"
             style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
-            Sobre mí
+            {t('about.title')}
           </h2>
           <div className="section-divider mx-auto mt-3" />
         </div>
@@ -73,7 +75,7 @@ function About() {
           <div className="md:w-5/12 flex-shrink-0" data-aos="fade-right" data-aos-duration="700">
             <Image
               src={svg}
-              alt="Ilustración de desarrollador web"
+              alt={t('about.illustrationAlt')}
               width={450}
               height={450}
               className="w-full max-w-[320px] sm:max-w-[400px] mx-auto"
@@ -83,27 +85,17 @@ function About() {
           {/* Text */}
           <div className="md:w-7/12" data-aos="fade-left" data-aos-duration="700">
             <div className="space-y-4 leading-relaxed" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1rem)', color: 'var(--text-secondary)' }}>
-              <p>
-                ¡Hola! Soy desarrollador de software y resido en Santiago de Chile.
-                Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello.
-                También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.
-              </p>
-              <p>
-                Disfruto desarrollar proyectos y siempre estoy en la búsqueda de oportunidades para aprender nuevas habilidades y perfeccionar mis conocimientos.
-                Me destaco en el trabajo en equipo, donde colaboro estrechamente con otros desarrolladores para resolver desafíos y compartir experiencias.
-              </p>
-              <p>
-                Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al GYM y salir a trotar.
-                También me encanta la música rap y alternativa.
-              </p>
-              <p className="font-semibold" style={{ color: 'var(--accent-primary)' }}>¿Qué tipo de música te gusta?</p>
+              <p>{t('about.p1')}</p>
+              <p>{t('about.p2')}</p>
+              <p>{t('about.p3')}</p>
+              <p className="font-semibold" style={{ color: 'var(--accent-primary)' }}>{t('about.p4')}</p>
             </div>
 
             {/* Counters */}
-            <div className="grid grid-cols-3 gap-4 mt-8 p-5 rounded-xl glass" data-aos="fade-up" data-aos-delay="200">
-              <AnimatedCounter target={3} label="Años de experiencia" suffix="+" />
-              <AnimatedCounter target={5} label="Proyectos completados" suffix="+" />
-              <AnimatedCounter target={15} label="Tecnologías" suffix="+" />
+            <div className="grid grid-cols-3 gap-4 mt-8 p-5 rounded-2xl" style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }} data-aos="fade-up" data-aos-delay="200">
+              <AnimatedCounter target={3} label={t('about.yearsExp')} suffix="+" />
+              <AnimatedCounter target={5} label={t('about.projectsCompleted')} suffix="+" />
+              <AnimatedCounter target={15} label={t('about.technologies')} suffix="+" />
             </div>
 
             {/* CTA */}
@@ -115,7 +107,7 @@ function About() {
                 offset={-80}
                 className="px-6 py-3 rounded-xl font-medium text-sm border border-[var(--accent-primary)]/30 text-[var(--accent-primary)] hover:-translate-y-0.5 hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300 cursor-pointer"
               >
-                Cuéntame más
+                {t('about.tellMore')}
               </Link>
             </div>
           </div>

@@ -5,12 +5,14 @@ import { navLinks } from "@/constants";
 import { BsSun } from "react-icons/bs";
 import { GiDeathStar } from "react-icons/gi";
 import { Link } from 'react-scroll';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function Header({ darkMode, toggleDarkMode }) {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Inicio");
   const logoUrl = "/logo.png";
+  const { locale, toggleLocale, t } = useLanguage();
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 60);
@@ -41,6 +43,17 @@ function Header({ darkMode, toggleDarkMode }) {
     return () => observer.disconnect();
   }, []);
 
+  const langButton = (size = "text-xs") => (
+    <button
+      onClick={toggleLocale}
+      className={`${size} font-semibold font-display px-2.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer hover:text-[var(--accent-primary)]`}
+      style={{ color: 'var(--text-secondary)', background: 'var(--glass-bg)' }}
+      aria-label={locale === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+    >
+      {locale === 'es' ? 'EN' : 'ES'}
+    </button>
+  );
+
   return (
     <>
       {/* Top bar - visible when NOT scrolled */}
@@ -53,7 +66,7 @@ function Header({ darkMode, toggleDarkMode }) {
           <a href="/" className="cursor-pointer flex-shrink-0">
             <Image
               src={logoUrl}
-              alt="Samuel Arandia - Inicio"
+              alt="Samuel Arandia - Home"
               width={100}
               height={28}
               className="transition-opacity hover:opacity-80"
@@ -74,13 +87,14 @@ function Header({ darkMode, toggleDarkMode }) {
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
               >
-                {nav.title}
+                {t(`nav.${nav.id}`)}
               </Link>
             ))}
+            {langButton()}
             <button
               onClick={toggleDarkMode}
-              aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-              className="ml-2 p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--glass-bg)] transition-all duration-200 cursor-pointer"
+              aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
+              className="ml-1 p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--glass-bg)] transition-all duration-200 cursor-pointer"
             >
               {darkMode ? <BsSun className="text-lg" /> : <GiDeathStar className="text-lg" />}
             </button>
@@ -88,16 +102,17 @@ function Header({ darkMode, toggleDarkMode }) {
 
           {/* Mobile */}
           <div className="flex md:hidden items-center gap-2">
+            {langButton()}
             <button
               onClick={toggleDarkMode}
-              aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+              aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
               className="p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
             >
               {darkMode ? <BsSun className="text-lg" /> : <GiDeathStar className="text-lg" />}
             </button>
             <button
               onClick={() => setToggle(!toggle)}
-              aria-label={toggle ? "Cerrar menú" : "Abrir menú"}
+              aria-label={toggle ? t('header.closeMenu') : t('header.openMenu')}
               className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--glass-bg)] transition-colors cursor-pointer"
             >
               <div className="w-5 flex flex-col gap-[5px]">
@@ -127,7 +142,7 @@ function Header({ darkMode, toggleDarkMode }) {
                 }`}
                 style={activeSection === nav.id ? { background: 'var(--glass-bg)' } : {}}
               >
-                {nav.title}
+                {t(`nav.${nav.id}`)}
               </Link>
             ))}
           </div>
@@ -158,12 +173,13 @@ function Header({ darkMode, toggleDarkMode }) {
               }`}
               style={activeSection === nav.id ? { background: 'var(--accent-gradient)' } : {}}
             >
-              {nav.title}
+              {t(`nav.${nav.id}`)}
             </Link>
           ))}
+          {langButton()}
           <button
             onClick={toggleDarkMode}
-            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
             className="p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all duration-200 cursor-pointer"
           >
             {darkMode ? <BsSun className="text-base" /> : <GiDeathStar className="text-base" />}
@@ -177,16 +193,17 @@ function Header({ darkMode, toggleDarkMode }) {
           <a href="/" className="flex-shrink-0">
             <Image src={logoUrl} alt="Logo" width={28} height={28} className="rounded-full" />
           </a>
+          {langButton("text-[10px]")}
           <button
             onClick={toggleDarkMode}
-            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
             className="p-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
           >
             {darkMode ? <BsSun className="text-sm" /> : <GiDeathStar className="text-sm" />}
           </button>
           <button
             onClick={() => setToggle(!toggle)}
-            aria-label={toggle ? "Cerrar menú" : "Abrir menú"}
+            aria-label={toggle ? t('header.closeMenu') : t('header.openMenu')}
             className="p-1.5 rounded-full hover:bg-[var(--glass-bg)] transition-colors cursor-pointer"
           >
             <div className="w-4 flex flex-col gap-[3px]">
@@ -217,7 +234,7 @@ function Header({ darkMode, toggleDarkMode }) {
                 }`}
                 style={activeSection === nav.id ? { background: 'var(--accent-gradient)' } : {}}
               >
-                {nav.title}
+                {t(`nav.${nav.id}`)}
               </Link>
             ))}
           </div>

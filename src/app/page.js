@@ -8,6 +8,7 @@ import About from '@/components/about'
 import Skills from '@/components/skills'
 import Contact from '@/components/contact'
 import TechMarquee from '@/components/techMarquee'
+import { LanguageProvider } from '@/i18n/LanguageContext'
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -33,7 +34,7 @@ function Home() {
   }, []);
 
   return (
-    <>
+    <LanguageProvider>
       {/* Background dots */}
       <div
         className="fixed inset-0 z-[-10] transition-colors duration-300"
@@ -56,7 +57,7 @@ function Home() {
           <Footer />
         </div>
       </main>
-    </>
+    </LanguageProvider>
   );
 }
 
