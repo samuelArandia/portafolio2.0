@@ -100,7 +100,7 @@ function About() {
             </div>
 
             {/* Counters */}
-            <div className="grid grid-cols-3 gap-4 mt-8 p-5 rounded-xl glass" data-aos="fade-up" data-aos-delay="200">
+            <div className="grid grid-cols-3 gap-4 mt-8 p-5 rounded-2xl" style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }} data-aos="fade-up" data-aos-delay="200">
               <AnimatedCounter target={3} label="Años de experiencia" suffix="+" />
               <AnimatedCounter target={5} label="Proyectos completados" suffix="+" />
               <AnimatedCounter target={15} label="Tecnologías" suffix="+" />

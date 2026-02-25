@@ -68,48 +68,56 @@ function Contact() {
         {/* Split layout */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10">
           {/* Contact info */}
-          <div className="md:col-span-2 space-y-6" data-aos="fade-right" data-aos-duration="600">
-            <div className="flex items-start gap-4 p-4 rounded-xl glass">
-              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
-                <FaEnvelope className="text-[var(--accent-primary)] text-lg" />
+          <div className="md:col-span-2 space-y-4" data-aos="fade-right" data-aos-duration="600">
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
+            >
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaEnvelope className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
-                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">Email</h3>
-                <a href="mailto:samuelarandia@gmail.com" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>Email</h3>
+                <a href="mailto:samuelarandia@gmail.com" className="text-sm hover:text-[var(--accent-primary)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
                   samuelarandia@gmail.com
                 </a>
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-4 rounded-xl glass">
-              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
-                <FaMapMarkerAlt className="text-[var(--accent-primary)] text-lg" />
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
+            >
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaMapMarkerAlt className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
-                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">Ubicación</h3>
-                <p className="text-sm text-[var(--text-secondary)]">Santiago, Chile</p>
+                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>Ubicación</h3>
+                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Santiago, Chile</p>
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-4 rounded-xl glass">
-              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
-                <FaLinkedin className="text-[var(--accent-primary)] text-lg" />
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
+            >
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaLinkedin className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
-                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">LinkedIn</h3>
-                <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[var(--accent-primary)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
                   /in/samuel-arandia
                 </a>
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-4 rounded-xl glass">
-              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
-                <FaGithub className="text-[var(--accent-primary)] text-lg" />
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
+            >
+              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaGithub className="text-lg" style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div>
-                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">GitHub</h3>
-                <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>GitHub</h3>
+                <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[var(--accent-primary)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
                   @samuelArandia
                 </a>
               </div>
@@ -118,18 +126,20 @@ function Contact() {
 
           {/* Form */}
           <div className="md:col-span-3" data-aos="fade-left" data-aos-duration="600">
-            <div className="rounded-2xl p-6 sm:p-8 glass">
+            <div className="rounded-2xl p-6 sm:p-8"
+              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
+            >
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block mb-2 text-sm font-medium font-display text-[var(--text-primary)]">
+                  <label htmlFor="name" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
                     Nombre
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 text-sm rounded-xl border placeholder-[var(--text-muted)] transition-all duration-200"
-                    style={{ background: 'var(--glass-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
+                    className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200"
+                    style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
                     placeholder="Tu nombre"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -137,15 +147,15 @@ function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium font-display text-[var(--text-primary)]">
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
                     Correo electrónico
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-3 text-sm rounded-xl border placeholder-[var(--text-muted)] transition-all duration-200"
-                    style={{ background: 'var(--glass-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
+                    className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200"
+                    style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
                     placeholder="tu@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -153,15 +163,15 @@ function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block mb-2 text-sm font-medium font-display text-[var(--text-primary)]">
+                  <label htmlFor="message" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
                     Mensaje
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows="5"
-                    className="w-full px-4 py-3 text-sm rounded-xl border placeholder-[var(--text-muted)] transition-all duration-200 resize-none"
-                    style={{ background: 'var(--glass-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
+                    className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200 resize-none"
+                    style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
                     placeholder="Cuéntame sobre tu proyecto..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -178,7 +188,7 @@ function Contact() {
                 </button>
 
                 {showAlert && (
-                  <div className="alert-success bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-4 rounded-xl" role="status">
+                  <div className="alert-success bg-green-500/10 text-green-400 px-4 py-4 rounded-xl" role="status">
                     <div className="flex items-center justify-center gap-3">
                       <BsFillSendCheckFill className="text-green-400 text-xl flex-shrink-0" />
                       <span className="text-sm">El correo electrónico ha sido enviado exitosamente.</span>

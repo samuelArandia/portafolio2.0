@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaChevronUp } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
-import { socialMedia, navLinks, projects } from "@/constants";
-import { Link } from "react-scroll";
+import { socialMedia } from "@/constants";
 
 function Footer() {
   const logoUrl = "/logo.png";
@@ -25,87 +24,39 @@ function Footer() {
 
   return (
     <>
-      <footer className="pt-16 px-5 sm:px-8 border-t border-[var(--card-border)]" style={{ background: 'var(--bg-secondary)' }} id="Footer">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {/* About column */}
-            <div className="text-center sm:text-left">
-              <div className="flex justify-center sm:justify-start mb-4">
-                <Image src={logoUrl} alt="Samuel Arandia Logo" width={90} height={24} />
-              </div>
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                Desarrollador de software en Santiago de Chile. Técnico en Programación y Análisis de Sistemas, en constante aprendizaje.
-              </p>
-            </div>
+      <footer className="py-12 sm:py-16 px-5 sm:px-8" id="Footer">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+          {/* Logo */}
+          <Image src={logoUrl} alt="Samuel Arandia Logo" width={80} height={20} className="mb-6 opacity-80" />
 
-            {/* Portfolio column */}
-            <div className="text-center sm:text-left">
-              <h3 className="text-sm font-semibold font-display text-[var(--text-primary)] mb-4 uppercase tracking-wider">Proyectos</h3>
-              <ul className="space-y-2.5">
-                {projects.map((project) => (
-                  <li key={project.id}>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors duration-200"
-                    >
-                      {project.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Navigation column */}
-            <div className="text-center sm:text-left">
-              <h3 className="text-sm font-semibold font-display text-[var(--text-primary)] mb-4 uppercase tracking-wider">Navegación</h3>
-              <ul className="space-y-2.5">
-                {navLinks.map((nav) => (
-                  <li key={nav.id}>
-                    <Link
-                      to={nav.id}
-                      smooth={true}
-                      duration={500}
-                      offset={-80}
-                      className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors duration-200 cursor-pointer"
-                    >
-                      {nav.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Social icons */}
+          <div className="flex items-center gap-4 mb-8">
+            {socialMedia.map((social) => (
+              <a
+                key={social.id}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
+                className="text-xl transition-all duration-200 hover:text-[var(--accent-primary)] hover:-translate-y-0.5 cursor-pointer"
+                style={{ color: 'var(--text-muted)' }}
+              >
+                {social.id === "social-media-1" && <FaInstagram />}
+                {social.id === "social-media-2" && <FaFacebook />}
+                {social.id === "social-media-3" && <BsTwitterX />}
+                {social.id === "social-media-4" && <FaLinkedin />}
+                {social.id === "social-media-5" && <FaGithub />}
+              </a>
+            ))}
           </div>
 
-          {/* Bottom bar */}
-          <div className="mt-12 pt-6 pb-8 border-t border-[var(--card-border)]">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              {/* Social icons */}
-              <div className="flex gap-3">
-                {socialMedia.map((social) => (
-                  <a
-                    key={social.id}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
-                    className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--accent-primary)] hover:bg-[var(--glass-bg)] transition-all duration-200 text-base cursor-pointer"
-                  >
-                    {social.id === "social-media-1" && <FaInstagram />}
-                    {social.id === "social-media-2" && <FaFacebook />}
-                    {social.id === "social-media-3" && <BsTwitterX />}
-                    {social.id === "social-media-4" && <FaLinkedin />}
-                    {social.id === "social-media-5" && <FaGithub />}
-                  </a>
-                ))}
-              </div>
+          {/* Divider */}
+          <div className="w-16 h-px mb-6" style={{ background: 'var(--card-border)' }} />
 
-              <p className="text-xs text-[var(--text-muted)]">
-                © {year} Samuel Arandia. Todos los derechos reservados.
-              </p>
-            </div>
-          </div>
+          {/* Copyright */}
+          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+            © {year} Samuel Arandia. Todos los derechos reservados.
+          </p>
         </div>
       </footer>
 

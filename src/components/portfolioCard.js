@@ -9,11 +9,10 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    className="group block rounded-2xl overflow-hidden border shadow-lg transition-shadow duration-300 hover:shadow-xl"
+    className="group block rounded-2xl overflow-hidden transition-shadow duration-300"
     style={{
       background: 'var(--bg-card)',
-      borderColor: 'var(--card-border)',
-      boxShadow: '0 4px 24px rgba(0,0,0,0.15)',
+      boxShadow: 'var(--card-shadow)',
     }}
   >
     <div className="flex flex-col md:flex-row">
@@ -35,8 +34,8 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
           {technologies.map((Icon, i) => (
             <span
               key={i}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors duration-200"
-              style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)', borderColor: 'var(--card-border)' }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-200"
+              style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)' }}
             >
               <Icon className="text-xs" />
               {techNames && techNames[i] && <span>{techNames[i]}</span>}
