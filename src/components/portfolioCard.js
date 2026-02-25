@@ -4,44 +4,21 @@ import React from "react";
 import Image from "next/image";
 import { FiExternalLink } from "react-icons/fi";
 
-const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technologies, techNames, index, reversed }) => (
+const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technologies, techNames, index }) => (
   <a
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    className="card group block rounded-2xl overflow-hidden border"
-    style={{ background: 'var(--bg-card)', borderColor: 'var(--card-border)' }}
-    data-aos="fade-up"
-    data-aos-delay={index ? Math.min(index * 80, 240) : 0}
-    data-aos-duration="600"
+    className="group block rounded-2xl overflow-hidden border shadow-lg transition-shadow duration-300 hover:shadow-xl"
+    style={{
+      background: 'var(--bg-card)',
+      borderColor: 'var(--card-border)',
+      boxShadow: '0 4px 24px rgba(0,0,0,0.15)',
+    }}
   >
-    <div className={`flex flex-col ${reversed ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
-      {/* Image side */}
-      <div className="relative overflow-hidden md:w-1/2 h-[200px] sm:h-[240px] md:h-[280px]">
-        <Image
-          src={imageSrc || "/placeholder.png"}
-          alt={`Portada ${title}`}
-          width={600}
-          height={400}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:bg-none" />
-
-        {/* Hover overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
-          style={{ background: 'rgba(10, 10, 15, 0.6)' }}
-        >
-          <span className="flex items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full backdrop-blur-sm"
-            style={{ background: 'rgba(224, 64, 251, 0.8)' }}
-          >
-            Ver proyecto <FiExternalLink className="text-sm" />
-          </span>
-        </div>
-      </div>
-
+    <div className="flex flex-col md:flex-row">
       {/* Content side */}
-      <div className="md:w-1/2 p-5 sm:p-6 md:p-8 flex flex-col justify-center">
+      <div className="md:w-1/2 p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-center order-2 md:order-1">
         <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent-primary)' }}>
           {subtitle}
         </p>
@@ -54,11 +31,11 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
         </p>
 
         {/* Tech tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-4">
           {technologies.map((Icon, i) => (
             <span
               key={i}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-300 group-hover:border-[var(--accent-primary)]/30"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-colors duration-200"
               style={{ color: 'var(--text-muted)', background: 'var(--glass-bg)', borderColor: 'var(--card-border)' }}
             >
               <Icon className="text-xs" />
@@ -66,6 +43,24 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
             </span>
           ))}
         </div>
+
+        <div className="flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 group-hover:text-[var(--accent-primary)]"
+          style={{ color: 'var(--text-secondary)' }}
+        >
+          Ver proyecto <FiExternalLink className="text-sm" />
+        </div>
+      </div>
+
+      {/* Image side */}
+      <div className="relative overflow-hidden md:w-1/2 h-[200px] sm:h-[240px] md:h-auto md:min-h-[300px] order-1 md:order-2">
+        <Image
+          src={imageSrc || "/placeholder.png"}
+          alt={`Portada ${title}`}
+          width={600}
+          height={400}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+        />
       </div>
     </div>
   </a>
