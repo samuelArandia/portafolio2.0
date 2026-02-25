@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState, useRef } from "react";
-import Image from "next/image";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from 'react-scroll';
@@ -48,7 +47,6 @@ function AnimatedCounter({ target, label, suffix = "" }) {
 }
 
 function About() {
-  const profileImg = "/perfil.png";
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -72,18 +70,28 @@ function About() {
 
         {/* Content */}
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-          {/* Profile image */}
-          <div className="md:w-5/12 flex-shrink-0 flex justify-center" data-aos="fade-right" data-aos-duration="700">
-            <div className="relative">
-              <div className="absolute -inset-3 rounded-2xl opacity-15 blur-2xl" style={{ background: 'var(--accent-gradient)' }} />
-              <Image
-                src={profileImg}
-                alt={t('about.illustrationAlt')}
-                width={400}
-                height={400}
-                className="relative rounded-2xl w-full max-w-[280px] sm:max-w-[340px] object-cover shadow-2xl"
-                style={{ border: '2px solid var(--glass-border)' }}
-              />
+          {/* Terminal card */}
+          <div className="md:w-5/12 flex-shrink-0" data-aos="fade-right" data-aos-duration="700">
+            <div className="rounded-2xl overflow-hidden w-full max-w-[380px] mx-auto" style={{ background: 'var(--bg-card)', border: '1px solid var(--glass-border)', boxShadow: 'var(--card-shadow)' }}>
+              {/* Terminal header */}
+              <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                <span className="w-3 h-3 rounded-full bg-red-400/80" />
+                <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
+                <span className="w-3 h-3 rounded-full bg-green-400/80" />
+                <span className="font-mono text-[11px] ml-2" style={{ color: 'var(--text-muted)' }}>~/samuel.dev</span>
+              </div>
+              {/* Terminal body */}
+              <div className="p-5 font-mono text-xs sm:text-sm leading-loose space-y-1">
+                <p><span style={{ color: 'var(--accent-primary)' }}>$</span> <span style={{ color: 'var(--text-muted)' }}>whoami</span></p>
+                <p style={{ color: 'var(--text-primary)' }}>Samuel Arandia</p>
+                <p className="mt-2"><span style={{ color: 'var(--accent-primary)' }}>$</span> <span style={{ color: 'var(--text-muted)' }}>cat role.txt</span></p>
+                <p style={{ color: 'var(--text-primary)' }}>Full Stack Developer</p>
+                <p className="mt-2"><span style={{ color: 'var(--accent-primary)' }}>$</span> <span style={{ color: 'var(--text-muted)' }}>echo $LOCATION</span></p>
+                <p style={{ color: 'var(--text-primary)' }}>Santiago, Chile</p>
+                <p className="mt-2"><span style={{ color: 'var(--accent-primary)' }}>$</span> <span style={{ color: 'var(--text-muted)' }}>ls skills/</span></p>
+                <p style={{ color: 'var(--text-secondary)' }}>React &nbsp;Vue &nbsp;Next.js &nbsp;Go &nbsp;Django</p>
+                <p className="mt-2"><span style={{ color: 'var(--accent-primary)' }}>$</span> <span className="inline-block w-2 h-4 animate-pulse" style={{ background: 'var(--accent-primary)' }} /></p>
+              </div>
             </div>
           </div>
 

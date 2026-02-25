@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaChevronUp, FaEnvelope, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { socialMedia, navLinks, projects } from "@/constants";
@@ -8,7 +7,6 @@ import { Link } from "react-scroll";
 import { useLanguage } from '@/i18n/LanguageContext';
 
 function Footer() {
-  const logoUrl = "/logo.png";
   const year = new Date().getFullYear();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const { t } = useLanguage();
@@ -41,7 +39,9 @@ function Footer() {
             {/* About column */}
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="flex items-center gap-3 mb-4">
-                <Image src={logoUrl} alt="Samuel Arandia Logo" width={90} height={24} style={{ filter: 'hue-rotate(150deg) saturate(1.4) brightness(1.1)' }} />
+                <span className="font-mono text-sm font-semibold" style={{ color: 'var(--accent-primary)' }}>
+                  {'<'}<span style={{ color: 'var(--text-primary)' }}>samuel</span>{'.dev />'}
+                </span>
               </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
                 {t('footer.aboutText')}

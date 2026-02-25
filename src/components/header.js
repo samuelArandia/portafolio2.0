@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 import { navLinks } from "@/constants";
 import { BsSun } from "react-icons/bs";
 import { GiDeathStar } from "react-icons/gi";
@@ -11,7 +10,6 @@ function Header({ darkMode, toggleDarkMode }) {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Inicio");
-  const logoUrl = "/logo.png";
   const { locale, toggleLocale, t } = useLanguage();
 
   const handleScroll = useCallback(() => {
@@ -63,15 +61,8 @@ function Header({ darkMode, toggleDarkMode }) {
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-          <a href="/" className="cursor-pointer flex-shrink-0">
-            <Image
-              src={logoUrl}
-              alt="Samuel Arandia - Home"
-              width={100}
-              height={28}
-              className="transition-opacity hover:opacity-80"
-              style={{ filter: 'hue-rotate(150deg) saturate(1.4) brightness(1.1)' }}
-            />
+          <a href="/" className="cursor-pointer flex-shrink-0 font-mono text-sm font-semibold hover:opacity-80 transition-opacity" style={{ color: 'var(--accent-primary)' }}>
+            {'<'}<span style={{ color: 'var(--text-primary)' }}>samuel</span>{'.dev />'}
           </a>
 
           <div className="hidden md:flex items-center gap-1">
@@ -191,8 +182,8 @@ function Header({ darkMode, toggleDarkMode }) {
         <div className="flex md:hidden items-center gap-2 px-3 py-2 rounded-full backdrop-blur-xl border"
           style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
         >
-          <a href="/" className="flex-shrink-0">
-            <Image src={logoUrl} alt="Logo" width={28} height={28} className="rounded-full" style={{ filter: 'hue-rotate(150deg) saturate(1.4) brightness(1.1)' }} />
+          <a href="/" className="flex-shrink-0 font-mono text-xs font-semibold" style={{ color: 'var(--accent-primary)' }}>
+            {'</>'}
           </a>
           {langButton("text-[10px]")}
           <button
