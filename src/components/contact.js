@@ -1,7 +1,9 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { BsFillSendCheckFill } from "react-icons/bs";
-import { RiContactsLine } from "react-icons/ri";
+import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin } from "react-icons/fa";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -10,6 +12,10 @@ function Contact() {
   const [showAlert, setShowAlert] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    Aos.init({ once: true });
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isSubmitting) return;
@@ -17,13 +23,11 @@ function Contact() {
 
     fetch('https://prod-00.brazilsouth.logic.azure.com:443/workflows/3918c47902ab4a9fb53a8893cb2cdcd2/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=02rKDvooNdj6W46NG7_tO3No8ZK7nh54JCn_eIHlX_Q', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-          correoNombre: name,
-          correoDestinatario: email,
-          correoMensaje: message
+        correoNombre: name,
+        correoDestinatario: email,
+        correoMensaje: message
       })
     })
     .then(response => {
@@ -44,86 +48,151 @@ function Contact() {
     });
   }
 
-  const handleClose = () => {
-    setShowAlert(false);
-  };
-
   return (
-    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-10 md:px-20 lg:px-40" id="Contact">
-      <div className="flex flex-row text-center justify-center items-center mb-6 sm:mb-8">
-        <RiContactsLine className="text-3xl sm:text-4xl text-indigo-500 mx-3 sm:mx-5" />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl text-center">Contáctame</h1>
-      </div>
-        <div className="rounded-2xl overflow-hidden text-center mx-0 sm:mx-10 p-6 sm:p-8 md:p-10 bg-gray-900/80 backdrop-blur-sm border border-gray-800 text-white">
-          <p className="text-sm sm:text-base md:text-lg text-center text-gray-300 mb-6">Si tienes alguna duda o quieres contactarme, puedes hacerlo a través de este formulario.</p>
-          <form className="max-w-lg mx-auto" onSubmit={handleSubmit}>
-            <div className="mb-5">
-              <label htmlFor="name" className="block mb-2 font-semibold text-left text-sm sm:text-base text-gray-200">
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="w-full px-4 py-3 bg-gray-800 placeholder-gray-500 text-white border border-gray-700 rounded-lg focus:outline-none transition-all duration-200 text-sm sm:text-base"
-                placeholder="Ingresa tu nombre"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-5">
-              <label htmlFor="email" className="block mb-2 font-semibold text-left text-sm sm:text-base text-gray-200">
-                Correo electrónico
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="w-full px-4 py-3 bg-gray-800 placeholder-gray-500 text-white border border-gray-700 rounded-lg focus:outline-none transition-all duration-200 text-sm sm:text-base"
-                placeholder="Ingresa tu correo electrónico"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-5">
-              <label htmlFor="message" className="block mb-2 font-semibold text-left text-sm sm:text-base text-gray-200">
-                Mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                className="w-full px-4 py-3 bg-gray-800 placeholder-gray-500 text-white border border-gray-700 rounded-lg focus:outline-none transition-all duration-200 text-sm sm:text-base resize-none"
-                placeholder="Escribe tu mensaje"
-                value={message}
-                onChange={(event) => setMessage(event.target.value)}
-                required
-              ></textarea>
-            </div>
-            <div className="text-center">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="text-white rounded-lg px-8 py-3 font-medium transition-all duration-300 bg-indigo-500 hover:-translate-y-1 hover:bg-indigo-600 shadow-lg shadow-indigo-500/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 text-sm sm:text-base cursor-pointer"
-              >
-                {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
-              </button>
-            {showAlert && (
-              <div className="alert-success bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-4 rounded-xl mt-6" role="status">
-                <div className="flex items-center justify-center gap-3">
-                  <BsFillSendCheckFill className="text-green-400 text-2xl sm:text-3xl flex-shrink-0" />
-                  <span className="text-sm sm:text-base">El correo electrónico ha sido enviado exitosamente.</span>
-                </div>
-                <button onClick={handleClose} className="mt-3 text-xs text-green-500 hover:text-green-300 transition-colors cursor-pointer" aria-label="Cerrar notificación">
-                  Cerrar
-                </button>
-              </div>
-            )}
-          </div>
-          </form>
+    <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="Contact">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+          <h2
+            className="font-display font-bold text-[var(--text-primary)]"
+            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+          >
+            Contáctame
+          </h2>
+          <div className="section-divider mx-auto mt-3 mb-5" />
+          <p className="text-[var(--text-secondary)] max-w-2xl mx-auto" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)' }}>
+            ¿Tienes un proyecto en mente o quieres colaborar? No dudes en escribirme.
+          </p>
         </div>
+
+        {/* Split layout */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10">
+          {/* Contact info */}
+          <div className="md:col-span-2 space-y-6" data-aos="fade-right" data-aos-duration="600">
+            <div className="flex items-start gap-4 p-4 rounded-xl glass">
+              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaEnvelope className="text-[var(--accent-primary)] text-lg" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">Email</h3>
+                <a href="mailto:samuel.arandia.dev@gmail.com" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                  samuel.arandia.dev@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 rounded-xl glass">
+              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaMapMarkerAlt className="text-[var(--accent-primary)] text-lg" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">Ubicación</h3>
+                <p className="text-sm text-[var(--text-secondary)]">Santiago, Chile</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 rounded-xl glass">
+              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaLinkedin className="text-[var(--accent-primary)] text-lg" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                  /in/samuel-arandia
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 p-4 rounded-xl glass">
+              <div className="p-2.5 rounded-lg" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
+                <FaGithub className="text-[var(--accent-primary)] text-lg" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">GitHub</h3>
+                <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                  @samuelArandia
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div className="md:col-span-3" data-aos="fade-left" data-aos-duration="600">
+            <div className="rounded-2xl p-6 sm:p-8 glass">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label htmlFor="name" className="block mb-2 text-sm font-medium font-display text-[var(--text-primary)]">
+                    Nombre
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full px-4 py-3 text-sm rounded-xl border text-white placeholder-[var(--text-muted)] transition-all duration-200"
+                    style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                    placeholder="Tu nombre"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium font-display text-[var(--text-primary)]">
+                    Correo electrónico
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-4 py-3 text-sm rounded-xl border text-white placeholder-[var(--text-muted)] transition-all duration-200"
+                    style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                    placeholder="tu@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block mb-2 text-sm font-medium font-display text-[var(--text-primary)]">
+                    Mensaje
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    className="w-full px-4 py-3 text-sm rounded-xl border text-white placeholder-[var(--text-muted)] transition-all duration-200 resize-none"
+                    style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                    placeholder="Cuéntame sobre tu proyecto..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                  style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(224, 64, 251, 0.2)' }}
+                >
+                  {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                </button>
+
+                {showAlert && (
+                  <div className="alert-success bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-4 rounded-xl" role="status">
+                    <div className="flex items-center justify-center gap-3">
+                      <BsFillSendCheckFill className="text-green-400 text-xl flex-shrink-0" />
+                      <span className="text-sm">El correo electrónico ha sido enviado exitosamente.</span>
+                    </div>
+                    <button onClick={() => setShowAlert(false)} className="mt-2 text-xs text-green-500 hover:text-green-300 transition-colors cursor-pointer block mx-auto" aria-label="Cerrar notificación">
+                      Cerrar
+                    </button>
+                  </div>
+                )}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
