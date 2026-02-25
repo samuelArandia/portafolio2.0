@@ -41,7 +41,7 @@ function Footer() {
             {/* About column */}
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="flex items-center gap-3 mb-4">
-                <Image src={logoUrl} alt="Samuel Arandia Logo" width={90} height={24} />
+                <Image src={logoUrl} alt="Samuel Arandia Logo" width={90} height={24} style={{ filter: 'hue-rotate(150deg) saturate(1.4) brightness(1.1)' }} />
               </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
                 {t('footer.aboutText')}

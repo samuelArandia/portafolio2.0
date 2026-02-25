@@ -70,6 +70,7 @@ function Header({ darkMode, toggleDarkMode }) {
               width={100}
               height={28}
               className="transition-opacity hover:opacity-80"
+              style={{ filter: 'hue-rotate(150deg) saturate(1.4) brightness(1.1)' }}
             />
           </a>
 
@@ -191,7 +192,7 @@ function Header({ darkMode, toggleDarkMode }) {
           style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
         >
           <a href="/" className="flex-shrink-0">
-            <Image src={logoUrl} alt="Logo" width={28} height={28} className="rounded-full" />
+            <Image src={logoUrl} alt="Logo" width={28} height={28} className="rounded-full" style={{ filter: 'hue-rotate(150deg) saturate(1.4) brightness(1.1)' }} />
           </a>
           {langButton("text-[10px]")}
           <button
