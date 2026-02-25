@@ -55,8 +55,9 @@ function Contact() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+          <span className="section-number">{t('contact.section')} {'//'}</span>
           <h2
-            className="font-display font-bold"
+            className="font-display font-bold mt-2"
             style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
             {t('contact.title')}
@@ -71,7 +72,7 @@ function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10">
           {/* Contact info */}
           <div className="md:col-span-2 space-y-4" data-aos="fade-right" data-aos-duration="600">
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
               <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
@@ -85,7 +86,7 @@ function Contact() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
               <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
@@ -97,7 +98,7 @@ function Contact() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
               <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
@@ -111,7 +112,7 @@ function Contact() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200"
+            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
               <div className="p-2.5 rounded-xl" style={{ background: 'rgba(224, 64, 251, 0.1)' }}>
@@ -128,7 +129,7 @@ function Contact() {
 
           {/* Form */}
           <div className="md:col-span-3" data-aos="fade-left" data-aos-duration="600">
-            <div className="rounded-2xl p-6 sm:p-8"
+            <div className="rounded-2xl p-6 sm:p-8 gradient-border-top"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
               <form onSubmit={handleSubmit} className="space-y-5">

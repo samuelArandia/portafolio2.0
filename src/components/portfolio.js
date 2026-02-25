@@ -49,8 +49,9 @@ const Portafolio = () => {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+          <span className="section-number">{t('portfolio.section')} {'//'}</span>
           <h2
-            className="font-display font-bold"
+            className="font-display font-bold mt-2"
             style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
             {t('portfolio.title')}
@@ -83,7 +84,7 @@ const Portafolio = () => {
             href="https://github.com/samuelArandia"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm hover:text-[var(--accent-primary)] transition-colors duration-200"
+            className="inline-flex items-center gap-2 text-sm font-mono hover:text-[var(--accent-primary)] transition-colors duration-200"
             style={{ color: 'var(--text-secondary)' }}
           >
             {t('portfolio.viewMore')}

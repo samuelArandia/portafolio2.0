@@ -14,7 +14,10 @@ const translations = {
       openMenu: "Abrir menu",
     },
     hero: {
-      greeting: "Hola, Soy Samuel Arandia",
+      greeting: "Hola, Soy",
+      name: "Samuel Arandia",
+      tagline: "< samuel.dev />",
+      status: "Disponible para trabajar",
       role1: "Desarrollador de Software",
       role2: "Analista y Programador de Sistemas",
       role3: "Bienvenido a mi portafolio",
@@ -25,6 +28,7 @@ const translations = {
       profileAlt: "Foto de perfil de Samuel Arandia",
     },
     about: {
+      section: "01",
       title: "Sobre mi",
       p1: "Hola! Soy desarrollador de software y resido en Santiago de Chile. Actualmente estudio Ingenieria en Computacion e Informatica en la Universidad Andres Bello. Tambien tengo formacion en el instituto AIEP y me considero una persona autodidacta y comunicativa.",
       p2: "Disfruto desarrollar proyectos y siempre estoy en la busqueda de oportunidades para aprender nuevas habilidades y perfeccionar mis conocimientos. Me destaco en el trabajo en equipo, donde colaboro estrechamente con otros desarrolladores para resolver desafios y compartir experiencias.",
@@ -37,6 +41,7 @@ const translations = {
       illustrationAlt: "Ilustracion de desarrollador web",
     },
     skills: {
+      section: "02",
       title: "Habilidades",
       subtitle: "Tecnologias, lenguajes y herramientas con las que trabajo diariamente.",
       languages: "Lenguajes de Programacion",
@@ -44,6 +49,7 @@ const translations = {
       tools: "Herramientas y Bases de Datos",
     },
     portfolio: {
+      section: "03",
       title: "Portafolio",
       subtitle: "Estos son algunos de los proyectos en los que he participado y tambien algunos realizados en cursos.",
       viewMore: "Ver mas proyectos en GitHub",
@@ -58,6 +64,7 @@ const translations = {
       "proyecto-5": "Proyecto para calcular distintas medidas de figuras geometricas.",
     },
     contact: {
+      section: "04",
       title: "Contactame",
       subtitle: "Tienes un proyecto en mente o quieres colaborar? No dudes en escribirme.",
       email: "Email",
@@ -81,6 +88,7 @@ const translations = {
       projectsTitle: "Proyectos",
       navigationTitle: "Navegacion",
       copyright: "Todos los derechos reservados.",
+      builtWith: "Disenado y construido por",
       scrollTop: "Volver arriba",
       visitSocial: "Visitar red social",
     },
@@ -100,7 +108,10 @@ const translations = {
       openMenu: "Open menu",
     },
     hero: {
-      greeting: "Hi, I'm Samuel Arandia",
+      greeting: "Hi, I'm",
+      name: "Samuel Arandia",
+      tagline: "< samuel.dev />",
+      status: "Available for work",
       role1: "Software Developer",
       role2: "Systems Analyst & Programmer",
       role3: "Welcome to my portfolio",
@@ -111,6 +122,7 @@ const translations = {
       profileAlt: "Samuel Arandia's profile photo",
     },
     about: {
+      section: "01",
       title: "About me",
       p1: "Hi! I'm a software developer based in Santiago, Chile. I'm currently studying Computer Science & IT Engineering at Universidad Andres Bello. I also have training from AIEP Institute, and I consider myself a self-taught and communicative person.",
       p2: "I enjoy building projects and I'm always looking for opportunities to learn new skills and improve my knowledge. I excel at teamwork, collaborating closely with other developers to solve challenges and share experiences.",
@@ -123,6 +135,7 @@ const translations = {
       illustrationAlt: "Web developer illustration",
     },
     skills: {
+      section: "02",
       title: "Skills",
       subtitle: "Technologies, languages, and tools I work with daily.",
       languages: "Programming Languages",
@@ -130,6 +143,7 @@ const translations = {
       tools: "Tools & Databases",
     },
     portfolio: {
+      section: "03",
       title: "Portfolio",
       subtitle: "These are some of the projects I've been involved in, as well as some built during courses.",
       viewMore: "View more projects on GitHub",
@@ -144,6 +158,7 @@ const translations = {
       "proyecto-5": "Project for calculating various geometric figure measurements.",
     },
     contact: {
+      section: "04",
       title: "Contact me",
       subtitle: "Have a project in mind or want to collaborate? Don't hesitate to reach out.",
       email: "Email",
@@ -167,6 +182,7 @@ const translations = {
       projectsTitle: "Projects",
       navigationTitle: "Navigation",
       copyright: "All rights reserved.",
+      builtWith: "Designed & built by",
       scrollTop: "Scroll to top",
       visitSocial: "Visit social media",
     },

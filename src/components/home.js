@@ -23,24 +23,60 @@ function Inicio() {
   return (
     <section className="min-h-[100dvh] flex items-center relative overflow-hidden" id="Inicio">
       {/* Ambient glow effects */}
-      <div className="absolute top-1/4 -left-32 w-72 h-72 rounded-full opacity-[0.04] blur-[100px] pointer-events-none" style={{ background: 'var(--accent-primary)' }} />
-      <div className="absolute bottom-1/4 -right-32 w-72 h-72 rounded-full opacity-[0.04] blur-[100px] pointer-events-none" style={{ background: 'var(--accent-secondary)' }} />
+      <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-[0.06] blur-[120px] pointer-events-none" style={{ background: 'var(--accent-primary)' }} />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full opacity-[0.06] blur-[120px] pointer-events-none" style={{ background: 'var(--accent-secondary)' }} />
 
       <div className="w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12">
         <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-12 lg:gap-20">
 
           {/* Text content */}
           <div className="flex-1 text-center md:text-left">
-            <h1
-              className="font-display font-extrabold text-accent-gradient leading-tight"
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}
+            {/* Status badge */}
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border"
+              style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}
               data-aos="fade-up"
               data-aos-duration="600"
             >
-              {t('hero.greeting')}
+              <span className="status-dot w-2 h-2 rounded-full bg-green-400" />
+              <span className="font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
+                {t('hero.status')}
+              </span>
+            </div>
+
+            {/* Greeting */}
+            <h1
+              data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-duration="600"
+            >
+              <span
+                className="block font-display font-medium leading-tight"
+                style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)', color: 'var(--text-secondary)' }}
+              >
+                {t('hero.greeting')}
+              </span>
+              <span
+                className="block font-display font-extrabold text-accent-gradient leading-tight mt-1"
+                style={{ fontSize: 'clamp(2.25rem, 5.5vw, 4rem)' }}
+              >
+                {t('hero.name')}
+              </span>
             </h1>
 
-            <div className="mt-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="600">
+            {/* Tagline */}
+            <div
+              className="mt-3 font-mono text-sm sm:text-base"
+              style={{ color: 'var(--accent-primary)', opacity: 0.7 }}
+              data-aos="fade-up"
+              data-aos-delay="150"
+              data-aos-duration="600"
+            >
+              {t('hero.tagline')}
+            </div>
+
+            {/* Type animation */}
+            <div className="mt-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
               <TypeAnimation
                 key={locale}
                 sequence={[
@@ -49,7 +85,7 @@ function Inicio() {
                   t('hero.role3'), 1500,
                 ]}
                 className="font-display font-semibold"
-                style={{ fontSize: 'clamp(1rem, 2.5vw, 1.75rem)', color: 'var(--text-secondary)' }}
+                style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', color: 'var(--text-secondary)' }}
                 cursor={true}
                 repeat={Infinity}
               />
@@ -59,14 +95,14 @@ function Inicio() {
               className="mt-5 max-w-lg mx-auto md:mx-0 leading-relaxed"
               style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-muted)' }}
               data-aos="fade-up"
-              data-aos-delay="200"
+              data-aos-delay="300"
               data-aos-duration="600"
             >
               {t('hero.description')}
             </p>
 
             {/* CTA Buttons */}
-            <div className="mt-7 flex flex-col sm:flex-row justify-center md:justify-start gap-3" data-aos="fade-up" data-aos-delay="300" data-aos-duration="600">
+            <div className="mt-7 flex flex-col sm:flex-row justify-center md:justify-start gap-3" data-aos="fade-up" data-aos-delay="400" data-aos-duration="600">
               <button
                 onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
                 className="px-7 py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
@@ -87,7 +123,7 @@ function Inicio() {
             </div>
 
             {/* Social links */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-7" data-aos="fade-up" data-aos-delay="400" data-aos-duration="600">
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-7" data-aos="fade-up" data-aos-delay="500" data-aos-duration="600">
               {socialMedia.map((social) => (
                 <a
                   key={social.id}
@@ -122,6 +158,12 @@ function Inicio() {
                 style={{ boxShadow: '0 0 0 2px var(--card-border)' }}
                 priority
               />
+              {/* Code label under photo */}
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full font-mono text-xs whitespace-nowrap border"
+                style={{ background: 'var(--bg-card)', borderColor: 'var(--glass-border)', color: 'var(--accent-primary)' }}
+              >
+                {t('hero.tagline')}
+              </div>
             </div>
           </div>
 

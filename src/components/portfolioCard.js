@@ -13,7 +13,7 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block rounded-2xl overflow-hidden transition-shadow duration-300"
+      className="group block rounded-2xl overflow-hidden transition-all duration-300 gradient-border-left"
       style={{
         background: 'var(--bg-card)',
         boxShadow: 'var(--card-shadow)',
@@ -22,6 +22,10 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
       <div className="flex flex-col md:flex-row">
         {/* Content side */}
         <div className="md:w-1/2 p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-center order-2 md:order-1">
+          {/* Project number */}
+          <span className="font-mono text-xs mb-2" style={{ color: 'var(--text-muted)', opacity: 0.5 }}>
+            {String(index + 1).padStart(2, '0')} /
+          </span>
           <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent-primary)' }}>
             {subtitle}
           </p>
