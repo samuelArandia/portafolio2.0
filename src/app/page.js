@@ -7,6 +7,7 @@ import Portafolio from '@/components/portfolio'
 import About from '@/components/about'
 import Skills from '@/components/skills'
 import Contact from '@/components/contact'
+import TechMarquee from '@/components/techMarquee'
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -19,6 +20,10 @@ function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -29,31 +34,21 @@ function Home() {
 
   return (
     <>
-      {/* Background */}
-      {darkMode ? (
-        <div
-          className="fixed inset-0 z-[-10]"
-          style={{
-            backgroundColor: 'var(--bg-primary)',
-            backgroundImage: 'radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        />
-      ) : (
-        <div
-          className="fixed inset-0 z-[-10]"
-          style={{
-            backgroundColor: '#fafafa',
-            backgroundImage: 'radial-gradient(#e0e0e0 1px, transparent 1px)',
-            backgroundSize: '20px 20px',
-          }}
-        />
-      )}
+      {/* Background dots */}
+      <div
+        className="fixed inset-0 z-[-10] transition-colors duration-300"
+        style={{
+          backgroundColor: 'var(--bg-primary)',
+          backgroundImage: 'radial-gradient(var(--dot-color) 1px, transparent 1px)',
+          backgroundSize: '22px 22px',
+        }}
+      />
 
-      <main className={darkMode ? 'text-[var(--text-primary)]' : 'text-gray-800'}>
+      <main>
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <div className="relative z-10">
           <Inicio />
+          <TechMarquee />
           <Portafolio />
           <About />
           <Skills />

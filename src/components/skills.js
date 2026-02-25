@@ -38,13 +38,13 @@ const Skills = () => {
         {/* Section Header */}
         <div className='text-center mb-12 sm:mb-16' data-aos='fade-up'>
           <h2
-            className='font-display font-bold text-[var(--text-primary)]'
-            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+            className='font-display font-bold'
+            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
             Habilidades
           </h2>
           <div className='section-divider mx-auto mt-3 mb-5' />
-          <p className='text-[var(--text-secondary)] max-w-2xl mx-auto' style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)' }}>
+          <p className='max-w-2xl mx-auto' style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
             Tecnologías, lenguajes y herramientas con las que trabajo diariamente.
           </p>
         </div>
@@ -52,7 +52,7 @@ const Skills = () => {
         <div className='space-y-8'>
           {/* Languages */}
           <div data-aos='fade-up' data-aos-delay='100'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest text-[var(--accent-primary)] mb-4 text-center'>
+            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-4 text-center' style={{ color: 'var(--accent-primary)' }}>
               Lenguajes de Programación
             </h3>
             <div className='scroller' data-direction='left' data-speed='slow'>
@@ -69,7 +69,7 @@ const Skills = () => {
 
           {/* Frameworks */}
           <div data-aos='fade-up' data-aos-delay='200'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest text-[var(--accent-primary)] mb-4 text-center'>
+            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-4 text-center' style={{ color: 'var(--accent-primary)' }}>
               Frameworks y Librerías
             </h3>
             <div className='scroller' data-direction='right' data-speed='slow'>
@@ -87,7 +87,7 @@ const Skills = () => {
 
           {/* Tools */}
           <div data-aos='fade-up' data-aos-delay='300'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest text-[var(--accent-primary)] mb-4 text-center'>
+            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-4 text-center' style={{ color: 'var(--accent-primary)' }}>
               Herramientas y Bases de Datos
             </h3>
             <div className='scroller' data-direction='left' data-speed='slow'>

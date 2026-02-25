@@ -2,28 +2,19 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { navLinks } from "@/constants";
-import { BsSun, BsMoonStars } from "react-icons/bs";
+import { BsSun } from "react-icons/bs";
+import { GiDeathStar } from "react-icons/gi";
 import { Link } from 'react-scroll';
 
 function Header({ darkMode, toggleDarkMode }) {
   const [toggle, setToggle] = useState(false);
-  const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Inicio");
-  const [lastScrollY, setLastScrollY] = useState(0);
   const logoUrl = "/logo.png";
 
   const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
-    setScrolled(currentScrollY > 20);
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      setVisible(false);
-      setToggle(false);
-    } else {
-      setVisible(true);
-    }
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY]);
+    setScrolled(window.scrollY > 60);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -51,99 +42,108 @@ function Header({ darkMode, toggleDarkMode }) {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        visible ? 'translate-y-0' : '-translate-y-full'
-      } ${
-        scrolled
-          ? 'py-2 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20'
-          : 'py-4 bg-transparent'
-      }`}
-      aria-label="Navegación principal"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center">
-        {/* Logo */}
-        <a href="/" className="cursor-pointer flex-shrink-0">
-          <Image
-            src={logoUrl}
-            alt="Samuel Arandia - Inicio"
-            width={100}
-            height={28}
-            className="transition-opacity hover:opacity-80"
-          />
-        </a>
+    <>
+      {/* Top bar - visible when NOT scrolled */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+          <a href="/" className="cursor-pointer flex-shrink-0">
+            <Image
+              src={logoUrl}
+              alt="Samuel Arandia - Inicio"
+              width={100}
+              height={28}
+              className="transition-opacity hover:opacity-80"
+            />
+          </a>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((nav, index) => (
-            <Link
-              key={nav.id}
-              to={nav.id}
-              smooth={true}
-              duration={500}
-              offset={-80}
-              className={`relative px-4 py-2 text-sm font-medium rounded-lg cursor-pointer transition-all duration-200 ${
-                activeSection === nav.id
-                  ? 'text-[var(--accent-primary)]'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-              style={{ animationDelay: `${index * 0.05}s` }}
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((nav) => (
+              <Link
+                key={nav.id}
+                to={nav.id}
+                smooth={true}
+                duration={500}
+                offset={-80}
+                className={`px-3 py-2 text-sm font-medium rounded-lg cursor-pointer transition-all duration-200 ${
+                  activeSection === nav.id
+                    ? 'text-[var(--accent-primary)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+              >
+                {nav.title}
+              </Link>
+            ))}
+            <button
+              onClick={toggleDarkMode}
+              aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+              className="ml-2 p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--glass-bg)] transition-all duration-200 cursor-pointer"
             >
-              {nav.title}
-              {activeSection === nav.id && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-[var(--accent-primary)] rounded-full" />
-              )}
-            </Link>
-          ))}
+              {darkMode ? <BsSun className="text-lg" /> : <GiDeathStar className="text-lg" />}
+            </button>
+          </div>
 
-          {/* Theme toggle */}
-          <button
-            onClick={toggleDarkMode}
-            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-            className="ml-3 p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-white/5 transition-all duration-200 cursor-pointer"
-          >
-            {darkMode ? <BsSun className="text-lg" /> : <BsMoonStars className="text-lg" />}
-          </button>
+          {/* Mobile */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={toggleDarkMode}
+              aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+              className="p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
+            >
+              {darkMode ? <BsSun className="text-lg" /> : <GiDeathStar className="text-lg" />}
+            </button>
+            <button
+              onClick={() => setToggle(!toggle)}
+              aria-label={toggle ? "Cerrar menú" : "Abrir menú"}
+              className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--glass-bg)] transition-colors cursor-pointer"
+            >
+              <div className="w-5 flex flex-col gap-[5px]">
+                <span className={`block h-[2px] rounded-full transition-all duration-300 ${toggle ? 'rotate-45 translate-y-[7px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
+                <span className={`block h-[2px] rounded-full transition-all duration-300 ${toggle ? 'opacity-0 scale-0' : ''}`} style={{ background: 'var(--text-primary)' }} />
+                <span className={`block h-[2px] rounded-full transition-all duration-300 ${toggle ? '-rotate-45 -translate-y-[7px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
+              </div>
+            </button>
+          </div>
         </div>
 
-        {/* Mobile controls */}
-        <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={toggleDarkMode}
-            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-            className="p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
-          >
-            {darkMode ? <BsSun className="text-lg" /> : <BsMoonStars className="text-lg" />}
-          </button>
-
-          {/* Hamburger */}
-          <button
-            onClick={() => setToggle(!toggle)}
-            aria-label={toggle ? "Cerrar menú" : "Abrir menú"}
-            className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
-          >
-            <div className="w-5 flex flex-col gap-[5px]">
-              <span className={`block h-[2px] bg-current rounded-full transition-all duration-300 ${
-                toggle ? 'rotate-45 translate-y-[7px]' : ''
-              }`} />
-              <span className={`block h-[2px] bg-current rounded-full transition-all duration-300 ${
-                toggle ? 'opacity-0 scale-0' : ''
-              }`} />
-              <span className={`block h-[2px] bg-current rounded-full transition-all duration-300 ${
-                toggle ? '-rotate-45 -translate-y-[7px]' : ''
-              }`} />
-            </div>
-          </button>
+        {/* Mobile menu - top bar */}
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ${toggle ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="px-4 pb-4 pt-2 mx-4 rounded-xl glass">
+            {navLinks.map((nav) => (
+              <Link
+                key={nav.id}
+                to={nav.id}
+                smooth={true}
+                duration={500}
+                offset={-80}
+                onClick={() => setToggle(false)}
+                className={`block px-4 py-3 text-sm font-medium rounded-lg cursor-pointer transition-colors duration-200 ${
+                  activeSection === nav.id
+                    ? 'text-[var(--accent-primary)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+                style={activeSection === nav.id ? { background: 'var(--glass-bg)' } : {}}
+              >
+                {nav.title}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Floating pill navbar - visible when scrolled */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          toggle ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+          scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6 pointer-events-none'
         }`}
       >
-        <div className="px-4 pb-4 pt-2 mt-2 mx-4 rounded-xl glass">
+        {/* Desktop pill */}
+        <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-xl border"
+          style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
+        >
           {navLinks.map((nav) => (
             <Link
               key={nav.id}
@@ -151,19 +151,79 @@ function Header({ darkMode, toggleDarkMode }) {
               smooth={true}
               duration={500}
               offset={-80}
-              onClick={() => setToggle(false)}
-              className={`block px-4 py-3 text-sm font-medium rounded-lg cursor-pointer transition-colors duration-200 ${
+              className={`px-4 py-2 text-sm font-medium rounded-full cursor-pointer transition-all duration-200 whitespace-nowrap ${
                 activeSection === nav.id
-                  ? 'text-[var(--accent-primary)] bg-white/5'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5'
+                  ? 'text-white'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
+              style={activeSection === nav.id ? { background: 'var(--accent-gradient)' } : {}}
             >
               {nav.title}
             </Link>
           ))}
+          <button
+            onClick={toggleDarkMode}
+            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            className="p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all duration-200 cursor-pointer"
+          >
+            {darkMode ? <BsSun className="text-base" /> : <GiDeathStar className="text-base" />}
+          </button>
+        </div>
+
+        {/* Mobile pill */}
+        <div className="flex md:hidden items-center gap-2 px-3 py-2 rounded-full backdrop-blur-xl border"
+          style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
+        >
+          <a href="/" className="flex-shrink-0">
+            <Image src={logoUrl} alt="Logo" width={28} height={28} className="rounded-full" />
+          </a>
+          <button
+            onClick={toggleDarkMode}
+            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            className="p-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
+          >
+            {darkMode ? <BsSun className="text-sm" /> : <GiDeathStar className="text-sm" />}
+          </button>
+          <button
+            onClick={() => setToggle(!toggle)}
+            aria-label={toggle ? "Cerrar menú" : "Abrir menú"}
+            className="p-1.5 rounded-full hover:bg-[var(--glass-bg)] transition-colors cursor-pointer"
+          >
+            <div className="w-4 flex flex-col gap-[3px]">
+              <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${toggle ? 'rotate-45 translate-y-[4.5px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
+              <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${toggle ? 'opacity-0 scale-0' : ''}`} style={{ background: 'var(--text-primary)' }} />
+              <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${toggle ? '-rotate-45 -translate-y-[4.5px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile dropdown from pill */}
+        <div className={`md:hidden overflow-hidden transition-all duration-300 mt-2 ${toggle && scrolled ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="rounded-2xl px-2 py-2 backdrop-blur-xl border"
+            style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
+          >
+            {navLinks.map((nav) => (
+              <Link
+                key={nav.id}
+                to={nav.id}
+                smooth={true}
+                duration={500}
+                offset={-80}
+                onClick={() => setToggle(false)}
+                className={`block px-4 py-2.5 text-sm font-medium rounded-xl cursor-pointer transition-colors duration-200 ${
+                  activeSection === nav.id
+                    ? 'text-white'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+                style={activeSection === nav.id ? { background: 'var(--accent-gradient)' } : {}}
+              >
+                {nav.title}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
 

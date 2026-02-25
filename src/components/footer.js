@@ -25,7 +25,7 @@ function Footer() {
 
   return (
     <>
-      <footer className="pt-16 px-5 sm:px-8 border-t border-white/[0.06]" style={{ background: 'var(--bg-secondary)' }} id="Footer">
+      <footer className="pt-16 px-5 sm:px-8 border-t border-[var(--card-border)]" style={{ background: 'var(--bg-secondary)' }} id="Footer">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {/* About column */}
@@ -79,7 +79,7 @@ function Footer() {
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-12 pt-6 pb-8 border-t border-white/[0.06]">
+          <div className="mt-12 pt-6 pb-8 border-t border-[var(--card-border)]">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               {/* Social icons */}
               <div className="flex gap-3">
@@ -90,7 +90,7 @@ function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visitar ${social.id.replace('social-media-', 'red social ')}`}
-                    className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--accent-primary)] hover:bg-white/5 transition-all duration-200 text-base cursor-pointer"
+                    className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--accent-primary)] hover:bg-[var(--glass-bg)] transition-all duration-200 text-base cursor-pointer"
                   >
                     {social.id === "social-media-1" && <FaInstagram />}
                     {social.id === "social-media-2" && <FaFacebook />}

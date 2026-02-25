@@ -54,13 +54,13 @@ function Contact() {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
           <h2
-            className="font-display font-bold text-[var(--text-primary)]"
-            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
+            className="font-display font-bold"
+            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
           >
             Contáctame
           </h2>
           <div className="section-divider mx-auto mt-3 mb-5" />
-          <p className="text-[var(--text-secondary)] max-w-2xl mx-auto" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)' }}>
+          <p className="max-w-2xl mx-auto" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
             ¿Tienes un proyecto en mente o quieres colaborar? No dudes en escribirme.
           </p>
         </div>
@@ -75,8 +75,8 @@ function Contact() {
               </div>
               <div>
                 <h3 className="text-sm font-semibold font-display text-[var(--text-primary)]">Email</h3>
-                <a href="mailto:samuel.arandia.dev@gmail.com" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
-                  samuel.arandia.dev@gmail.com
+                <a href="mailto:samuelarandia@gmail.com" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+                  samuelarandia@gmail.com
                 </a>
               </div>
             </div>
@@ -128,8 +128,8 @@ function Contact() {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 text-sm rounded-xl border text-white placeholder-[var(--text-muted)] transition-all duration-200"
-                    style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                    className="w-full px-4 py-3 text-sm rounded-xl border placeholder-[var(--text-muted)] transition-all duration-200"
+                    style={{ background: 'var(--glass-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
                     placeholder="Tu nombre"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -144,8 +144,8 @@ function Contact() {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-3 text-sm rounded-xl border text-white placeholder-[var(--text-muted)] transition-all duration-200"
-                    style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                    className="w-full px-4 py-3 text-sm rounded-xl border placeholder-[var(--text-muted)] transition-all duration-200"
+                    style={{ background: 'var(--glass-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
                     placeholder="tu@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -160,8 +160,8 @@ function Contact() {
                     id="message"
                     name="message"
                     rows="5"
-                    className="w-full px-4 py-3 text-sm rounded-xl border text-white placeholder-[var(--text-muted)] transition-all duration-200 resize-none"
-                    style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}
+                    className="w-full px-4 py-3 text-sm rounded-xl border placeholder-[var(--text-muted)] transition-all duration-200 resize-none"
+                    style={{ background: 'var(--glass-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
                     placeholder="Cuéntame sobre tu proyecto..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
