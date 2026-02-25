@@ -31,19 +31,6 @@ function Inicio() {
 
           {/* Text content */}
           <div className="flex-1 text-center md:text-left">
-            {/* Status badge */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border"
-              style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}
-              data-aos="fade-up"
-              data-aos-duration="600"
-            >
-              <span className="status-dot w-2 h-2 rounded-full bg-green-400" />
-              <span className="font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
-                {t('hero.status')}
-              </span>
-            </div>
-
             {/* Greeting */}
             <h1
               data-aos="fade-up"
