@@ -1,11 +1,25 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="500.000000pt" height="500.000000pt" viewBox="0 0 500.000000 500.000000"
- preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="g" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#3FBF6A"/>
+      <stop offset="100%" stop-color="#025939"/>
+    </linearGradient>
+    <linearGradient id="gDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#025939"/>
+      <stop offset="100%" stop-color="#012340"/>
+    </linearGradient>
+  </defs>
 
-<g transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-</g>
+  <g transform="translate(4.5,48.4) scale(1.032)">
+    <!-- Left chevron < : top half lighter gradient, bottom half darker "fold" -->
+    <path d="M76 14 L30 50 L60 50 L88 27 Z" fill="url(#g)"/>
+    <path d="M30 50 L76 86 L88 73 L60 50 Z" fill="url(#gDark)"/>
+
+    <!-- Right chevron > : mirrored -->
+    <path d="M124 14 L170 50 L140 50 L112 27 Z" fill="url(#g)"/>
+    <path d="M170 50 L124 86 L112 73 L140 50 Z" fill="url(#gDark)"/>
+
+    <!-- S -->
+    <text x="100" y="72" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="72" text-anchor="middle" fill="url(#g)">S</text>
+  </g>
 </svg>
