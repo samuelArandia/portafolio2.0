@@ -37,20 +37,16 @@ const PortfolioCard = ({ imageSrc, title, subtitle, link, description, technolog
             {description}
           </p>
 
-          {/* Tech tags */}
-          <div className="flex flex-wrap gap-2 mb-5">
+          {/* Tech stack */}
+          <div className="flex items-center flex-wrap gap-x-2.5 gap-y-1.5 mb-5 font-mono text-xs">
+            <span style={{ color: 'var(--accent-primary)', opacity: 0.7 }}>stack:</span>
             {technologies.map((Icon, i) => (
-              <span
-                key={i}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-                style={{
-                  color: 'var(--text-secondary)',
-                  background: 'var(--glass-bg)',
-                  border: '1px solid var(--glass-border)',
-                }}
-              >
-                <span className="tech-icon-accent flex items-center"><Icon className="text-sm" /></span>
-                {techNames && techNames[i] && <span>{techNames[i]}</span>}
+              <span key={i} className="flex items-center gap-2.5">
+                {i > 0 && <span style={{ color: 'var(--text-muted)', opacity: 0.4 }}>/</span>}
+                <span className="flex items-center gap-1.5" style={{ color: 'var(--text-secondary)' }}>
+                  <span className="tech-icon-accent flex items-center opacity-80"><Icon className="text-[13px]" /></span>
+                  {techNames && techNames[i] && <span>{techNames[i]}</span>}
+                </span>
               </span>
             ))}
           </div>
