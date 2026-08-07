@@ -207,6 +207,15 @@ textarea:focus {
   outline: none;
 }
 
+/* ===== Contact Form - Underline Inputs ===== */
+.contact-field::placeholder {
+  color: var(--text-muted);
+}
+
+.contact-field:focus {
+  box-shadow: none;
+}
+
 /* ===== Success Alert ===== */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }

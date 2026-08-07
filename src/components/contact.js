@@ -1,7 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
 import { BsFillSendCheckFill } from "react-icons/bs";
-import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin } from "react-icons/fa";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useLanguage } from '@/i18n/LanguageContext';
@@ -69,80 +68,61 @@ function Contact() {
         </div>
 
         {/* Split layout */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10">
-          {/* Contact info */}
-          <div className="md:col-span-2 space-y-4" data-aos="fade-right" data-aos-duration="600">
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
-              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
-            >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
-                <FaEnvelope className="text-lg" style={{ color: 'var(--accent-primary)' }} />
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-stretch">
+          {/* Contact info — terminal card, matching the ~/samuel.dev identity from About */}
+          <div className="md:col-span-2" data-aos="fade-right" data-aos-duration="600">
+            <div className="rounded-2xl overflow-hidden h-full" style={{ background: 'var(--bg-card)', border: '1px solid var(--glass-border)', boxShadow: 'var(--card-shadow)' }}>
+              <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                <span className="w-3 h-3 rounded-full bg-red-400/80" />
+                <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
+                <span className="w-3 h-3 rounded-full bg-green-400/80" />
+                <span className="font-mono text-[11px] ml-2" style={{ color: 'var(--text-muted)' }}>~/contact</span>
               </div>
-              <div>
-                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>{t('contact.email')}</h3>
-                <a href="mailto:samuelarandia@gmail.com" className="text-sm hover:text-[var(--accent-primary)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
-                  samuelarandia@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
-              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
-            >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
-                <FaMapMarkerAlt className="text-lg" style={{ color: 'var(--accent-primary)' }} />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>{t('contact.location')}</h3>
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{t('contact.locationValue')}</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
-              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
-            >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
-                <FaLinkedin className="text-lg" style={{ color: 'var(--accent-primary)' }} />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>LinkedIn</h3>
-                <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[var(--accent-primary)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
-                  /in/samuel-arandia
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-5 rounded-2xl transition-shadow duration-200 gradient-border-left"
-              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
-            >
-              <div className="p-2.5 rounded-xl" style={{ background: 'rgba(3, 166, 60, 0.1)' }}>
-                <FaGithub className="text-lg" style={{ color: 'var(--accent-primary)' }} />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold font-display" style={{ color: 'var(--text-primary)' }}>GitHub</h3>
-                <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[var(--accent-primary)] transition-colors" style={{ color: 'var(--text-secondary)' }}>
-                  @samuelArandia
-                </a>
+              <div className="p-5 sm:p-6 font-mono text-xs sm:text-sm leading-loose">
+                <p>
+                  <span style={{ color: 'var(--accent-primary)' }}>$</span>{' '}
+                  <span style={{ color: 'var(--text-muted)' }}>cat contact.json</span>
+                </p>
+                <div className="mt-2" style={{ color: 'var(--text-secondary)' }}>
+                  <p>{'{'}</p>
+                  <p className="pl-4">
+                    &quot;email&quot;: <a href="mailto:samuelarandia@gmail.com" className="hover:underline break-all" style={{ color: 'var(--accent-primary)' }}>&quot;samuelarandia@gmail.com&quot;</a>,
+                  </p>
+                  <p className="pl-4">
+                    &quot;location&quot;: <span style={{ color: 'var(--accent-primary)' }}>&quot;{t('contact.locationValue')}&quot;</span>,
+                  </p>
+                  <p className="pl-4">
+                    &quot;linkedin&quot;: <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: 'var(--accent-primary)' }}>&quot;/in/samuel-arandia&quot;</a>,
+                  </p>
+                  <p className="pl-4">
+                    &quot;github&quot;: <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: 'var(--accent-primary)' }}>&quot;@samuelArandia&quot;</a>
+                  </p>
+                  <p>{'}'}</p>
+                </div>
+                <p className="mt-3">
+                  <span style={{ color: 'var(--accent-primary)' }}>$</span>{' '}
+                  <span className="inline-block w-2 h-4 align-middle animate-pulse" style={{ background: 'var(--accent-primary)' }} />
+                </p>
               </div>
             </div>
           </div>
 
           {/* Form */}
           <div className="md:col-span-3" data-aos="fade-left" data-aos-duration="600">
-            <div className="rounded-2xl p-6 sm:p-8 gradient-border-top"
+            <div className="rounded-2xl p-6 sm:p-8 gradient-border-top h-full"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
-                    {t('contact.name')}
+                  <label htmlFor="name" className="flex items-center gap-1.5 mb-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+                    <span style={{ color: 'var(--accent-primary)' }}>&gt;</span> {t('contact.name')}
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200"
-                    style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
+                    className="contact-field w-full bg-transparent border-0 border-b py-2 text-sm transition-colors"
+                    style={{ borderBottomColor: 'var(--glass-border)', color: 'var(--text-primary)' }}
                     placeholder={t('contact.namePlaceholder')}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -150,15 +130,15 @@ function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
-                    {t('contact.emailLabel')}
+                  <label htmlFor="email" className="flex items-center gap-1.5 mb-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+                    <span style={{ color: 'var(--accent-primary)' }}>&gt;</span> {t('contact.emailLabel')}
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200"
-                    style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
+                    className="contact-field w-full bg-transparent border-0 border-b py-2 text-sm transition-colors"
+                    style={{ borderBottomColor: 'var(--glass-border)', color: 'var(--text-primary)' }}
                     placeholder={t('contact.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -166,15 +146,15 @@ function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block mb-2 text-sm font-medium font-display" style={{ color: 'var(--text-primary)' }}>
-                    {t('contact.message')}
+                  <label htmlFor="message" className="flex items-center gap-1.5 mb-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+                    <span style={{ color: 'var(--accent-primary)' }}>&gt;</span> {t('contact.message')}
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    rows="5"
-                    className="w-full px-4 py-3 text-sm rounded-xl transition-all duration-200 resize-none"
-                    style={{ background: 'var(--glass-bg)', color: 'var(--text-primary)', border: 'none' }}
+                    rows="4"
+                    className="contact-field w-full bg-transparent border-0 border-b py-2 text-sm transition-colors resize-none"
+                    style={{ borderBottomColor: 'var(--glass-border)', color: 'var(--text-primary)' }}
                     placeholder={t('contact.messagePlaceholder')}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
