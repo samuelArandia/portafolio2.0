@@ -19,7 +19,11 @@ export const metadata = {
     description: 'Portafolio de Samuel Arandia, desarrollador de software en Santiago de Chile.',
   },
   icons: {
-    icon: '/logo.ico',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
 }
 
