@@ -1,18 +1,18 @@
-"use client"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
-import Portafolio from "@/components/portfolio"
-import { LanguageProvider } from "@/i18n/LanguageContext"
-import React from "react"
+import PortfolioView from "./PortfolioView"
 
-function Page() {
-  return (
-    <LanguageProvider>
-      <Header />
-      <Portafolio />
-      <Footer />
-    </LanguageProvider>
-  )
+export const metadata = {
+  title: 'Portafolio',
+  description: 'Proyectos de desarrollo web realizados por Samuel Arandia: aplicaciones de gestión, e-commerce y más, construidos con React, Vue.js, Next.js y Django.',
+  alternates: {
+    canonical: '/portfolio',
+  },
+  openGraph: {
+    title: 'Portafolio | Samuel Arandia',
+    description: 'Proyectos de desarrollo web realizados por Samuel Arandia, construidos con React, Vue.js, Next.js y Django.',
+    url: '/portfolio',
+  },
 }
 
-export default Page
+export default function Page() {
+  return <PortfolioView />
+}
