@@ -19,7 +19,7 @@ const translations = {
       tagline: "< samuel.dev />",
       status: "Disponible para trabajar",
       role1: "Desarrollador de Software",
-      role2: "Analista y Programador de Sistemas",
+      role2: "Ingeniero en Computación e Informática",
       role3: "Bienvenido a mi portafolio",
       description: "Construyo productos web cuidando el detalle: rendimiento, buena experiencia de usuario y código mantenible. Sigo aprendiendo con cada proyecto que tomo.",
       downloadCV: "Descargar CV",
@@ -30,7 +30,7 @@ const translations = {
     about: {
       section: "01",
       title: "Sobre mí",
-      p1: "¡Hola! Soy desarrollador de software y resido en Santiago de Chile. Actualmente estudio Ingeniería en Computación e Informática en la Universidad Andrés Bello. También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.",
+      p1: "¡Hola! Soy desarrollador de software y resido en Santiago de Chile. Soy Ingeniero en Computación e Informática, titulado en la Universidad Andrés Bello. También tengo formación en el instituto AIEP y me considero una persona autodidacta y comunicativa.",
       p2: "Disfruto construir proyectos de principio a fin y siempre busco la oportunidad de aprender algo nuevo en el camino. Trabajo bien en equipo: me gusta discutir decisiones técnicas, revisar el código de otros y aprender de cada intercambio.",
       p3: "Fuera del trabajo, disfruto leer, escuchar música y hacer ejercicio, especialmente ir al gimnasio y salir a trotar. También me encanta la música rap y alternativa.",
       p4: "Siempre abierto a nuevos desafíos y proyectos.",
@@ -84,7 +84,7 @@ const translations = {
       closeNotification: "Cerrar notificación",
     },
     footer: {
-      aboutText: "Desarrollador de software en Santiago de Chile. Técnico en Programación y Análisis de Sistemas, en constante aprendizaje.",
+      aboutText: "Desarrollador de software en Santiago de Chile. Ingeniero en Computación e Informática, enfocado en construir productos web sólidos y bien pensados.",
       projectsTitle: "Proyectos",
       navigationTitle: "Navegación",
       copyright: "Todos los derechos reservados.",
@@ -113,7 +113,7 @@ const translations = {
       tagline: "< samuel.dev />",
       status: "Available for work",
       role1: "Software Developer",
-      role2: "Systems Analyst & Programmer",
+      role2: "Computer Science & IT Engineer",
       role3: "Welcome to my portfolio",
       description: "I build web products with an eye for detail: performance, good user experience, and maintainable code. I keep learning with every project I take on.",
       downloadCV: "Download CV",
@@ -124,7 +124,7 @@ const translations = {
     about: {
       section: "01",
       title: "About me",
-      p1: "Hi! I'm a software developer based in Santiago, Chile. I'm currently studying Computer Science & IT Engineering at Universidad Andres Bello. I also have training from AIEP Institute, and I consider myself a self-taught and communicative person.",
+      p1: "Hi! I'm a software developer based in Santiago, Chile. I hold a degree in Computer Science & IT Engineering from Universidad Andres Bello. I also have training from AIEP Institute, and I consider myself a self-taught and communicative person.",
       p2: "I enjoy building projects from start to finish, and I'm always looking for a chance to learn something new along the way. I work well in a team: I like discussing technical decisions, reviewing other people's code, and learning from every exchange.",
       p3: "Outside of work, I enjoy reading, listening to music, and exercising — especially going to the gym and jogging. I also love rap and alternative music.",
       p4: "Always open to new challenges and projects.",
@@ -178,7 +178,7 @@ const translations = {
       closeNotification: "Close notification",
     },
     footer: {
-      aboutText: "Software developer based in Santiago, Chile. Systems Analyst & Programmer, constantly learning and growing.",
+      aboutText: "Software developer based in Santiago, Chile. Computer Science & IT Engineer, focused on building solid, well-thought-out web products.",
       projectsTitle: "Projects",
       navigationTitle: "Navigation",
       copyright: "All rights reserved.",
