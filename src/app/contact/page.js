@@ -1,18 +1,18 @@
-"use client"
-import Contact from "@/components/contact"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
-import { LanguageProvider } from "@/i18n/LanguageContext"
-import React from "react"
+import ContactView from "./ContactView"
 
-function Page() {
-  return (
-    <LanguageProvider>
-      <Header />
-      <Contact />
-      <Footer />
-    </LanguageProvider>
-  )
+export const metadata = {
+  title: 'Contacto',
+  description: '¿Tienes un proyecto en mente o quieres colaborar? Contáctate con Samuel Arandia, desarrollador de software en Santiago de Chile.',
+  alternates: {
+    canonical: '/contact',
+  },
+  openGraph: {
+    title: 'Contacto | Samuel Arandia',
+    description: '¿Tienes un proyecto en mente o quieres colaborar? Contáctate con Samuel Arandia.',
+    url: '/contact',
+  },
 }
 
-export default Page
+export default function Page() {
+  return <ContactView />
+}

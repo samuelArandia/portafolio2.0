@@ -1,18 +1,18 @@
-"use client"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
-import Skills from "@/components/skills"
-import { LanguageProvider } from "@/i18n/LanguageContext"
-import React from "react"
+import SkillsView from "./SkillsView"
 
-function Page() {
-  return (
-    <LanguageProvider>
-      <Header />
-      <Skills />
-      <Footer />
-    </LanguageProvider>
-  )
+export const metadata = {
+  title: 'Habilidades',
+  description: 'Lenguajes de programación, frameworks y herramientas con las que trabaja Samuel Arandia a diario: JavaScript, React, Vue.js, Next.js, Django, PostgreSQL y más.',
+  alternates: {
+    canonical: '/skills',
+  },
+  openGraph: {
+    title: 'Habilidades | Samuel Arandia',
+    description: 'Lenguajes, frameworks y herramientas con las que trabaja Samuel Arandia a diario.',
+    url: '/skills',
+  },
 }
 
-export default Page
+export default function Page() {
+  return <SkillsView />
+}
