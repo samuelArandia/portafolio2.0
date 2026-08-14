@@ -5,9 +5,9 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import PortfolioCard from "./portfolioCard";
 import { projects } from "@/constants";
-import { FaVuejs, FaReact } from "react-icons/fa";
+import { FaVuejs, FaReact, FaJava } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
-import { SiPostgresql, SiTailwindcss } from "react-icons/si";
+import { SiPostgresql, SiTailwindcss, SiAngular, SiTypescript, SiSpring } from "react-icons/si";
 import { DiCss3, DiDjango, DiJavascript } from "react-icons/di";
 import { TbBrandNextjs, TbBrandGolang } from "react-icons/tb";
 import { AiFillHtml5 } from "react-icons/ai";
@@ -25,6 +25,10 @@ const techIconMap = {
   "Next.js": TbBrandNextjs,
   "HTML": AiFillHtml5,
   "CSS": DiCss3,
+  "Angular": SiAngular,
+  "TypeScript": SiTypescript,
+  "Java Spring": SiSpring,
+  "Java": FaJava,
 };
 
 const Portafolio = () => {

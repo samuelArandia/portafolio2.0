@@ -60,8 +60,8 @@ const translations = {
       "proyecto-1": "Aplicación para la gestión de envíos de encomiendas y paquetería.",
       "proyecto-2": "Aplicación para la gestión y control de inventario de equipos tecnológicos.",
       "proyecto-3": "E-commerce de arriendo de equipos de construcción, venta de repuestos y servicio técnico.",
-      "proyecto-4": "Portafolio personal basado en experiencias previas.",
-      "proyecto-5": "Proyecto para calcular distintas medidas de figuras geométricas.",
+      "proyecto-4": "SaaS para la gestión de arriendo de maquinaria pesada: contratos, facturación electrónica SII y cobranza.",
+      "proyecto-5": "Portafolio personal basado en experiencias previas.",
     },
     contact: {
       section: "04",
@@ -154,8 +154,8 @@ const translations = {
       "proyecto-1": "Application for managing parcel and package shipments.",
       "proyecto-2": "Application for managing and controlling technology equipment inventory.",
       "proyecto-3": "E-commerce for renting construction equipment, selling spare parts, and technical services.",
-      "proyecto-4": "Personal portfolio based on previous experiences.",
-      "proyecto-5": "Project for calculating various geometric figure measurements.",
+      "proyecto-4": "SaaS for managing heavy machinery rentals: contracts, SII electronic invoicing, and collections.",
+      "proyecto-5": "Personal portfolio based on previous experiences.",
     },
     contact: {
       section: "04",
