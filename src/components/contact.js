@@ -1,9 +1,10 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { BsFillSendCheckFill } from "react-icons/bs";
-import Aos from "aos";
-import "aos/dist/aos.css";
 import { useLanguage } from '@/i18n/LanguageContext';
+import { Reveal } from "@/components/motion/Reveal";
+import SplitText from "@/components/motion/SplitText";
+import MagneticButton from "@/components/motion/MagneticButton";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -12,10 +13,6 @@ function Contact() {
   const [showAlert, setShowAlert] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { t } = useLanguage();
-
-  useEffect(() => {
-    Aos.init({ once: true });
-  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -52,63 +49,46 @@ function Contact() {
   return (
     <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="Contact">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
-          <span className="section-number">{t('contact.section')} {'//'}</span>
-          <h2
-            className="font-display font-bold mt-2"
-            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
-          >
-            {t('contact.title')}
-          </h2>
-          <div className="section-divider mx-auto mt-3 mb-5" />
-          <p className="max-w-2xl mx-auto" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
-            {t('contact.subtitle')}
-          </p>
-        </div>
-
         {/* Split layout */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-stretch">
-          {/* Contact info — terminal card, matching the ~/samuel.dev identity from About */}
-          <div className="md:col-span-2" data-aos="fade-right" data-aos-duration="600">
-            <div className="rounded-2xl overflow-hidden h-full" style={{ background: 'var(--bg-card)', border: '1px solid var(--glass-border)', boxShadow: 'var(--card-shadow)' }}>
-              <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid var(--glass-border)' }}>
-                <span className="w-3 h-3 rounded-full bg-red-400/80" />
-                <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
-                <span className="w-3 h-3 rounded-full bg-green-400/80" />
-                <span className="font-mono text-[11px] ml-2" style={{ color: 'var(--text-muted)' }}>~/contact</span>
-              </div>
-              <div className="p-5 sm:p-6 font-mono text-xs sm:text-sm leading-loose">
-                <p>
-                  <span style={{ color: 'var(--accent-primary)' }}>$</span>{' '}
-                  <span style={{ color: 'var(--text-muted)' }}>cat contact.json</span>
-                </p>
-                <div className="mt-2" style={{ color: 'var(--text-secondary)' }}>
-                  <p>{'{'}</p>
-                  <p className="pl-4">
-                    &quot;email&quot;: <a href="mailto:samuelarandia@gmail.com" className="hover:underline break-all" style={{ color: 'var(--accent-primary)' }}>&quot;samuelarandia@gmail.com&quot;</a>,
-                  </p>
-                  <p className="pl-4">
-                    &quot;location&quot;: <span style={{ color: 'var(--accent-primary)' }}>&quot;{t('contact.locationValue')}&quot;</span>,
-                  </p>
-                  <p className="pl-4">
-                    &quot;linkedin&quot;: <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: 'var(--accent-primary)' }}>&quot;/in/samuel-arandia&quot;</a>,
-                  </p>
-                  <p className="pl-4">
-                    &quot;github&quot;: <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: 'var(--accent-primary)' }}>&quot;@samuelArandia&quot;</a>
-                  </p>
-                  <p>{'}'}</p>
-                </div>
-                <p className="mt-3">
-                  <span style={{ color: 'var(--accent-primary)' }}>$</span>{' '}
-                  <span className="inline-block w-2 h-4 align-middle animate-pulse" style={{ background: 'var(--accent-primary)' }} />
-                </p>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-10 items-start">
+          {/* Editorial contact info */}
+          <div className="md:col-span-2">
+            <span className="section-number">{t('contact.section')} {'//'}</span>
+            <h2
+              className="font-display font-semibold mt-2"
+              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
+            >
+              <SplitText text={t('contact.title')} stagger={0.05} />
+            </h2>
+            <Reveal delay={0.1} className="mt-4 leading-relaxed max-w-sm" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
+              {t('contact.subtitle')}
+            </Reveal>
+
+            <Reveal delay={0.2} className="mt-10">
+              <MagneticButton
+                as="a"
+                href="mailto:samuelarandia@gmail.com"
+                data-cursor-hover
+                strength={0.25}
+                className="inline-block font-display font-medium break-all"
+                style={{ fontSize: 'clamp(1.25rem, 2.6vw, 1.9rem)', color: 'var(--text-primary)', borderBottom: '2px solid var(--accent-primary)' }}
+              >
+                samuelarandia@gmail.com
+              </MagneticButton>
+            </Reveal>
+
+            <Reveal delay={0.28} className="mt-8 space-y-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+              <p>{t('contact.location')} — <span style={{ color: 'var(--text-secondary)' }}>{t('contact.locationValue')}</span></p>
+              <p>
+                <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" data-cursor-hover className="hover:text-[var(--accent-primary)] transition-colors">/in/samuel-arandia</a>
+                {' · '}
+                <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" data-cursor-hover className="hover:text-[var(--accent-primary)] transition-colors">@samuelArandia</a>
+              </p>
+            </Reveal>
           </div>
 
           {/* Form */}
-          <div className="md:col-span-3" data-aos="fade-left" data-aos-duration="600">
+          <Reveal delay={0.15} className="md:col-span-3">
             <div className="rounded-2xl p-6 sm:p-8 gradient-border-top h-full"
               style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
             >
@@ -164,8 +144,9 @@ function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
+                  data-cursor-hover
                   className="w-full py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-                  style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(3, 166, 60, 0.2)' }}
+                  style={{ background: 'var(--accent-primary)' }}
                 >
                   {isSubmitting ? t('contact.sending') : t('contact.send')}
                 </button>
@@ -183,7 +164,7 @@ function Contact() {
                 )}
               </form>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

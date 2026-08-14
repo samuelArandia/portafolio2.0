@@ -9,8 +9,8 @@ import Skills from '@/components/skills'
 import Contact from '@/components/contact'
 import TechMarquee from '@/components/techMarquee'
 import { LanguageProvider } from '@/i18n/LanguageContext'
-import Aos from "aos";
-import "aos/dist/aos.css";
+import SmoothScroll from '@/components/motion/SmoothScroll'
+import Cursor from '@/components/motion/Cursor'
 
 function Home() {
   const [darkMode, setDarkMode] = useState(true);
@@ -29,34 +29,30 @@ function Home() {
     setDarkMode(!darkMode);
   };
 
-  useEffect(() => {
-    Aos.init({ once: true, duration: 600, easing: 'ease-out' });
-  }, []);
-
   return (
     <LanguageProvider>
-      {/* Background dots */}
+      {/* Base background */}
       <div
         className="fixed inset-0 z-[-10] transition-colors duration-300"
-        style={{
-          backgroundColor: 'var(--bg-primary)',
-          backgroundImage: 'radial-gradient(var(--dot-color) 1px, transparent 1px)',
-          backgroundSize: '22px 22px',
-        }}
+        style={{ backgroundColor: 'var(--bg-primary)' }}
       />
+      <div className="grain-overlay" />
+      <Cursor />
 
-      <main>
-        <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <div className="relative z-10">
-          <Inicio />
-          <TechMarquee />
-          <Portafolio />
-          <About />
-          <Skills />
-          <Contact />
-          <Footer />
-        </div>
-      </main>
+      <SmoothScroll>
+        <main>
+          <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <div className="relative z-10">
+            <Inicio />
+            <TechMarquee />
+            <Portafolio />
+            <About />
+            <Skills />
+            <Contact />
+            <Footer />
+          </div>
+        </main>
+      </SmoothScroll>
     </LanguageProvider>
   );
 }

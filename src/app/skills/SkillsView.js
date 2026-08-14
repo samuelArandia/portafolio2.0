@@ -3,14 +3,20 @@ import Footer from "@/components/footer"
 import Header from "@/components/header"
 import Skills from "@/components/skills"
 import { LanguageProvider } from "@/i18n/LanguageContext"
+import SmoothScroll from "@/components/motion/SmoothScroll"
+import Cursor from "@/components/motion/Cursor"
 import React from "react"
 
 function SkillsView() {
   return (
     <LanguageProvider>
-      <Header />
-      <Skills />
-      <Footer />
+      <div className="grain-overlay" />
+      <Cursor />
+      <SmoothScroll>
+        <Header />
+        <Skills />
+        <Footer />
+      </SmoothScroll>
     </LanguageProvider>
   )
 }

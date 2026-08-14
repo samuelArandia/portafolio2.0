@@ -6,6 +6,7 @@ import { DiDjango } from 'react-icons/di';
 import { SiPostgresql, SiNestjs, SiSpringboot, SiTypescript, SiTailwindcss, SiDocker, SiJavascript } from 'react-icons/si';
 import { TbBrandNextjs, TbBrandGolang } from 'react-icons/tb';
 import { GrGraphQl } from 'react-icons/gr';
+import { Reveal } from "@/components/motion/Reveal";
 
 const techs = [
   { name: "JavaScript", Icon: SiJavascript },
@@ -78,7 +79,7 @@ function TechMarquee() {
   const allTechs = [...techs, ...techs];
 
   return (
-    <div className="py-8 sm:py-10">
+    <Reveal className="py-8 sm:py-10" y={16} duration={0.7}>
       <div
         className="marquee-container select-none"
         onMouseDown={handleMouseDown}
@@ -105,7 +106,7 @@ function TechMarquee() {
           ))}
         </div>
       </div>
-    </div>
+    </Reveal>
   );
 }
 

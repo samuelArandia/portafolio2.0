@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaChevronUp, FaEnvelope, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { socialMedia, navLinks, projects } from "@/constants";
-import { Link } from "react-scroll";
+import { scrollToSection } from "@/components/motion/scrollToSection";
 import { useLanguage } from '@/i18n/LanguageContext';
 
 function Footer() {
@@ -25,13 +25,7 @@ function Footer() {
 
   return (
     <>
-      <footer className="relative pt-16 pb-8 px-5 sm:px-8 overflow-hidden" id="Footer">
-        {/* Corner gradient glows */}
-        <div className="pointer-events-none absolute top-0 left-0 w-[280px] h-[280px] rounded-full opacity-[0.07]"
-          style={{ background: 'radial-gradient(circle, var(--accent-primary), transparent 70%)' }} />
-        <div className="pointer-events-none absolute bottom-0 right-0 w-[280px] h-[280px] rounded-full opacity-[0.07]"
-          style={{ background: 'radial-gradient(circle, var(--accent-secondary), transparent 70%)' }} />
-
+      <footer className="relative pt-16 pb-8 px-5 sm:px-8 overflow-hidden" id="Footer" style={{ borderTop: '1px solid var(--card-border)' }}>
         <div className="relative max-w-6xl mx-auto">
           {/* Main grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
@@ -61,7 +55,7 @@ function Footer() {
 
             {/* Projects column */}
             <div>
-              <h3 className="text-xs font-semibold font-display uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
+              <h3 className="text-xs font-semibold font-mono uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
                 {t('footer.projectsTitle')}
               </h3>
               <ul className="space-y-2.5">
@@ -83,22 +77,19 @@ function Footer() {
 
             {/* Navigation column */}
             <div>
-              <h3 className="text-xs font-semibold font-display uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
+              <h3 className="text-xs font-semibold font-mono uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
                 {t('footer.navigationTitle')}
               </h3>
               <ul className="space-y-2.5">
                 {navLinks.map((nav) => (
                   <li key={nav.id}>
-                    <Link
-                      to={nav.id}
-                      smooth={true}
-                      duration={500}
-                      offset={-80}
+                    <button
+                      onClick={() => scrollToSection(nav.id)}
                       className="text-sm hover:text-[var(--accent-primary)] transition-all duration-200 cursor-pointer hover:translate-x-1 inline-block"
                       style={{ color: 'var(--text-muted)' }}
                     >
                       {t(`nav.${nav.id}`)}
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -106,7 +97,7 @@ function Footer() {
 
             {/* Social column */}
             <div>
-              <h3 className="text-xs font-semibold font-display uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
+              <h3 className="text-xs font-semibold font-mono uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
                 Social
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -149,10 +140,11 @@ function Footer() {
       <button
         onClick={scrollToTop}
         aria-label={t('footer.scrollTop')}
+        data-cursor-hover
         className={`fixed bottom-6 right-6 z-40 p-3 rounded-xl text-white transition-all duration-300 cursor-pointer ${
           showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'
         }`}
-        style={{ background: 'var(--accent-gradient)', boxShadow: '0 4px 20px rgba(3, 166, 60, 0.3)' }}
+        style={{ background: 'var(--accent-primary)', boxShadow: '0 4px 20px rgba(3, 166, 60, 0.3)' }}
       >
         <FaChevronUp className="text-sm" />
       </button>

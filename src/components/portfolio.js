@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Aos from "aos";
-import "aos/dist/aos.css";
+import React from "react";
 import PortfolioCard from "./portfolioCard";
 import { projects } from "@/constants";
 import { FaVuejs, FaReact, FaJava } from "react-icons/fa";
@@ -12,6 +10,8 @@ import { DiCss3, DiDjango, DiJavascript } from "react-icons/di";
 import { TbBrandNextjs, TbBrandGolang } from "react-icons/tb";
 import { AiFillHtml5 } from "react-icons/ai";
 import { useLanguage } from '@/i18n/LanguageContext';
+import { Reveal } from "@/components/motion/Reveal";
+import SplitText from "@/components/motion/SplitText";
 
 const techIconMap = {
   "Vue.js": FaVuejs,
@@ -34,10 +34,6 @@ const techIconMap = {
 const Portafolio = () => {
   const { t } = useLanguage();
 
-  useEffect(() => {
-    Aos.init({ once: true });
-  }, []);
-
   const projectsWithIcons = projects.map((project) => {
     const validTechs = project.technologies.filter((tech) => techIconMap[tech]);
     return {
@@ -51,17 +47,18 @@ const Portafolio = () => {
   return (
     <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="Portafolio">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
-          <span className="section-number">{t('portfolio.section')} {'//'}</span>
-          <h2
-            className="font-display font-bold mt-2"
-            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
-          >
-            {t('portfolio.title')}
-          </h2>
-          <div className="section-divider mx-auto mt-3 mb-5" />
-          <p style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }} className="max-w-2xl mx-auto">
+        {/* Section Header — left-aligned, split from subtitle */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 sm:mb-16">
+          <div>
+            <span className="section-number">{t('portfolio.section')} {'//'}</span>
+            <h2
+              className="font-display font-semibold mt-2"
+              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
+            >
+              <SplitText text={t('portfolio.title')} stagger={0.06} />
+            </h2>
+          </div>
+          <p style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }} className="max-w-xs md:text-right">
             {t('portfolio.subtitle')}
           </p>
         </div>
@@ -83,18 +80,19 @@ const Portafolio = () => {
         </div>
 
         {/* GitHub link */}
-        <div className="text-center mt-12" data-aos="fade-up">
+        <Reveal className="text-center mt-12">
           <a
             href="https://github.com/samuelArandia"
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor-hover
             className="inline-flex items-center gap-2 text-sm font-mono hover:text-[var(--accent-primary)] transition-colors duration-200"
             style={{ color: 'var(--text-secondary)' }}
           >
             {t('portfolio.viewMore')}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

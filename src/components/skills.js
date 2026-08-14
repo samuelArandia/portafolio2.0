@@ -1,14 +1,13 @@
 "use client"
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { FaVuejs, FaPython, FaHtml5, FaReact, FaCss3Alt, FaAngular, FaJava, FaGithub } from 'react-icons/fa';
 import { DiDjango } from 'react-icons/di';
 import { SiPostgresql, SiNestjs, SiJetbrains, SiSpringboot, SiTypescript, SiAzuredevops, SiPostman, SiJavascript, SiMicrosoftazure, SiDocker } from 'react-icons/si';
 import { BsGit } from 'react-icons/bs';
 import { TbBrandVscode } from 'react-icons/tb';
 import { GrGraphQl } from 'react-icons/gr';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { Reveal } from "@/components/motion/Reveal";
 
 const languages = [
   { name: "HTML", Icon: FaHtml5, color: "#E34F26" },
@@ -65,7 +64,7 @@ function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
     trackRef.current.parentElement.scrollLeft = scrollLeftRef.current - walk;
   }, [isDragging]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('touchend', handleMouseUp);
     return () => {
@@ -125,52 +124,48 @@ function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
 const Skills = () => {
   const { t } = useLanguage();
 
-  useEffect(() => {
-    Aos.init({ once: true });
-  }, []);
-
   return (
     <section className='py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16' id='Skills'>
       <div className='max-w-6xl mx-auto'>
-        {/* Section Header */}
-        <div className='text-center mb-12 sm:mb-16' data-aos='fade-up'>
-          <span className="section-number">{t('skills.section')} {'//'}</span>
+        {/* Section Header — quiet, compact, left-aligned */}
+        <Reveal className="flex items-baseline gap-3 mb-14 sm:mb-16">
+          <span className="section-number">{t('skills.section')}</span>
           <h2
-            className='font-display font-bold mt-2'
-            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
+            className='font-display font-medium'
+            style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.85rem)', color: 'var(--text-primary)' }}
           >
             {t('skills.title')}
           </h2>
-          <div className='section-divider mx-auto mt-3 mb-5' />
-          <p className='max-w-2xl mx-auto' style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
+          <span className="hidden sm:block flex-1 h-px" style={{ background: 'var(--card-border)' }} />
+          <p className="hidden md:block text-xs max-w-[220px] text-right" style={{ color: 'var(--text-muted)' }}>
             {t('skills.subtitle')}
           </p>
-        </div>
+        </Reveal>
 
         <div className='space-y-12 sm:space-y-14 md:space-y-16'>
           {/* Languages */}
-          <div data-aos='fade-up' data-aos-delay='100'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
+          <Reveal delay={0.05}>
+            <h3 className='text-xs sm:text-sm font-semibold font-mono uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
               {t('skills.languages')}
             </h3>
             <SkillMarquee items={languages} direction="left" speed="30s" />
-          </div>
+          </Reveal>
 
           {/* Frameworks */}
-          <div data-aos='fade-up' data-aos-delay='200'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
+          <Reveal delay={0.1}>
+            <h3 className='text-xs sm:text-sm font-semibold font-mono uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
               {t('skills.frameworks')}
             </h3>
             <SkillMarquee items={frameworksList} direction="right" speed="35s" />
-          </div>
+          </Reveal>
 
           {/* Tools */}
-          <div data-aos='fade-up' data-aos-delay='300'>
-            <h3 className='text-xs sm:text-sm font-semibold font-display uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
+          <Reveal delay={0.15}>
+            <h3 className='text-xs sm:text-sm font-semibold font-mono uppercase tracking-widest mb-6 sm:mb-8 text-center' style={{ color: 'var(--accent-primary)' }}>
               {t('skills.tools')}
             </h3>
             <SkillMarquee items={toolsList} direction="left" speed="40s" />
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -8,8 +8,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Fraunces"', 'ui-serif', 'serif'],
         body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+      },
+      transitionTimingFunction: {
+        premium: 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
       colors: {
         dark: '#1F2937',

@@ -1,9 +1,11 @@
 "use client"
 import React, { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { navLinks } from "@/constants";
 import { BsSun } from "react-icons/bs";
 import { GiDeathStar } from "react-icons/gi";
-import { Link } from 'react-scroll';
+import { scrollToSection } from "@/components/motion/scrollToSection";
+import { EASE_PREMIUM } from "@/lib/motion";
 import { useLanguage } from '@/i18n/LanguageContext';
 
 function Header({ darkMode, toggleDarkMode }) {
@@ -41,12 +43,18 @@ function Header({ darkMode, toggleDarkMode }) {
     return () => observer.disconnect();
   }, []);
 
+  const handleNavClick = (id) => {
+    scrollToSection(id);
+    setToggle(false);
+  };
+
   const langButton = (size = "text-xs") => (
     <button
       onClick={toggleLocale}
-      className={`${size} font-semibold font-display px-2.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer hover:text-[var(--accent-primary)]`}
+      className={`${size} font-semibold font-body px-2.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer hover:text-[var(--accent-primary)]`}
       style={{ color: 'var(--text-secondary)', background: 'var(--glass-bg)' }}
       aria-label={locale === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+      data-cursor-hover
     >
       {locale === 'es' ? 'EN' : 'ES'}
     </button>
@@ -55,33 +63,42 @@ function Header({ darkMode, toggleDarkMode }) {
   return (
     <>
       {/* Top bar - visible when NOT scrolled */}
-      <div
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'
-        }`}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-50"
+        animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -24 : 0 }}
+        transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+        style={{ pointerEvents: scrolled ? 'none' : 'auto' }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-end items-center">
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((nav) => (
-              <Link
-                key={nav.id}
-                to={nav.id}
-                smooth={true}
-                duration={500}
-                offset={-80}
-                className={`px-3 py-2 text-sm font-medium rounded-lg cursor-pointer transition-all duration-200 ${
-                  activeSection === nav.id
-                    ? 'text-[var(--accent-primary)]'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                {t(`nav.${nav.id}`)}
-              </Link>
-            ))}
+            {navLinks.map((nav) => {
+              const isActive = activeSection === nav.id;
+              return (
+                <button
+                  key={nav.id}
+                  onClick={() => handleNavClick(nav.id)}
+                  data-cursor-hover
+                  className={`relative px-3 py-2 text-sm font-medium cursor-pointer transition-colors duration-200 ${
+                    isActive ? 'text-[var(--accent-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  }`}
+                >
+                  {t(`nav.${nav.id}`)}
+                  {isActive && (
+                    <motion.span
+                      layoutId="topbar-underline"
+                      className="absolute left-3 right-3 -bottom-0.5 h-px"
+                      style={{ background: 'var(--accent-primary)' }}
+                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
             {langButton()}
             <button
               onClick={toggleDarkMode}
               aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
+              data-cursor-hover
               className="ml-1 p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--glass-bg)] transition-all duration-200 cursor-pointer"
             >
               {darkMode ? <BsSun className="text-lg" /> : <GiDeathStar className="text-lg" />}
@@ -116,14 +133,10 @@ function Header({ darkMode, toggleDarkMode }) {
         <div className={`md:hidden overflow-hidden transition-all duration-300 ${toggle ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="px-4 pb-4 pt-2 mx-4 rounded-xl glass">
             {navLinks.map((nav) => (
-              <Link
+              <button
                 key={nav.id}
-                to={nav.id}
-                smooth={true}
-                duration={500}
-                offset={-80}
-                onClick={() => setToggle(false)}
-                className={`block px-4 py-3 text-sm font-medium rounded-lg cursor-pointer transition-colors duration-200 ${
+                onClick={() => handleNavClick(nav.id)}
+                className={`block w-full text-left px-4 py-3 text-sm font-medium rounded-lg cursor-pointer transition-colors duration-200 ${
                   activeSection === nav.id
                     ? 'text-[var(--accent-primary)]'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -131,43 +144,51 @@ function Header({ darkMode, toggleDarkMode }) {
                 style={activeSection === nav.id ? { background: 'var(--glass-bg)' } : {}}
               >
                 {t(`nav.${nav.id}`)}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Floating pill navbar - visible when scrolled */}
-      <div
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
-          scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6 pointer-events-none'
-        }`}
+      <motion.div
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
+        animate={{ opacity: scrolled ? 1 : 0, y: scrolled ? 0 : -24 }}
+        transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+        style={{ pointerEvents: scrolled ? 'auto' : 'none' }}
       >
         {/* Desktop pill */}
         <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-xl border"
           style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
         >
-          {navLinks.map((nav) => (
-            <Link
-              key={nav.id}
-              to={nav.id}
-              smooth={true}
-              duration={500}
-              offset={-80}
-              className={`px-4 py-2 text-sm font-medium rounded-full cursor-pointer transition-all duration-200 whitespace-nowrap ${
-                activeSection === nav.id
-                  ? 'text-white'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
-              style={activeSection === nav.id ? { background: 'var(--accent-gradient)' } : {}}
-            >
-              {t(`nav.${nav.id}`)}
-            </Link>
-          ))}
+          {navLinks.map((nav) => {
+            const isActive = activeSection === nav.id;
+            return (
+              <button
+                key={nav.id}
+                onClick={() => handleNavClick(nav.id)}
+                data-cursor-hover
+                className={`relative px-4 py-2 text-sm font-medium rounded-full cursor-pointer transition-colors duration-200 whitespace-nowrap ${
+                  isActive ? 'text-white' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="pill-active-bg"
+                    className="absolute inset-0 rounded-full -z-10"
+                    style={{ background: 'var(--accent-gradient)' }}
+                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                  />
+                )}
+                {t(`nav.${nav.id}`)}
+              </button>
+            );
+          })}
           {langButton()}
           <button
             onClick={toggleDarkMode}
             aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
+            data-cursor-hover
             className="p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all duration-200 cursor-pointer"
           >
             {darkMode ? <BsSun className="text-base" /> : <GiDeathStar className="text-base" />}
@@ -205,14 +226,10 @@ function Header({ darkMode, toggleDarkMode }) {
             style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
           >
             {navLinks.map((nav) => (
-              <Link
+              <button
                 key={nav.id}
-                to={nav.id}
-                smooth={true}
-                duration={500}
-                offset={-80}
-                onClick={() => setToggle(false)}
-                className={`block px-4 py-2.5 text-sm font-medium rounded-xl cursor-pointer transition-colors duration-200 ${
+                onClick={() => handleNavClick(nav.id)}
+                className={`block w-full text-left px-4 py-2.5 text-sm font-medium rounded-xl cursor-pointer transition-colors duration-200 ${
                   activeSection === nav.id
                     ? 'text-white'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -220,11 +237,11 @@ function Header({ darkMode, toggleDarkMode }) {
                 style={activeSection === nav.id ? { background: 'var(--accent-gradient)' } : {}}
               >
                 {t(`nav.${nav.id}`)}
-              </Link>
+              </button>
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

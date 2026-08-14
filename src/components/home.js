@@ -1,116 +1,142 @@
 "use client"
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { socialMedia } from "@/constants";
-import { TypeAnimation } from "react-type-animation";
-import Aos from "aos";
-import "aos/dist/aos.css";
-import { Link } from "react-scroll";
 import { useLanguage } from '@/i18n/LanguageContext';
+import { EASE_PREMIUM } from "@/lib/motion";
+import { scrollToSection } from "@/components/motion/scrollToSection";
+import SplitText from "@/components/motion/SplitText";
+import MagneticButton from "@/components/motion/MagneticButton";
+
+function RoleCycle({ roles, className, style }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    setIndex(0);
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % roles.length);
+    }, 2600);
+    return () => clearInterval(id);
+  }, [roles]);
+
+  return (
+    <div className={className} style={{ ...style, position: "relative", overflow: "hidden" }}>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          initial={{ y: "60%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-60%", opacity: 0 }}
+          transition={{ duration: 0.55, ease: EASE_PREMIUM }}
+          style={{ display: "inline-block" }}
+        >
+          {roles[index]}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+}
 
 function Inicio() {
   const perfil = "/perfil.png";
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
+  const sectionRef = useRef(null);
 
-  useEffect(() => {
-    Aos.init({ once: true });
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
-  const contactId = "Contact";
+  const roles = [t('hero.role1'), t('hero.role2'), t('hero.role3')];
 
   return (
-    <section className="min-h-[100dvh] flex items-center relative overflow-hidden" id="Inicio">
-      {/* Ambient glow effects */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-[0.06] blur-[120px] pointer-events-none" style={{ background: 'var(--accent-primary)' }} />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full opacity-[0.06] blur-[120px] pointer-events-none" style={{ background: 'var(--accent-secondary)' }} />
-
+    <section ref={sectionRef} className="min-h-[100dvh] flex items-center relative overflow-hidden" id="Inicio">
       <div className="w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12">
         <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-12 lg:gap-20">
 
           {/* Text content */}
           <div className="flex-1 text-center md:text-left">
             {/* Greeting */}
-            <h1
-              data-aos="fade-up"
-              data-aos-delay="100"
-              data-aos-duration="600"
+            <span
+              className="block font-body font-medium leading-tight"
+              style={{ fontSize: 'clamp(1.1rem, 2.4vw, 1.5rem)', color: 'var(--text-secondary)' }}
             >
-              <span
-                className="block font-display font-medium leading-tight"
-                style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)', color: 'var(--text-secondary)' }}
-              >
-                {t('hero.greeting')}
-              </span>
-              <span
-                className="block font-display font-extrabold text-accent-gradient leading-tight mt-1"
-                style={{ fontSize: 'clamp(2.25rem, 5.5vw, 4rem)' }}
-              >
-                {t('hero.name')}
-              </span>
+              {t('hero.greeting')}
+            </span>
+            <h1 style={{ marginTop: '0.25rem' }}>
+              <SplitText
+                text={t('hero.name')}
+                as="span"
+                className="block font-display font-semibold leading-[1.05]"
+                style={{ fontSize: 'clamp(2.5rem, 6.5vw, 4.75rem)', color: 'var(--text-primary)', letterSpacing: '-0.02em' }}
+                stagger={0.06}
+              />
             </h1>
 
-            {/* Tagline */}
-            <div
-              className="mt-3 font-mono text-sm sm:text-base"
-              style={{ color: 'var(--accent-primary)', opacity: 0.7 }}
-              data-aos="fade-up"
-              data-aos-delay="150"
-              data-aos-duration="600"
-            >
-              {t('hero.tagline')}
-            </div>
-
-            {/* Type animation */}
-            <div className="mt-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="600">
-              <TypeAnimation
-                key={locale}
-                sequence={[
-                  t('hero.role1'), 1500,
-                  t('hero.role2'), 1500,
-                  t('hero.role3'), 1500,
-                ]}
-                className="font-display font-semibold"
-                style={{ fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', color: 'var(--text-secondary)' }}
-                cursor={true}
-                repeat={Infinity}
+            {/* Role cycle */}
+            <div className="mt-5 flex items-center justify-center md:justify-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full status-dot flex-shrink-0" style={{ background: 'var(--accent-primary)' }} />
+              <RoleCycle
+                roles={roles}
+                className="font-mono font-medium"
+                style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)', color: 'var(--accent-primary)' }}
               />
             </div>
 
-            <p
-              className="mt-5 max-w-lg mx-auto md:mx-0 leading-relaxed"
-              style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-muted)' }}
-              data-aos="fade-up"
-              data-aos-delay="300"
-              data-aos-duration="600"
+            <motion.p
+              className="mt-6 max-w-lg mx-auto md:mx-0 leading-relaxed"
+              style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: EASE_PREMIUM }}
             >
               {t('hero.description')}
-            </p>
+            </motion.p>
 
-            {/* CTA Buttons */}
-            <div className="mt-7 flex flex-col sm:flex-row justify-center md:justify-start gap-3" data-aos="fade-up" data-aos-delay="400" data-aos-duration="600">
-              <button
+            {/* CTA */}
+            <motion.div
+              className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-5"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.65, ease: EASE_PREMIUM }}
+            >
+              <MagneticButton
+                as="button"
                 onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
-                className="px-7 py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
-                style={{ background: 'var(--accent-gradient)', boxShadow: '0 8px 30px rgba(3, 166, 60, 0.25)' }}
+                className="px-8 py-3.5 rounded-full font-medium text-sm text-white cursor-pointer"
+                style={{ background: 'var(--accent-primary)' }}
               >
                 {t('hero.downloadCV')}
-              </button>
-              <Link
-                to={contactId}
-                smooth={true}
-                duration={500}
-                offset={-80}
-                className="px-7 py-3 rounded-xl font-medium text-sm hover:-translate-y-0.5 transition-all duration-300 cursor-pointer text-center border"
-                style={{ borderColor: 'var(--card-border)', color: 'var(--accent-primary)' }}
+              </MagneticButton>
+              <button
+                onClick={() => scrollToSection('Contact')}
+                data-cursor-hover
+                className="relative font-medium text-sm cursor-pointer group"
+                style={{ color: 'var(--text-primary)' }}
               >
                 {t('hero.writeMe')}
-              </Link>
-            </div>
+                <span
+                  className="absolute left-0 -bottom-1 w-full h-px origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"
+                  style={{ background: 'var(--text-primary)' }}
+                />
+                <span
+                  className="absolute left-0 -bottom-1 w-full h-px origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                  style={{ background: 'var(--accent-primary)' }}
+                />
+              </button>
+            </motion.div>
 
             {/* Social links */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-7" data-aos="fade-up" data-aos-delay="500" data-aos-duration="600">
+            <motion.div
+              className="flex flex-wrap justify-center md:justify-start gap-4 mt-9"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: EASE_PREMIUM }}
+            >
               {socialMedia.map((social) => (
                 <a
                   key={social.id}
@@ -118,8 +144,9 @@ function Inicio() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={t('hero.visitSocial')}
-                  className="p-2.5 rounded-xl border text-lg transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--accent-primary)] cursor-pointer"
-                  style={{ borderColor: 'var(--card-border)', color: 'var(--text-muted)' }}
+                  data-cursor-hover
+                  className="text-lg transition-colors duration-200 hover:text-[var(--accent-primary)] cursor-pointer"
+                  style={{ color: 'var(--text-muted)' }}
                 >
                   {social.id === "social-media-1" && <FaInstagram />}
                   {social.id === "social-media-2" && <FaFacebook />}
@@ -128,34 +155,53 @@ function Inicio() {
                   {social.id === "social-media-5" && <FaGithub />}
                 </a>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Profile image */}
-          <div className="flex-shrink-0" data-aos="fade-left" data-aos-delay="200" data-aos-duration="800">
+          <motion.div
+            className="flex-shrink-0"
+            style={{ y: imageY }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2, ease: EASE_PREMIUM }}
+          >
             <div className="relative">
-              <div className="absolute -inset-4 rounded-full animate-glow-pulse" style={{ background: 'var(--accent-gradient)', opacity: 0.15, filter: 'blur(30px)' }} />
-              <div className="absolute -inset-1 rounded-full opacity-20" style={{ background: 'var(--accent-gradient)' }} />
               <Image
                 src={perfil}
                 alt={t('hero.profileAlt')}
-                width={300}
-                height={300}
-                className="relative rounded-full w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover shadow-2xl"
-                style={{ boxShadow: '0 0 0 2px var(--card-border)' }}
+                width={340}
+                height={340}
+                className="relative rounded-full w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover"
+                style={{ boxShadow: '0 0 0 1px var(--card-border)' }}
                 priority
               />
-              {/* Code label under photo */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full font-mono text-xs whitespace-nowrap border"
                 style={{ background: 'var(--bg-card)', borderColor: 'var(--glass-border)', color: 'var(--accent-primary)' }}
               >
                 {t('hero.tagline')}
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
+
+      {/* Scroll cue */}
+      <motion.div
+        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 w-px h-10 overflow-hidden"
+        style={{ background: 'var(--glass-border)' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.1, ease: EASE_PREMIUM }}
+      >
+        <motion.span
+          className="block w-px h-4"
+          style={{ background: 'var(--accent-primary)' }}
+          animate={{ y: [-16, 40] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: EASE_PREMIUM }}
+        />
+      </motion.div>
     </section>
   );
 }
