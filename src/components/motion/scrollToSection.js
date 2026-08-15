@@ -12,7 +12,7 @@ export function scrollToSection(id, offset = -80) {
 
   const lenis = getLenis();
   if (lenis) {
-    lenis.scrollTo(el, { offset, duration: 1.2, easing: easeOutCubic });
+    lenis.scrollTo(el, { offset, duration: 0.9, easing: easeOutCubic });
     return;
   }
 

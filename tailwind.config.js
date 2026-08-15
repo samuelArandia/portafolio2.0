@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Fraunces"', 'ui-serif', 'serif'],
-        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Inter"', 'system-ui', 'sans-serif'],
+        body: ['"Inter"', 'system-ui', 'sans-serif'],
       },
       transitionTimingFunction: {
         premium: 'cubic-bezier(0.16, 1, 0.3, 1)',

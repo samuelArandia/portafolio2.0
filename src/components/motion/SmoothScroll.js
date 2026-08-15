@@ -21,9 +21,10 @@ export default function SmoothScroll({ children }) {
     if (prefersReduced) return undefined;
 
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 0.6,
       easing: easeOutCubic,
       smoothWheel: true,
+      wheelMultiplier: 1.1,
     });
     activeLenis = lenis;
 

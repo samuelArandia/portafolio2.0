@@ -70,7 +70,7 @@ function Header({ darkMode, toggleDarkMode }) {
         style={{ pointerEvents: scrolled ? 'none' : 'auto' }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-end items-center">
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((nav) => {
               const isActive = activeSection === nav.id;
               return (
@@ -106,7 +106,7 @@ function Header({ darkMode, toggleDarkMode }) {
           </div>
 
           {/* Mobile */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2">
             {langButton()}
             <button
               onClick={toggleDarkMode}
@@ -130,7 +130,7 @@ function Header({ darkMode, toggleDarkMode }) {
         </div>
 
         {/* Mobile menu - top bar */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ${toggle ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`lg:hidden overflow-hidden transition-all duration-300 ${toggle ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="px-4 pb-4 pt-2 mx-4 rounded-xl glass">
             {navLinks.map((nav) => (
               <button
@@ -158,7 +158,7 @@ function Header({ darkMode, toggleDarkMode }) {
         style={{ pointerEvents: scrolled ? 'auto' : 'none' }}
       >
         {/* Desktop pill */}
-        <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-xl border"
+        <div className="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-xl border"
           style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
         >
           {navLinks.map((nav) => {
@@ -196,7 +196,7 @@ function Header({ darkMode, toggleDarkMode }) {
         </div>
 
         {/* Mobile pill */}
-        <div className="flex md:hidden items-center gap-2 px-3 py-2 rounded-full backdrop-blur-xl border"
+        <div className="flex lg:hidden items-center gap-2 px-3 py-2 rounded-full backdrop-blur-xl border"
           style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
         >
           {langButton("text-[10px]")}
@@ -221,7 +221,7 @@ function Header({ darkMode, toggleDarkMode }) {
         </div>
 
         {/* Mobile dropdown from pill */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 mt-2 ${toggle && scrolled ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`lg:hidden overflow-hidden transition-all duration-300 mt-2 ${toggle && scrolled ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="rounded-2xl px-2 py-2 backdrop-blur-xl border"
             style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
           >
