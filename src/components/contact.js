@@ -17,9 +17,16 @@ function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isSubmitting) return;
+
+    const webhookUrl = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_URL;
+    if (!webhookUrl) {
+      alert(t('contact.error'));
+      return;
+    }
+
     setIsSubmitting(true);
 
-    fetch('https://prod-00.brazilsouth.logic.azure.com:443/workflows/3918c47902ab4a9fb53a8893cb2cdcd2/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=02rKDvooNdj6W46NG7_tO3No8ZK7nh54JCn_eIHlX_Q', {
+    fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

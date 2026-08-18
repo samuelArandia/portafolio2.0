@@ -8,6 +8,7 @@ import { TbBrandVscode } from 'react-icons/tb';
 import { GrGraphQl } from 'react-icons/gr';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Reveal } from "@/components/motion/Reveal";
+import { projects } from "@/constants";
 
 const languages = [
   { name: "HTML", Icon: FaHtml5, color: "#E34F26" },
@@ -39,6 +40,9 @@ const toolsList = [
   { name: "Docker", Icon: SiDocker, color: "#2496ED" },
   { name: "GitHub", Icon: FaGithub, color: "#025939" },
 ];
+
+const projectsUsing = (techName) =>
+  projects.filter((p) => p.technologies.includes(techName)).map((p) => p.title);
 
 function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
   const trackRef = useRef(null);
@@ -93,34 +97,38 @@ function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
         onMouseEnter={(e) => { if (!isDragging) e.currentTarget.style.animationPlayState = 'paused'; }}
         onMouseLeave={(e) => { if (!isDragging) e.currentTarget.style.animationPlayState = 'running'; }}
       >
-        {allItems.map((tech, i) => (
-          <div
-            key={`${tech.name}-${i}`}
-            className="flex flex-col items-center mx-3 sm:mx-4 md:mx-5 flex-shrink-0 group"
-          >
+        {allItems.map((tech, i) => {
+          const usedIn = projectsUsing(tech.name);
+          return (
             <div
-              className="flex items-center justify-center rounded-2xl border transition-all duration-300 group-hover:-translate-y-1"
-              style={{
-                width: 'clamp(3.75rem, 6vw, 5.25rem)',
-                height: 'clamp(3.75rem, 6vw, 5.25rem)',
-                background: `${tech.color}14`,
-                borderColor: `${tech.color}30`,
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 10px 28px ${tech.color}40`; }}
-              onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none'; }}
+              key={`${tech.name}-${i}`}
+              className="flex flex-col items-center mx-6 sm:mx-8 md:mx-10 lg:mx-12 flex-shrink-0 group"
             >
               <tech.Icon
-                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.25rem)', color: tech.color }}
+                className="transition-all duration-300 group-hover:scale-[1.3]"
+                style={{
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  color: tech.color,
+                  filter: 'drop-shadow(0 0 0px transparent)',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.filter = `drop-shadow(0 0 16px ${tech.color}80)`; }}
+                onMouseLeave={(e) => { e.currentTarget.style.filter = 'drop-shadow(0 0 0px transparent)'; }}
               />
+              <span
+                className="mt-2.5 text-xs sm:text-sm font-medium transition-all duration-300 opacity-60 group-hover:opacity-100"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {tech.name}
+              </span>
+              <span
+                className="mt-1 text-[10px] font-mono text-center leading-tight transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                style={{ color: 'var(--accent-primary)', height: '1.1em' }}
+              >
+                {usedIn.length > 0 ? `→ ${usedIn.join(', ')}` : ''}
+              </span>
             </div>
-            <span
-              className="mt-2.5 text-xs sm:text-sm font-medium transition-all duration-300 opacity-60 group-hover:opacity-100"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              {tech.name}
-            </span>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

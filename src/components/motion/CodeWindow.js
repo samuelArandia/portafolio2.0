@@ -7,7 +7,6 @@ import { EASE_PREMIUM } from "@/lib/motion";
 const c = {
   keyword: "#7aa2f7",
   type: "#5fc9b3",
-  string: "#e0a458",
   func: "#e5c07b",
   comment: "rgba(255, 255, 255, 0.38)",
   plain: "rgba(255, 255, 255, 0.72)",
@@ -16,7 +15,6 @@ const c = {
 
 function K({ children }) { return <span style={{ color: c.keyword }}>{children}</span>; }
 function T({ children }) { return <span style={{ color: c.type }}>{children}</span>; }
-function S({ children }) { return <span style={{ color: c.string }}>{children}</span>; }
 function F({ children }) { return <span style={{ color: c.func }}>{children}</span>; }
 function D({ children }) { return <span style={{ color: c.decorator, fontWeight: 600 }}>{children}</span>; }
 function C({ children }) { return <span style={{ color: c.comment, fontStyle: "italic" }}>{children}</span>; }
@@ -30,29 +28,25 @@ function Line({ children }) {
 }
 
 const lines = [
-  <Line key="1"><K>import</K> {"{ Injectable }"} <K>from</K></Line>,
-  <Line key="2">{"  "}<S>{"'@nestjs/common'"}</S>;</Line>,
-  <Line key="3" />,
-  <Line key="4"><D>@Injectable()</D></Line>,
-  <Line key="5"><K>export</K> <K>class</K> <T>SamuelArandia</T> {"{"}</Line>,
-  <Line key="6">{"  "}<K>private readonly</K> stack = [</Line>,
-  <Line key="7">{"    "}<S>{"'TypeScript'"}</S>, <S>{"'NestJS'"}</S>,</Line>,
-  <Line key="8">{"    "}<S>{"'Next.js'"}</S>,</Line>,
-  <Line key="9">{"  "}];</Line>,
-  <Line key="10" />,
-  <Line key="11">{"  "}<K>async</K> <F>solve</F>(</Line>,
-  <Line key="12">{"    "}problem: <T>Challenge</T>,</Line>,
-  <Line key="13">{"  "}): <T>Promise</T>{"<"}<T>Architecture</T>{">"} {"{"}</Line>,
-  <Line key="14">{"    "}<K>const</K> design = <K>await</K> <K>this</K>.<F>think</F>(problem);</Line>,
-  <Line key="15">{"    "}<K>return</K> <K>this</K>.<F>ship</F>(design);</Line>,
-  <Line key="16">{"  "}{"}"}</Line>,
+  <Line key="1"><D>@Service</D></Line>,
+  <Line key="2"><D>@RequiredArgsConstructor</D></Line>,
+  <Line key="3"><K>public class</K> <T>ArchitectureService</T> {"{"}</Line>,
+  <Line key="4" />,
+  <Line key="5">{"    "}<K>private final</K> <T>RepositoryPort</T> repo;</Line>,
+  <Line key="6" />,
+  <Line key="7">{"    "}<D>@Transactional</D></Line>,
+  <Line key="8">{"    "}<K>public</K> <T>Solution</T> <F>solve</F>(<T>Problem</T> problem) {"{"}</Line>,
+  <Line key="9">{"        "}<K>var</K> design = <F>think</F>(problem);</Line>,
+  <Line key="10">{"        "}<K>return</K> <F>ship</F>(design);</Line>,
+  <Line key="11">{"    "}{"}"}</Line>,
+  <Line key="12" />,
+  <Line key="13">{"    "}<D>@Async</D></Line>,
+  <Line key="14">{"    "}<K>private</K> <T>Solution</T> <F>ship</F>(<T>Design</T> design) {"{"}</Line>,
+  <Line key="15">{"        "}<K>return</K> <K>new</K> <T>Solution</T>(<K>true</K>);</Line>,
+  <Line key="16">{"    "}{"}"}</Line>,
   <Line key="17" />,
-  <Line key="18">{"  "}<D>@Available()</D></Line>,
-  <Line key="19">{"  "}<K>private</K> <F>ship</F>(design: <T>Architecture</T>) {"{"}</Line>,
-  <Line key="20">{"    "}<K>return</K> {"{ inProduction: "}<K>true</K>{" };"}</Line>,
-  <Line key="21">{"  "}{"}"}</Line>,
-  <Line key="22"><C>{"  // siempre listo para el próximo desafío"}</C></Line>,
-  <Line key="23">{"}"}</Line>,
+  <Line key="18">{"    "}<C>{"// siempre listo para el próximo desafío"}</C></Line>,
+  <Line key="19">{"}"}</Line>,
 ];
 
 export default function CodeWindow({ className, style }) {
@@ -84,7 +78,7 @@ export default function CodeWindow({ className, style }) {
             <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#27c93f" }} />
           </div>
           <span className="font-mono text-[11px]" style={{ color: "rgba(255, 255, 255, 0.4)" }}>
-            samuel.service.ts
+            ArchitectureService.java
           </span>
         </div>
 
