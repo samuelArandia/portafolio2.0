@@ -96,23 +96,18 @@ function SkillMarquee({ items, direction = 'left', speed = '50s' }) {
         {allItems.map((tech, i) => (
           <div
             key={`${tech.name}-${i}`}
-            className="flex flex-col items-center mx-3 sm:mx-4 md:mx-5 flex-shrink-0 group"
+            className="flex flex-col items-center mx-6 sm:mx-8 md:mx-10 lg:mx-12 flex-shrink-0 group"
           >
-            <div
-              className="flex items-center justify-center rounded-2xl border transition-all duration-300 group-hover:-translate-y-1"
+            <tech.Icon
+              className="transition-all duration-300 group-hover:scale-[1.3]"
               style={{
-                width: 'clamp(3.75rem, 6vw, 5.25rem)',
-                height: 'clamp(3.75rem, 6vw, 5.25rem)',
-                background: `${tech.color}14`,
-                borderColor: `${tech.color}30`,
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                color: tech.color,
+                filter: 'drop-shadow(0 0 0px transparent)',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 10px 28px ${tech.color}40`; }}
-              onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none'; }}
-            >
-              <tech.Icon
-                style={{ fontSize: 'clamp(1.6rem, 3vw, 2.25rem)', color: tech.color }}
-              />
-            </div>
+              onMouseEnter={(e) => { e.currentTarget.style.filter = `drop-shadow(0 0 16px ${tech.color}80)`; }}
+              onMouseLeave={(e) => { e.currentTarget.style.filter = 'drop-shadow(0 0 0px transparent)'; }}
+            />
             <span
               className="mt-2.5 text-xs sm:text-sm font-medium transition-all duration-300 opacity-60 group-hover:opacity-100"
               style={{ color: 'var(--text-secondary)' }}
