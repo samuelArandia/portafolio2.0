@@ -2,7 +2,6 @@
 
 import React from "react";
 import PortfolioCard from "./portfolioCard";
-import CaseStudy from "./caseStudy";
 import { projects } from "@/constants";
 import { FaVuejs, FaReact, FaJava } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
@@ -35,19 +34,15 @@ const techIconMap = {
 const Portafolio = () => {
   const { t } = useLanguage();
 
-  const flagshipProject = projects.find((project) => project.flagship);
-
-  const projectsWithIcons = projects
-    .filter((project) => !project.flagship)
-    .map((project) => {
-      const validTechs = project.technologies.filter((tech) => techIconMap[tech]);
-      return {
-        ...project,
-        description: t(`projects.${project.id}`),
-        technologies: validTechs.map((tech) => techIconMap[tech]),
-        techNames: validTechs,
-      };
-    });
+  const projectsWithIcons = projects.map((project) => {
+    const validTechs = project.technologies.filter((tech) => techIconMap[tech]);
+    return {
+      ...project,
+      description: t(`projects.${project.id}`),
+      technologies: validTechs.map((tech) => techIconMap[tech]),
+      techNames: validTechs,
+    };
+  });
 
   return (
     <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="Portafolio">
@@ -67,9 +62,6 @@ const Portafolio = () => {
             {t('portfolio.subtitle')}
           </p>
         </div>
-
-        {/* Flagship case study */}
-        {flagshipProject && <CaseStudy project={flagshipProject} />}
 
         {/* Projects - sticky stacking cards */}
         <div className="relative">
