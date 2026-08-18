@@ -5,7 +5,7 @@ import PortfolioCard from "./portfolioCard";
 import { projects } from "@/constants";
 import { FaVuejs, FaReact, FaJava } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
-import { SiPostgresql, SiTailwindcss, SiAngular, SiTypescript, SiSpring } from "react-icons/si";
+import { SiPostgresql, SiTailwindcss, SiAngular, SiTypescript, SiSpringboot } from "react-icons/si";
 import { DiCss3, DiDjango, DiJavascript } from "react-icons/di";
 import { TbBrandNextjs, TbBrandGolang } from "react-icons/tb";
 import { AiFillHtml5 } from "react-icons/ai";
@@ -27,7 +27,7 @@ const techIconMap = {
   "CSS": DiCss3,
   "Angular": SiAngular,
   "TypeScript": SiTypescript,
-  "Java Spring": SiSpring,
+  "Spring Boot": SiSpringboot,
   "Java": FaJava,
 };
 

@@ -84,7 +84,7 @@ export const projects = [
         subtitle: "SaaS",
         link: "https://softrent.cl",
         description: "SaaS para la gestión de arriendo de maquinaria pesada: contratos, facturación electrónica SII y cobranza.",
-        technologies: ["Angular", "TypeScript", "Java Spring", "PostgreSQL"],
+        technologies: ["Angular", "TypeScript", "Spring Boot", "PostgreSQL"],
     },
     {
         id: "proyecto-5",
