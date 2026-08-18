@@ -87,6 +87,21 @@ function Inicio() {
               />
             </div>
 
+            {/* Badges */}
+            <motion.div
+              className="mt-5 flex flex-wrap items-center justify-center md:justify-start gap-2"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.42, ease: EASE_PREMIUM }}
+            >
+              <span className="pill-badge">
+                <span className="w-1.5 h-1.5 rounded-full status-dot" style={{ background: 'var(--accent-primary)' }} />
+                {t('hero.status')}
+              </span>
+              <span className="pill-badge">TypeScript</span>
+              <span className="pill-badge">NestJS</span>
+            </motion.div>
+
             <motion.p
               className="mt-6 max-w-lg mx-auto md:mx-0 leading-relaxed"
               style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}

@@ -350,6 +350,28 @@ textarea:focus {
   background-clip: text;
 }
 
+/* ===== Pill Badge ===== */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.pill-badge:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
 /* ===== Tech Icon Accent Color ===== */
 .tech-icon-accent svg,
 .tech-icon-accent svg path {
