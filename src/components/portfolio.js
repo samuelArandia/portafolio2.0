@@ -47,20 +47,15 @@ const Portafolio = () => {
   return (
     <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="Portafolio">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header — left-aligned, split from subtitle */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12 sm:mb-16">
-          <div>
-            <span className="section-number">{t('portfolio.section')} {'//'}</span>
-            <h2
-              className="font-display font-semibold mt-2"
-              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
-            >
-              <SplitText text={t('portfolio.title')} stagger={0.06} />
-            </h2>
-          </div>
-          <p style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }} className="max-w-xs md:text-right">
-            {t('portfolio.subtitle')}
-          </p>
+        {/* Section Header */}
+        <div className="mb-12 sm:mb-16">
+          <span className="section-number">{t('portfolio.section')} {'//'}</span>
+          <h2
+            className="font-display font-semibold mt-2"
+            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
+          >
+            <SplitText text={t('portfolio.title')} stagger={0.06} />
+          </h2>
         </div>
 
         {/* Projects - sticky stacking cards */}

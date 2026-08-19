@@ -51,7 +51,6 @@ const translations = {
     portfolio: {
       section: "03",
       title: "Portafolio",
-      subtitle: "Sistemas en producción que diseñé y construí de principio a fin.",
       viewMore: "Ver más proyectos en GitHub",
       viewProject: "Ver proyecto",
       coverAlt: "Portada",
@@ -145,7 +144,6 @@ const translations = {
     portfolio: {
       section: "03",
       title: "Portfolio",
-      subtitle: "Production systems I designed and built end to end.",
       viewMore: "View more projects on GitHub",
       viewProject: "View project",
       coverAlt: "Cover",
