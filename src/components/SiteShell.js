@@ -7,6 +7,7 @@ import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
 import SmoothScroll from "@/components/motion/SmoothScroll";
 import Cursor from "@/components/motion/Cursor";
 import { scrollToSection } from "@/components/motion/scrollToSection";
+import { useMotionPaused } from "@/lib/motionPause";
 
 function SkipLink() {
   const { t } = useLanguage();
@@ -56,6 +57,16 @@ function DocumentTitle({ routeTitleKey, titleKey }) {
   return null;
 }
 
+// Mirrors the "pause animations" switch on <html> so CSS loops (stack
+// marquees, status dot) can stop too.
+function MotionPauseSync() {
+  const [paused] = useMotionPaused();
+  useEffect(() => {
+    document.documentElement.dataset.motionPaused = paused ? "true" : "false";
+  }, [paused]);
+  return null;
+}
+
 // Shared frame for every route: theme-aware backdrop, header, footer, and the
 // motion providers. framer-motion animations follow prefers-reduced-motion.
 export default function SiteShell({ children, routeTitleKey, titleKey }) {
@@ -64,6 +75,7 @@ export default function SiteShell({ children, routeTitleKey, titleKey }) {
       <MotionConfig reducedMotion="user">
         <SkipLink />
         <InitialHashScroll />
+        <MotionPauseSync />
         <DocumentTitle routeTitleKey={routeTitleKey} titleKey={titleKey} />
         <div className="backdrop" aria-hidden="true">
           <div className="backdrop__fade">

@@ -333,6 +333,68 @@ html.lenis body {
   color: var(--mark-light, var(--fg));
 }
 
+/* ===== Stack marquee =====
+   Each row is the logo list twice; the track moves by exactly one copy, so the
+   loop is seamless. Hover, keyboard focus or the pause button stop it, and
+   reduced motion shows a single static, wrapped copy instead. */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee__half,
+.marquee__list {
+  display: flex;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee__track {
+    animation: marquee-scroll var(--marquee-duration, 60s) linear infinite;
+  }
+
+  .marquee[data-direction="right"] .marquee__track {
+    animation-direction: reverse;
+  }
+
+  .marquee:hover .marquee__track,
+  .marquee:focus-within .marquee__track,
+  [data-motion-paused="true"] .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee__track,
+  .marquee__half,
+  .marquee__list {
+    width: auto;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+  }
+
+  .marquee__copy {
+    display: none;
+  }
+}
+
 /* ===== Motion — only when the user hasn't asked for less ===== */
 @keyframes rise {
   from {
@@ -345,7 +407,20 @@ html.lenis body {
   }
 }
 
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .status-dot {
+    animation: status-pulse 2s ease-in-out infinite;
+  }
+
+  [data-motion-paused="true"] .status-dot {
+    animation-play-state: paused;
+  }
+
   .rise {
     animation: rise 0.9s var(--ease) both;
     animation-delay: var(--d, 0s);

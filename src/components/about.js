@@ -5,7 +5,6 @@ import { CV_FILES } from "@/constants";
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Reveal } from "@/components/motion/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import CodeWindow from "@/components/motion/CodeWindow";
 
 function CompactList({ title, items }) {
   return (
@@ -51,8 +50,6 @@ function About() {
               {t('hero.downloadCV')}
               <span className="sr-only">{t('common.newTab')}</span>
             </a>
-
-            <CodeWindow className="mt-12" label={t('about.codeLabel')} />
           </Reveal>
         </div>
 

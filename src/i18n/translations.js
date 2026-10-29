@@ -23,10 +23,13 @@ const translations = {
     },
     common: {
       newTab: "(se abre en una pestaña nueva)",
+      pauseMotion: "Pausar animaciones",
     },
     hero: {
-      role: "Desarrollador full stack",
-      status: "Disponible para trabajar",
+      role1: "Ingeniero de Software Senior",
+      role2: "Arquitectura Full-Stack",
+      role3: "Sistemas en Producción",
+      codeLabel: "Ejemplo de código Spring Boot",
       name: "Samuel Arandia",
       lead: "Construyo aplicaciones web de punta a punta, del backend a la interfaz.",
       viewProjects: "Ver proyectos",
@@ -61,7 +64,6 @@ const translations = {
       experienceTitle: "Experiencia",
       educationTitle: "Formación",
       certificationsTitle: "Certificaciones",
-      codeLabel: "Ejemplo de código: controlador REST en Spring Boot",
       experience: [
         {
           org: "Seidor, para Flexit",
@@ -113,6 +115,7 @@ const translations = {
       cloud: "Cloud y DevOps",
       tooling: "Herramientas",
       practices: "Arquitectura y prácticas",
+      pause: "Pausar movimiento",
     },
     contact: {
       title: "Contacto",
@@ -138,8 +141,13 @@ const translations = {
       projects: "Ver proyectos",
     },
     footer: {
+      aboutText: "Construyo y opero sistemas de software para negocios reales: arquitectura, backend y frontend, de principio a fin.",
+      tagline: "< samuel.dev />",
+      projectsTitle: "Proyectos",
       navigationTitle: "Navegación",
-      socialTitle: "Redes",
+      socialTitle: "Social",
+      copyright: "Todos los derechos reservados.",
+      builtWith: "Diseñado y construido por",
       scrollTop: "Volver arriba",
     },
   },
@@ -167,10 +175,13 @@ const translations = {
     },
     common: {
       newTab: "(opens in a new tab)",
+      pauseMotion: "Pause animations",
     },
     hero: {
-      role: "Full-stack developer",
-      status: "Available for work",
+      role1: "Senior Software Engineer",
+      role2: "Full-Stack Architecture",
+      role3: "Production Systems",
+      codeLabel: "Spring Boot code sample",
       name: "Samuel Arandia",
       lead: "I build web applications end to end, from the backend to the interface.",
       viewProjects: "View projects",
@@ -205,7 +216,6 @@ const translations = {
       experienceTitle: "Experience",
       educationTitle: "Education",
       certificationsTitle: "Certifications",
-      codeLabel: "Code sample: Spring Boot REST controller",
       experience: [
         {
           org: "Seidor, for Flexit",
@@ -257,6 +267,7 @@ const translations = {
       cloud: "Cloud & DevOps",
       tooling: "Tools",
       practices: "Architecture & practices",
+      pause: "Pause motion",
     },
     contact: {
       title: "Contact",
@@ -282,8 +293,13 @@ const translations = {
       projects: "View projects",
     },
     footer: {
+      aboutText: "I build and run software systems for real businesses: architecture, backend, and frontend, end to end.",
+      tagline: "< samuel.dev />",
+      projectsTitle: "Projects",
       navigationTitle: "Navigation",
       socialTitle: "Social",
+      copyright: "All rights reserved.",
+      builtWith: "Designed & built by",
       scrollTop: "Back to top",
     },
   },

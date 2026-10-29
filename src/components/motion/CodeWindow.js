@@ -1,81 +1,99 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
+import { EASE_PREMIUM } from "@/lib/motion";
 
-// The panel stays dark in both themes, like an editor. Every token color is
-// at least 6.5:1 against the panel background (#0d1619).
+// Restored from the previous design (ArchitectureService.java). The panel is
+// dark in both themes, so the syntax colors are fixed values.
 const c = {
   keyword: "#7aa2f7",
   type: "#5fc9b3",
   func: "#e5c07b",
-  string: "#e9a47a",
-  annotation: "#3ccb72",
-  comment: "rgba(231, 239, 235, 0.62)",
-  plain: "rgba(231, 239, 235, 0.86)",
+  comment: "rgba(255, 255, 255, 0.55)",
+  plain: "rgba(255, 255, 255, 0.78)",
+  decorator: "#3ccb72",
 };
 
-const K = ({ children }) => <span style={{ color: c.keyword }}>{children}</span>;
-const T = ({ children }) => <span style={{ color: c.type }}>{children}</span>;
-const F = ({ children }) => <span style={{ color: c.func }}>{children}</span>;
-const S = ({ children }) => <span style={{ color: c.string }}>{children}</span>;
-const A = ({ children }) => <span style={{ color: c.annotation }}>{children}</span>;
-const C = ({ children }) => <span style={{ color: c.comment, fontStyle: "italic" }}>{children}</span>;
+function K({ children }) { return <span style={{ color: c.keyword }}>{children}</span>; }
+function T({ children }) { return <span style={{ color: c.type }}>{children}</span>; }
+function F({ children }) { return <span style={{ color: c.func }}>{children}</span>; }
+function D({ children }) { return <span style={{ color: c.decorator, fontWeight: 600 }}>{children}</span>; }
+function C({ children }) { return <span style={{ color: c.comment, fontStyle: "italic" }}>{children}</span>; }
 
-// A small Spring Boot REST controller: validate, persist, publish an event.
+function Line({ children }) {
+  return (
+    <div className="whitespace-pre" style={{ color: c.plain }}>
+      {children ?? " "}
+    </div>
+  );
+}
+
 const lines = [
-  <><A>@RestController</A></>,
-  <><A>@RequestMapping</A>(<S>{'"/api/v1/projects"'}</S>)</>,
-  <><A>@RequiredArgsConstructor</A></>,
-  <><K>public class</K> <T>ProjectController</T> {"{"}</>,
-  null,
-  <>{"    "}<K>private final</K> <T>ProjectService</T> projects;</>,
-  <>{"    "}<K>private final</K> <T>EventPublisher</T> events;</>,
-  null,
-  <>{"    "}<A>@PostMapping</A></>,
-  <>{"    "}<K>public</K> <T>ResponseEntity</T>{"<"}<T>ProjectDto</T>{">"} <F>create</F>(</>,
-  <>{"        "}<A>@Valid</A> <A>@RequestBody</A> <T>NewProject</T> req) {"{"}</>,
-  <>{"        "}<K>var</K> p = projects.<F>create</F>(req);</>,
-  <>{"        "}events.<F>publish</F>(<T>ProjectCreated</T>.<F>of</F>(p));</>,
-  <>{"        "}<K>return</K> <T>ResponseEntity</T>.<F>ok</F>(p);</>,
-  <>{"    "}{"}"}</>,
-  null,
-  <>{"    "}<C>{"// siempre listo para el próximo desafío"}</C></>,
-  <>{"}"}</>,
+  <Line key="1"><D>@Service</D></Line>,
+  <Line key="2"><D>@RequiredArgsConstructor</D></Line>,
+  <Line key="3"><K>public class</K> <T>ArchitectureService</T> {"{"}</Line>,
+  <Line key="4" />,
+  <Line key="5">{"    "}<K>private final</K> <T>RepositoryPort</T> repo;</Line>,
+  <Line key="6" />,
+  <Line key="7">{"    "}<D>@Transactional</D></Line>,
+  <Line key="8">{"    "}<K>public</K> <T>Solution</T> <F>solve</F>(<T>Problem</T> problem) {"{"}</Line>,
+  <Line key="9">{"        "}<K>var</K> design = <F>think</F>(problem);</Line>,
+  <Line key="10">{"        "}<K>return</K> <F>ship</F>(design);</Line>,
+  <Line key="11">{"    "}{"}"}</Line>,
+  <Line key="12" />,
+  <Line key="13">{"    "}<D>@Async</D></Line>,
+  <Line key="14">{"    "}<K>private</K> <T>Solution</T> <F>ship</F>(<T>Design</T> design) {"{"}</Line>,
+  <Line key="15">{"        "}<K>return</K> <K>new</K> <T>Solution</T>(<K>true</K>);</Line>,
+  <Line key="16">{"    "}{"}"}</Line>,
+  <Line key="17" />,
+  <Line key="18">{"    "}<C>{"// siempre listo para el próximo desafío"}</C></Line>,
+  <Line key="19">{"}"}</Line>,
 ];
 
-export default function CodeWindow({ className, label }) {
+export default function CodeWindow({ className, style, label }) {
   return (
-    <figure className={`min-w-0 ${className || ""}`}>
-      <div className="overflow-hidden rounded-lg border border-line-strong" style={{ background: "#0d1619", boxShadow: "var(--shadow)" }}>
-        <div className="flex items-center justify-between border-b px-4" style={{ borderColor: "rgba(205, 228, 220, 0.1)" }}>
-          <span
-            className="-mb-px border-b-2 py-2.5 font-mono text-[0.6875rem]"
-            style={{ borderColor: "#3ccb72", color: "rgba(231, 239, 235, 0.86)" }}
-          >
-            ProjectController.java
-          </span>
-          <span className="font-mono text-[0.6875rem]" style={{ color: "rgba(231, 239, 235, 0.62)" }}>
-            Spring Boot
+    <motion.div
+      className={className}
+      style={style}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+    >
+      <div
+        className="rounded-2xl overflow-hidden border"
+        style={{
+          background: "#0a1420",
+          borderColor: "rgba(255, 255, 255, 0.08)",
+          boxShadow: "0 12px 40px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        {/* Title bar */}
+        <div
+          className="flex items-center gap-4 px-4 py-3 border-b"
+          style={{ background: "rgba(255, 255, 255, 0.03)", borderColor: "rgba(255, 255, 255, 0.06)" }}
+        >
+          <div className="flex items-center gap-1.5" aria-hidden="true">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f56" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ffbd2e" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#27c93f" }} />
+          </div>
+          <span className="font-mono text-[11px]" style={{ color: "rgba(255, 255, 255, 0.55)" }}>
+            ArchitectureService.java
           </span>
         </div>
-        {/* Scrollable on narrow screens; focusable so keyboard users can scroll it */}
-        <pre
-          tabIndex={0}
+
+        {/* Code body: focusable so it can be scrolled with the keyboard on narrow screens */}
+        <div
+          role="region"
           aria-label={label}
-          className="overflow-x-auto py-4 font-mono text-[0.6875rem] leading-[1.8] focus-visible:outline-offset-[-2px] sm:text-[0.8125rem] lg:text-[0.6875rem] xl:text-[0.75rem]"
+          tabIndex={0}
+          className="px-5 py-5 sm:px-6 sm:py-6 font-mono text-[11.5px] sm:text-[12.5px] leading-[1.85] overflow-x-auto focus-visible:outline-offset-[-2px]"
         >
-          <code className="grid min-w-max grid-cols-[auto_1fr]">
-            {lines.map((line, i) => (
-              <React.Fragment key={i}>
-                <span aria-hidden="true" className="select-none pl-3 pr-3 text-right" style={{ color: "rgba(231, 239, 235, 0.45)" }}>
-                  {i + 1}
-                </span>
-                <span className="pr-4" style={{ color: c.plain }}>{line ?? " "}</span>
-              </React.Fragment>
-            ))}
-          </code>
-        </pre>
+          {lines}
+        </div>
       </div>
-    </figure>
+    </motion.div>
   );
 }
