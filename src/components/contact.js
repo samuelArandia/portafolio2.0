@@ -6,6 +6,7 @@ import { EMAIL, socialMedia } from "@/constants";
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Reveal } from "@/components/motion/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import TechMark from "@/components/TechMark";
 
 const professionalLinks = socialMedia.filter((s) => s.name === 'LinkedIn' || s.name === 'GitHub');
 
@@ -58,44 +59,39 @@ function Contact() {
   return (
     <section id="Contact" aria-labelledby="contact-title" className="pb-24 pt-24 md:pb-32 md:pt-32">
       <div className="container-page">
-        <SectionHeading index={t('contact.section')} title={t('contact.title')} titleId="contact-title">
-          {t('contact.subtitle')}
-        </SectionHeading>
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <SectionHeading title={t('contact.title')} titleId="contact-title">
+              {t('contact.subtitle')}
+            </SectionHeading>
 
-        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="lg:col-span-5" amount={0.2}>
-            <p className="kicker">{t('contact.emailLabelShort')}</p>
-            <a
-              href={`mailto:${EMAIL}`}
-              className="link-underline mt-3 inline-block break-all text-[clamp(1.375rem,3vw,2rem)] font-medium tracking-[-0.02em] text-fg"
-            >
-              {EMAIL}
-            </a>
+            <Reveal className="mt-10" amount={0.2}>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="link-underline inline-block break-all text-[clamp(1.375rem,3vw,1.875rem)] font-medium tracking-[-0.02em] text-fg"
+              >
+                {EMAIL}
+              </a>
 
-            <dl className="mt-10 divide-y divide-line border-y border-line">
-              {professionalLinks.map((social) => (
-                <div key={social.id} className="flex items-center justify-between gap-4 py-3">
-                  <dt className="kicker">{social.name}</dt>
-                  <dd>
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+                {professionalLinks.map((social) => (
+                  <li key={social.id}>
                     <a
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex min-h-[2.75rem] items-center gap-1.5 font-mono text-sm text-fg-2 transition-colors hover:text-fg"
+                      className="group inline-flex min-h-[2.75rem] items-center gap-2 text-fg-2 transition-colors hover:text-fg"
                     >
-                      {social.handle}
+                      <TechMark name={social.name} className="text-xl" />
+                      {social.name}
                       <ExternalArrow />
                       <span className="sr-only">{t('common.newTab')}</span>
                     </a>
-                  </dd>
-                </div>
-              ))}
-              <div className="flex items-center justify-between gap-4 py-3">
-                <dt className="kicker">{t('contact.location')}</dt>
-                <dd className="flex min-h-[2.75rem] items-center font-mono text-sm text-fg-2">{t('contact.locationValue')}</dd>
-              </div>
-            </dl>
-          </Reveal>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
 
           <Reveal className="lg:col-span-6 lg:col-start-7" delay={0.08} amount={0.15}>
             <div className="rounded-lg border border-line bg-surface p-6 sm:p-8" style={{ boxShadow: 'var(--shadow)' }}>

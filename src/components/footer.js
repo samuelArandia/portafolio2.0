@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import { FiArrowUp } from "react-icons/fi";
-import ExternalArrow from "@/components/ExternalArrow";
+import TechMark from "@/components/TechMark";
 import { socialMedia, navLinks, EMAIL } from "@/constants";
 import { handleSectionLinkClick } from "@/components/motion/scrollToSection";
 import { getLenis } from "@/components/motion/SmoothScroll";
@@ -35,24 +35,22 @@ function Footer() {
   return (
     <>
       <footer className="border-t border-line">
-        <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="container-page flex flex-col gap-8 py-10 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-lg font-semibold tracking-tight text-fg">Samuel Arandia</p>
-            <p className="mt-2 max-w-xs text-sm leading-relaxed text-fg-2">{t('footer.aboutText')}</p>
-            <a href={`mailto:${EMAIL}`} className="link-underline mt-4 inline-block font-mono text-sm text-fg">
+            <p className="font-semibold tracking-tight text-fg">Samuel Arandia</p>
+            <a href={`mailto:${EMAIL}`} className="link-underline mt-1 inline-block text-sm text-fg-2">
               {EMAIL}
             </a>
           </div>
 
           <nav aria-label={t('footer.navigationTitle')}>
-            <h2 className="kicker">{t('footer.navigationTitle')}</h2>
-            <ul className="mt-4 space-y-1">
-              {navLinks.map((nav) => (
+            <ul className="flex flex-wrap gap-x-5 gap-y-1">
+              {navLinks.filter((nav) => nav.id !== 'Inicio').map((nav) => (
                 <li key={nav.id}>
                   <a
                     href={`/#${nav.id}`}
                     onClick={(e) => handleSectionLinkClick(e, nav.id)}
-                    className="inline-block py-1 text-sm text-fg-2 transition-colors hover:text-fg"
+                    className="inline-flex min-h-[2.75rem] items-center text-sm text-fg-2 transition-colors hover:text-fg"
                   >
                     {t(`nav.${nav.id}`)}
                   </a>
@@ -61,33 +59,24 @@ function Footer() {
             </ul>
           </nav>
 
-          <div>
-            <h2 className="kicker">{t('footer.socialTitle')}</h2>
-            <ul className="mt-4 space-y-1">
-              {socialMedia.map((social) => (
-                <li key={social.id}>
-                  <a
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-baseline gap-2 py-1 text-sm text-fg-2 transition-colors hover:text-fg"
-                  >
-                    {social.name}
-                    <span className="font-mono text-xs text-muted">{social.handle}</span>
-                    <ExternalArrow className="h-3.5 w-3.5 self-center" />
-                    <span className="sr-only">{t('common.newTab')}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul aria-label={t('footer.socialTitle')} className="-ml-2.5 flex items-center gap-1 md:ml-0 md:-mr-2.5">
+            {socialMedia.map((social) => (
+              <li key={social.id}>
+                <a
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-11 w-11 items-center justify-center rounded-md text-fg-2 transition-colors hover:bg-surface"
+                >
+                  <TechMark name={social.name} className="text-lg" />
+                  <span className="sr-only">{social.name} {t('common.newTab')}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="border-t border-line">
-          <p className="container-page py-6 font-mono text-xs text-muted">
-            &copy; {year} Samuel Arandia. {t('footer.copyright')}
-          </p>
-        </div>
+        <p className="container-page pb-8 font-mono text-xs text-muted">&copy; {year} Samuel Arandia</p>
       </footer>
 
       <button

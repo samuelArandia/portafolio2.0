@@ -1,7 +1,9 @@
 "use client"
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
+import { BsSun } from "react-icons/bs";
+import { GiDeathStar } from "react-icons/gi";
 import { navLinks } from "@/constants";
 import { handleSectionLinkClick } from "@/components/motion/scrollToSection";
 import { useLanguage } from '@/i18n/LanguageContext';
@@ -144,8 +146,9 @@ function Header() {
             onClick={toggleTheme}
             className="flex h-10 w-10 items-center justify-center rounded-md text-fg-2 transition-colors hover:bg-surface hover:text-fg"
           >
-            <FiSun className="when-dark h-[18px] w-[18px]" aria-hidden="true" />
-            <FiMoon className="when-light h-[18px] w-[18px]" aria-hidden="true" />
+            {/* Original icons: sun on the dark theme, Death Star on the light one */}
+            <BsSun className="when-dark h-[18px] w-[18px]" aria-hidden="true" />
+            <GiDeathStar className="when-light h-5 w-5" aria-hidden="true" />
             <span className="when-dark sr-only">{t('header.switchToLight')}</span>
             <span className="when-light sr-only">{t('header.switchToDark')}</span>
           </button>

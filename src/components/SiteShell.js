@@ -75,7 +75,6 @@ export default function SiteShell({ children, routeTitleKey, titleKey }) {
           <Header />
           <div className="relative">
             <div className="page-tone" aria-hidden="true" />
-            <div className="page-rail" aria-hidden="true" />
             <main id="contenido" tabIndex={-1} className="focus:outline-none">
               {routeTitleKey && <RouteTitle titleKey={routeTitleKey} />}
               {children}

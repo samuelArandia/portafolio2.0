@@ -8,7 +8,11 @@ export const navLinks = [
 ];
 
 export const EMAIL = "samuelarandia@gmail.com";
-export const CV_URL = "https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing";
+// CV files in public/, one per site language.
+export const CV_FILES = {
+    es: "/SamuelArandiaEspanol.pdf",
+    en: "/SamuelArandiaEnglish.pdf",
+};
 
 export const socialMedia = [
     {
