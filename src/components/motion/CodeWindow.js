@@ -89,7 +89,7 @@ export default function CodeWindow({ className, style, label }) {
           role="region"
           aria-label={label}
           tabIndex={0}
-          className="px-5 py-5 sm:px-6 sm:py-6 font-mono text-[11.5px] sm:text-[12.5px] leading-[1.85] overflow-x-auto focus-visible:outline-offset-[-2px]"
+          className="px-3.5 py-4 min-[340px]:px-4 min-[400px]:px-5 min-[400px]:py-5 sm:px-6 sm:py-6 font-mono text-[10px] min-[340px]:text-[10.5px] min-[400px]:text-[11.5px] sm:text-[12.5px] leading-[1.85] overflow-x-auto focus-visible:outline-offset-[-2px]"
         >
           {lines}
         </div>

@@ -118,22 +118,24 @@ function Footer() {
           </p>
 
           {/* Credits bar */}
-          <div className="mt-8 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted lg:flex-row lg:items-center lg:justify-between">
             <p>&copy; {year} Samuel Arandia. {t('footer.copyright')}</p>
-            <ul aria-label={t('footer.socialTitle')} className="flex flex-wrap gap-x-5 gap-y-1">
+            <ul aria-label={t('footer.socialTitle')} className="-mx-2 flex flex-wrap gap-x-1 lg:mx-0 lg:gap-x-3">
               {personal.map((social) => (
                 <li key={social.id}>
-                  <a href={social.link} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[2.75rem] items-center transition-colors hover:text-accent md:min-h-0">
+                  <a href={social.link} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[2.75rem] min-w-[2.75rem] items-center px-2 transition-colors hover:text-accent lg:min-h-0 lg:min-w-0 lg:px-0">
                     {social.name}
                     <span className="sr-only">{t('common.newTab')}</span>
                   </a>
                 </li>
               ))}
             </ul>
-            <p className="flex items-center gap-1.5">
-              {t('footer.builtWith')}
-              <FaHeart className="text-[10px] text-accent" aria-hidden="true" />
-              <span className="font-mono text-accent">samuel.dev</span>
+            <p>
+              {t('footer.builtWith')}{' '}
+              <span className="whitespace-nowrap">
+                <FaHeart className="inline align-[-1px] text-[10px] text-accent" aria-hidden="true" />{' '}
+                <span className="font-mono text-accent">samuel.dev</span>
+              </span>
             </p>
           </div>
         </div>

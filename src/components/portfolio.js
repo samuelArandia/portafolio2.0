@@ -33,7 +33,7 @@ const Portafolio = () => {
           ))}
         </div>
 
-        <div className="mt-24 grid gap-14 border-t border-line pt-14 md:mt-32 md:grid-cols-2 md:gap-12">
+        <div className="mt-24 grid gap-14 border-t border-line pt-14 md:mt-32 lg:grid-cols-2 lg:gap-12">
           {others.map((project) => (
             <Reveal key={project.id} amount={0.2}>
               <ProjectCompact project={project} />
