@@ -8,13 +8,15 @@ import { useMotionPaused, usePrefersReducedMotion } from "@/lib/motionPause";
 
 // Rotating roles, restored from the previous hero. The box is one line tall so
 // the swap never changes the layout height; reduced motion shows every role.
-export default function RoleCycle({ roles, className, style, pauseLabel }) {
+// `ready` holds the first role back until the page language is settled, so a
+// visitor never sees the same role twice (once per language) on load.
+export default function RoleCycle({ roles, ready = true, className, style, pauseLabel }) {
   const [index, setIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
   const [paused, togglePaused] = useMotionPaused();
   const reduced = usePrefersReducedMotion();
   const rolesKey = roles.join("|");
-  const still = paused || hovered;
+  const still = paused || hovered || !ready;
 
   useEffect(() => {
     setIndex(0);
@@ -27,8 +29,7 @@ export default function RoleCycle({ roles, className, style, pauseLabel }) {
   }, [rolesKey, roles.length, still, reduced]);
 
   return (
-    <div className="flex items-center gap-2.5">
-      <span className="status-dot h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+    <div className="flex items-center gap-2">
       <p className="sr-only">{roles.join(", ")}</p>
       {reduced ? (
         <p aria-hidden="true" className={className} style={style}>{roles.join(" · ")}</p>
@@ -42,16 +43,18 @@ export default function RoleCycle({ roles, className, style, pauseLabel }) {
             onMouseLeave={() => setHovered(false)}
           >
             <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={index}
-                initial={{ y: "60%", opacity: 0 }}
-                animate={{ y: "0%", opacity: 1 }}
-                exit={{ y: "-60%", opacity: 0 }}
-                transition={{ duration: 0.55, ease: EASE_PREMIUM }}
-                style={{ display: "inline-block", whiteSpace: "nowrap" }}
-              >
-                {roles[index]}
-              </motion.span>
+              {ready && (
+                <motion.span
+                  key={index}
+                  initial={{ y: "60%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-60%", opacity: 0 }}
+                  transition={{ duration: 0.55, ease: EASE_PREMIUM }}
+                  style={{ display: "inline-block", whiteSpace: "nowrap" }}
+                >
+                  {roles[index]}
+                </motion.span>
+              )}
             </AnimatePresence>
           </div>
           <button

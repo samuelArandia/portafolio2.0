@@ -7,6 +7,9 @@ const STORAGE_KEY = 'locale';
 
 export function LanguageProvider({ children }) {
   const [locale, setLocale] = useState('es');
+  // False until the stored/browser language has been applied after hydration;
+  // text that animates in (rotating roles) waits for it to avoid a language swap.
+  const [resolved, setResolved] = useState(false);
 
   // A language the visitor picked wins over the browser's preference.
   useEffect(() => {
@@ -18,12 +21,11 @@ export function LanguageProvider({ children }) {
     }
     if (stored === 'es' || stored === 'en') {
       setLocale(stored);
-      return;
+    } else {
+      const browserLang = navigator.language || navigator.languages?.[0] || '';
+      if (browserLang.startsWith('en')) setLocale('en');
     }
-    const browserLang = navigator.language || navigator.languages?.[0] || '';
-    if (browserLang.startsWith('en')) {
-      setLocale('en');
-    }
+    setResolved(true);
   }, []);
 
   useEffect(() => {
@@ -51,7 +53,7 @@ export function LanguageProvider({ children }) {
   }, [locale]);
 
   return (
-    <LanguageContext.Provider value={{ locale, setLocale, t, toggleLocale }}>
+    <LanguageContext.Provider value={{ locale, resolved, setLocale, t, toggleLocale }}>
       {children}
     </LanguageContext.Provider>
   );

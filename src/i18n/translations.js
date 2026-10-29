@@ -141,8 +141,7 @@ const translations = {
       projects: "Ver proyectos",
     },
     footer: {
-      aboutText: "Construyo y opero sistemas de software para negocios reales: arquitectura, backend y frontend, de principio a fin.",
-      tagline: "< samuel.dev />",
+      cta: "¿Hablamos?",
       projectsTitle: "Proyectos",
       navigationTitle: "Navegación",
       socialTitle: "Social",
@@ -293,8 +292,7 @@ const translations = {
       projects: "View projects",
     },
     footer: {
-      aboutText: "I build and run software systems for real businesses: architecture, backend, and frontend, end to end.",
-      tagline: "< samuel.dev />",
+      cta: "Let's talk",
       projectsTitle: "Projects",
       navigationTitle: "Navigation",
       socialTitle: "Social",

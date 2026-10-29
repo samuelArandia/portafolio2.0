@@ -1,6 +1,5 @@
 "use client"
 import React from "react";
-import Image from "next/image";
 import { FiArrowDown, FiDownload } from "react-icons/fi";
 import { CV_FILES } from "@/constants";
 import { useLanguage } from '@/i18n/LanguageContext';
@@ -10,23 +9,13 @@ import RoleCycle from "@/components/motion/RoleCycle";
 import CodeWindow from "@/components/motion/CodeWindow";
 
 function Inicio() {
-  const { t, locale } = useLanguage();
+  const { t, locale, resolved } = useLanguage();
   const roles = [t('hero.role1'), t('hero.role2'), t('hero.role3')];
 
   return (
     <section id="Inicio" aria-labelledby="hero-title" className="relative overflow-hidden">
       <div className="container-page grid items-center gap-14 pb-16 pt-28 md:pb-20 md:pt-36 lg:min-h-[100svh] lg:grid-cols-12 lg:gap-10 lg:pb-20 lg:pt-28">
         <div className="lg:col-span-6">
-          <Image
-            src="/perfil.png"
-            alt=""
-            width={960}
-            height={1280}
-            sizes="64px"
-            className="rise mb-6 h-20 w-[3.75rem] rounded-[3px] border border-line-strong object-cover lg:hidden"
-            priority
-          />
-
           <SplitText
             as="h1"
             id="hero-title"
@@ -38,6 +27,7 @@ function Inicio() {
           <div className="rise mt-6" style={{ '--d': '0.2s' }}>
             <RoleCycle
               roles={roles}
+              ready={resolved}
               pauseLabel={t('common.pauseMotion')}
               className="font-mono text-[clamp(0.9rem,1.6vw,1.05rem)] font-medium text-accent"
             />
@@ -63,24 +53,8 @@ function Inicio() {
           </div>
         </div>
 
-        {/* Code window first, portrait overlapping its top-right corner */}
-        <div className="relative min-w-0 lg:col-span-6 lg:pl-4">
-          {/* Positioning lives on the wrapper: .viewfinder sets position: relative */}
-          <div className="absolute -top-6 right-0 z-10 hidden w-32 lg:block xl:w-36">
-            <div className="viewfinder">
-            <Image
-              src="/perfil.png"
-              alt={t('hero.profileAlt')}
-              width={960}
-              height={1280}
-              sizes="10rem"
-              className="aspect-[3/4] w-full rounded-[3px] object-cover"
-              style={{ boxShadow: 'var(--shadow)' }}
-              priority
-            />
-            </div>
-          </div>
-          <CodeWindow className="lg:mr-14 lg:mt-20" label={t('hero.codeLabel')} />
+        <div className="min-w-0 lg:col-span-6 lg:pl-6 xl:pl-10">
+          <CodeWindow label={t('hero.codeLabel')} />
         </div>
       </div>
     </section>

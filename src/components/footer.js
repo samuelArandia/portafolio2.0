@@ -1,26 +1,22 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { FaChevronUp, FaEnvelope, FaMapMarkerAlt, FaHeart, FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { BsTwitterX } from "react-icons/bs";
-import { socialMedia, navLinks, projects, EMAIL } from "@/constants";
+import { FaChevronUp, FaHeart } from "react-icons/fa";
+import { FiMapPin } from "react-icons/fi";
+import ExternalArrow from "@/components/ExternalArrow";
+import { socialMedia, navLinks, projects, EMAIL, CV_FILES } from "@/constants";
 import { handleSectionLinkClick } from "@/components/motion/scrollToSection";
 import { getLenis } from "@/components/motion/SmoothScroll";
 import { useLanguage } from '@/i18n/LanguageContext';
 
-// Restored from the previous design: about + tagline, projects, navigation and
-// social columns, with the "built by" bar underneath.
-const socialIcons = {
-  Instagram: FaInstagram,
-  Facebook: FaFacebook,
-  X: BsTwitterX,
-  LinkedIn: FaLinkedin,
-  GitHub: FaGithub,
-};
+const professional = socialMedia.filter((s) => s.name === 'LinkedIn' || s.name === 'GitHub');
+const personal = socialMedia.filter((s) => !professional.includes(s));
 
+// Closing block: contact first (email, professional links, CV), then
+// navigation and projects, the <samuel.dev/> wordmark, and the credits bar.
 function Footer() {
   const year = new Date().getFullYear();
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   useEffect(() => {
     // On phones the floating button would sit over the text column, so it
@@ -42,49 +38,50 @@ function Footer() {
     document.querySelector('header a')?.focus({ preventScroll: true });
   };
 
-  const columnTitle = "mb-4 font-mono text-xs font-semibold uppercase tracking-widest text-accent";
-  const columnLink = "inline-block py-0.5 text-sm text-muted transition-all duration-200 hover:translate-x-1 hover:text-accent";
+  const columnLink = "inline-block py-1 text-fg-2 transition-colors duration-200 hover:text-accent";
 
   return (
     <>
-      <footer className="relative overflow-hidden border-t border-line pb-8 pt-16" id="Footer">
-        <div className="container-page">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {/* About column */}
-            <div className="sm:col-span-2 lg:col-span-1">
-              <p className="mb-4 text-sm leading-relaxed text-muted">{t('footer.aboutText')}</p>
-              <span className="inline-block rounded-full border border-line-strong bg-surface px-3 py-1 font-mono text-xs text-accent">
-                {t('footer.tagline')}
-              </span>
-              <div className="mb-2 mt-4 flex items-center gap-2 text-xs text-muted">
-                <FaEnvelope className="text-sm text-accent" aria-hidden="true" />
-                <a href={`mailto:${EMAIL}`} className="py-1 transition-colors hover:text-accent">{EMAIL}</a>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted">
-                <FaMapMarkerAlt className="text-sm text-accent" aria-hidden="true" />
-                <span>{t('contact.locationValue')}</span>
-              </div>
-            </div>
-
-            {/* Projects column */}
-            <div>
-              <h2 className={columnTitle}>{t('footer.projectsTitle')}</h2>
-              <ul className="space-y-2">
-                {projects.map((project) => (
-                  <li key={project.id}>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className={columnLink}>
-                      {project.title}
+      <footer className="relative overflow-hidden border-t border-line" id="Footer">
+        <div className="container-page pb-8 pt-20 md:pt-24">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-14 md:grid-cols-12 md:gap-10">
+            {/* Contact */}
+            <div className="col-span-2 md:col-span-12 lg:col-span-6">
+              <h2 className="kicker">{t('footer.cta')}</h2>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="link-underline mt-4 inline-block break-all text-[clamp(1.2rem,6.2vw,2.375rem)] font-semibold tracking-[-0.03em] text-fg lg:text-[2rem] xl:text-[2.375rem]"
+              >
+                {EMAIL}
+              </a>
+              <p className="mt-4 flex items-center gap-2 text-sm text-muted">
+                <FiMapPin className="h-4 w-4 text-accent" aria-hidden="true" />
+                {t('contact.locationValue')}
+              </p>
+              <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-2">
+                {professional.map((social) => (
+                  <li key={social.id}>
+                    <a href={social.link} target="_blank" rel="noopener noreferrer" className="group inline-flex min-h-[2.75rem] items-center gap-1.5 font-medium text-fg">
+                      <span className="link-underline">{social.name}</span>
+                      <ExternalArrow />
                       <span className="sr-only">{t('common.newTab')}</span>
                     </a>
                   </li>
                 ))}
+                <li>
+                  <a href={CV_FILES[locale]} target="_blank" rel="noopener noreferrer" className="group inline-flex min-h-[2.75rem] items-center gap-1.5 font-medium text-fg">
+                    <span className="link-underline">{t('hero.downloadCV')}</span>
+                    <ExternalArrow />
+                    <span className="sr-only">{t('common.newTab')}</span>
+                  </a>
+                </li>
               </ul>
             </div>
 
-            {/* Navigation column */}
-            <nav aria-label={t('footer.navigationTitle')}>
-              <h2 className={columnTitle}>{t('footer.navigationTitle')}</h2>
-              <ul className="space-y-2">
+            {/* Navigation */}
+            <nav aria-label={t('footer.navigationTitle')} className="col-span-1 md:col-span-5 lg:col-span-2 lg:col-start-8">
+              <h2 className="kicker">{t('footer.navigationTitle')}</h2>
+              <ul className="mt-4 space-y-1">
                 {navLinks.map((nav) => (
                   <li key={nav.id}>
                     <a href={`/#${nav.id}`} onClick={(e) => handleSectionLinkClick(e, nav.id)} className={columnLink}>
@@ -95,36 +92,45 @@ function Footer() {
               </ul>
             </nav>
 
-            {/* Social column */}
-            <div>
-              <h2 className={columnTitle}>{t('footer.socialTitle')}</h2>
-              <ul className="flex flex-wrap gap-2">
-                {socialMedia.map((social) => {
-                  const Icon = socialIcons[social.name];
-                  return (
-                  <li key={social.id}>
-                    <a
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-line text-lg text-muted transition-all duration-200 hover:-translate-y-0.5 hover:text-accent"
-                    >
-                      <Icon aria-hidden="true" />
-                      <span className="sr-only">{social.name} {t('common.newTab')}</span>
+            {/* Projects */}
+            <div className="col-span-1 md:col-span-7 lg:col-span-3">
+              <h2 className="kicker">{t('footer.projectsTitle')}</h2>
+              <ul className="mt-4 space-y-1">
+                {projects.map((project) => (
+                  <li key={project.id}>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className={`group ${columnLink} inline-flex items-center gap-1.5`}>
+                      {project.title}
+                      <ExternalArrow className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
+                      <span className="sr-only">{t('common.newTab')}</span>
                     </a>
                   </li>
-                  );
-                })}
+                ))}
               </ul>
             </div>
           </div>
 
-          {/* Bottom bar */}
-          <div className="mt-12 flex flex-col items-center justify-between gap-4 pt-6 sm:flex-row">
-            <p className="text-xs text-muted">
-              &copy; {year} Samuel Arandia. {t('footer.copyright')}
-            </p>
-            <p className="flex items-center gap-1.5 text-xs text-muted">
+          {/* Wordmark: decorative, sized so 13 monospace characters always fit the container */}
+          <p
+            aria-hidden="true"
+            className="mt-20 select-none whitespace-nowrap font-mono text-[clamp(2rem,11vw,8.5rem)] font-semibold leading-none tracking-[-0.06em] text-fg md:mt-24"
+          >
+            <span className="text-accent">&lt;</span>samuel.dev<span className="text-accent">/&gt;</span>
+          </p>
+
+          {/* Credits bar */}
+          <div className="mt-8 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
+            <p>&copy; {year} Samuel Arandia. {t('footer.copyright')}</p>
+            <ul aria-label={t('footer.socialTitle')} className="flex flex-wrap gap-x-5 gap-y-1">
+              {personal.map((social) => (
+                <li key={social.id}>
+                  <a href={social.link} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[2.75rem] items-center transition-colors hover:text-accent md:min-h-0">
+                    {social.name}
+                    <span className="sr-only">{t('common.newTab')}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="flex items-center gap-1.5">
               {t('footer.builtWith')}
               <FaHeart className="text-[10px] text-accent" aria-hidden="true" />
               <span className="font-mono text-accent">samuel.dev</span>

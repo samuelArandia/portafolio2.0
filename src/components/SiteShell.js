@@ -57,8 +57,8 @@ function DocumentTitle({ routeTitleKey, titleKey }) {
   return null;
 }
 
-// Mirrors the "pause animations" switch on <html> so CSS loops (stack
-// marquees, status dot) can stop too.
+// Mirrors the "pause animations" switch on <html> so CSS loops (the stack
+// marquees) can stop too.
 function MotionPauseSync() {
   const [paused] = useMotionPaused();
   useEffect(() => {

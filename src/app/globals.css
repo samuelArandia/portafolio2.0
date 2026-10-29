@@ -407,20 +407,7 @@ html.lenis body {
   }
 }
 
-@keyframes status-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .status-dot {
-    animation: status-pulse 2s ease-in-out infinite;
-  }
-
-  [data-motion-paused="true"] .status-dot {
-    animation-play-state: paused;
-  }
-
   .rise {
     animation: rise 0.9s var(--ease) both;
     animation-delay: var(--d, 0s);
