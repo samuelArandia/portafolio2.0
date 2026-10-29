@@ -1,16 +1,15 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { EASE_PREMIUM } from "@/lib/motion";
 
+// The panel stays dark in both themes, like an editor, so syntax colors are fixed.
 const c = {
   keyword: "#7aa2f7",
   type: "#5fc9b3",
   func: "#e5c07b",
-  comment: "rgba(255, 255, 255, 0.38)",
-  plain: "rgba(255, 255, 255, 0.72)",
-  decorator: "var(--accent-primary)",
+  comment: "rgba(231, 239, 235, 0.45)",
+  plain: "rgba(231, 239, 235, 0.78)",
+  decorator: "#3ccb72",
 };
 
 function K({ children }) { return <span style={{ color: c.keyword }}>{children}</span>; }
@@ -22,7 +21,7 @@ function C({ children }) { return <span style={{ color: c.comment, fontStyle: "i
 function Line({ children }) {
   return (
     <div className="whitespace-pre" style={{ color: c.plain }}>
-      {children ?? " "}
+      {children ?? " "}
     </div>
   );
 }
@@ -49,44 +48,24 @@ const lines = [
   <Line key="19">{"}"}</Line>,
 ];
 
-export default function CodeWindow({ className, style }) {
+export default function CodeWindow({ className }) {
   return (
-    <motion.div
-      className={className}
-      style={style}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-    >
-      <div
-        className="rounded-2xl overflow-hidden border"
-        style={{
-          background: "#0a1420",
-          borderColor: "rgba(255, 255, 255, 0.08)",
-          boxShadow: "0 12px 40px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25)",
-        }}
-      >
-        {/* Title bar */}
+    <figure className={className}>
+      <div className="overflow-hidden rounded-md border border-line-strong" style={{ background: "#0d1619" }}>
         <div
-          className="flex items-center gap-4 px-4 py-3 border-b"
-          style={{ background: "rgba(255, 255, 255, 0.03)", borderColor: "rgba(255, 255, 255, 0.06)" }}
+          className="border-b px-4 py-2.5 font-mono text-[0.6875rem]"
+          style={{ borderColor: "rgba(205, 228, 220, 0.1)", color: "rgba(231, 239, 235, 0.55)" }}
         >
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f56" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ffbd2e" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#27c93f" }} />
-          </div>
-          <span className="font-mono text-[11px]" style={{ color: "rgba(255, 255, 255, 0.4)" }}>
-            ArchitectureService.java
-          </span>
+          ArchitectureService.java
         </div>
-
-        {/* Code body */}
-        <div className="px-5 py-5 sm:px-6 sm:py-6 font-mono text-[11.5px] sm:text-[12.5px] leading-[1.85] overflow-x-auto">
+        <div className="overflow-x-auto px-5 py-5 font-mono text-[0.75rem] leading-[1.85] sm:text-[0.8125rem]">
           {lines}
         </div>
       </div>
-    </motion.div>
+      <figcaption className="mt-2.5 flex items-center justify-between font-mono text-[0.6875rem] text-muted">
+        <span>Spring Boot</span>
+        <span>Java</span>
+      </figcaption>
+    </figure>
   );
 }

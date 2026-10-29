@@ -1,23 +1,16 @@
 "use client"
 import About from "@/components/about"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
-import { LanguageProvider } from "@/i18n/LanguageContext"
-import SmoothScroll from "@/components/motion/SmoothScroll"
-import Cursor from "@/components/motion/Cursor"
+import SiteShell from "@/components/SiteShell"
 import React from "react"
 
+// Standalone route for the section; the header links back to the home page anchors.
 function AboutView() {
   return (
-    <LanguageProvider>
-      <div className="grain-overlay" />
-      <Cursor />
-      <SmoothScroll>
-        <Header />
+    <SiteShell routeTitleKey="nav.About">
+      <div className="pt-16">
         <About />
-        <Footer />
-      </SmoothScroll>
-    </LanguageProvider>
+      </div>
+    </SiteShell>
   )
 }
 

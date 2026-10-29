@@ -1,248 +1,191 @@
 "use client"
-import React, { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 import { navLinks } from "@/constants";
-import { BsSun } from "react-icons/bs";
-import { GiDeathStar } from "react-icons/gi";
-import { scrollToSection } from "@/components/motion/scrollToSection";
-import { EASE_PREMIUM } from "@/lib/motion";
+import { handleSectionLinkClick } from "@/components/motion/scrollToSection";
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useTheme } from "@/lib/theme";
 
-function Header({ darkMode, toggleDarkMode }) {
-  const [toggle, setToggle] = useState(false);
+const sectionLinks = navLinks.filter((nav) => nav.id !== "Inicio");
+
+function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Inicio");
+  const menuButtonRef = useRef(null);
   const { locale, toggleLocale, t } = useLanguage();
-
-  const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 60);
-  }, []);
+  const { toggleTheme } = useTheme();
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
       { rootMargin: '-40% 0px -55% 0px' }
     );
-
     navLinks.forEach((nav) => {
       const el = document.getElementById(nav.id);
       if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, []);
 
-  const handleNavClick = (id) => {
-    scrollToSection(id);
-    setToggle(false);
+  // Escape closes the mobile menu; widening past the breakpoint resets it.
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    // The panel becomes display:none at md, which can drop focus before the
+    // media query event fires, so remember the last link focused inside it.
+    const panel = document.getElementById('mobile-nav');
+    let lastFocusedHref = null;
+    const onFocusIn = (e) => { lastFocusedHref = e.target.getAttribute('href'); };
+    const mq = window.matchMedia('(min-width: 768px)');
+    const onChange = (e) => {
+      if (!e.matches) return;
+      const focused = document.activeElement;
+      const focusLost = !focused || focused === document.body || panel?.contains(focused);
+      if (focusLost && lastFocusedHref) {
+        document.querySelector(`header nav a[href="${lastFocusedHref}"]`)?.focus();
+      }
+      setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    panel?.addEventListener('focusin', onFocusIn);
+    mq.addEventListener('change', onChange);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      panel?.removeEventListener('focusin', onFocusIn);
+      mq.removeEventListener('change', onChange);
+    };
+  }, [menuOpen]);
+
+  const onNavClick = (e, id) => {
+    setMenuOpen(false);
+    handleSectionLinkClick(e, id);
   };
 
-  const langButton = (size = "text-xs") => (
-    <button
-      onClick={toggleLocale}
-      className={`${size} font-semibold font-body px-2.5 py-1.5 rounded-lg transition-all duration-200 cursor-pointer hover:text-[var(--accent-primary)]`}
-      style={{ color: 'var(--text-secondary)', background: 'var(--glass-bg)' }}
-      aria-label={locale === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-      data-cursor-hover
-    >
-      {locale === 'es' ? 'EN' : 'ES'}
-    </button>
-  );
+  const solid = scrolled || menuOpen;
+  const nextLocale = locale === 'es' ? 'en' : 'es';
 
   return (
-    <>
-      {/* Top bar - visible when NOT scrolled */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 z-50"
-        animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -24 : 0 }}
-        transition={{ duration: 0.5, ease: EASE_PREMIUM }}
-        style={{ pointerEvents: scrolled ? 'none' : 'auto' }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-end items-center">
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((nav) => {
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        solid ? 'border-line backdrop-blur-md' : 'border-transparent'
+      }`}
+      style={{ background: solid ? 'var(--nav-bg)' : 'transparent' }}
+    >
+      <div className="container-page flex h-16 items-center justify-between gap-4">
+        <a
+          href="/#Inicio"
+          onClick={(e) => onNavClick(e, 'Inicio')}
+          aria-label={t('header.home')}
+          className="-ml-1 flex shrink-0 items-center gap-2.5 whitespace-nowrap rounded-md px-1 py-1 text-[0.9375rem] font-semibold tracking-tight text-fg"
+        >
+          <Image src="/icon.svg" alt="" width={28} height={28} className="h-7 w-7 max-[359px]:hidden" priority />
+          <span aria-hidden="true">Samuel Arandia</span>
+        </a>
+
+        <nav aria-label={t('header.navLabel')} className="hidden md:block">
+          <ul className="flex items-center gap-1">
+            {sectionLinks.map((nav) => {
               const isActive = activeSection === nav.id;
               return (
-                <button
-                  key={nav.id}
-                  onClick={() => handleNavClick(nav.id)}
-                  data-cursor-hover
-                  className={`relative px-3 py-2 text-sm font-medium cursor-pointer transition-colors duration-200 ${
-                    isActive ? 'text-[var(--accent-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                  }`}
-                >
-                  {t(`nav.${nav.id}`)}
-                  {isActive && (
-                    <motion.span
-                      layoutId="topbar-underline"
-                      className="absolute left-3 right-3 -bottom-0.5 h-px"
-                      style={{ background: 'var(--accent-primary)' }}
-                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                <li key={nav.id}>
+                  <a
+                    href={`/#${nav.id}`}
+                    onClick={(e) => onNavClick(e, nav.id)}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`relative block rounded-md px-3 py-2 text-sm transition-colors duration-200 ${
+                      isActive ? 'text-fg' : 'text-fg-2 hover:text-fg'
+                    }`}
+                  >
+                    {t(`nav.${nav.id}`)}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute inset-x-3 -bottom-px h-px origin-left bg-accent transition-transform duration-300 ease-premium ${
+                        isActive ? 'scale-x-100' : 'scale-x-0'
+                      }`}
                     />
-                  )}
-                </button>
+                  </a>
+                </li>
               );
             })}
-            {langButton()}
-            <button
-              onClick={toggleDarkMode}
-              aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
-              data-cursor-hover
-              className="ml-1 p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--glass-bg)] transition-all duration-200 cursor-pointer"
-            >
-              {darkMode ? <BsSun className="text-lg" /> : <GiDeathStar className="text-lg" />}
-            </button>
-          </div>
+          </ul>
+        </nav>
 
-          {/* Mobile */}
-          <div className="flex lg:hidden items-center gap-2">
-            {langButton()}
-            <button
-              onClick={toggleDarkMode}
-              aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
-              className="p-2.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
-            >
-              {darkMode ? <BsSun className="text-lg" /> : <GiDeathStar className="text-lg" />}
-            </button>
-            <button
-              onClick={() => setToggle(!toggle)}
-              aria-label={toggle ? t('header.closeMenu') : t('header.openMenu')}
-              className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--glass-bg)] transition-colors cursor-pointer"
-            >
-              <div className="w-5 flex flex-col gap-[5px]">
-                <span className={`block h-[2px] rounded-full transition-all duration-300 ${toggle ? 'rotate-45 translate-y-[7px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
-                <span className={`block h-[2px] rounded-full transition-all duration-300 ${toggle ? 'opacity-0 scale-0' : ''}`} style={{ background: 'var(--text-primary)' }} />
-                <span className={`block h-[2px] rounded-full transition-all duration-300 ${toggle ? '-rotate-45 -translate-y-[7px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
-              </div>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile menu - top bar */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-300 ${toggle ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="px-4 pb-4 pt-2 mx-4 rounded-xl glass">
-            {navLinks.map((nav) => (
-              <button
-                key={nav.id}
-                onClick={() => handleNavClick(nav.id)}
-                className={`block w-full text-left px-4 py-3 text-sm font-medium rounded-lg cursor-pointer transition-colors duration-200 ${
-                  activeSection === nav.id
-                    ? 'text-[var(--accent-primary)]'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-                style={activeSection === nav.id ? { background: 'var(--glass-bg)' } : {}}
-              >
-                {t(`nav.${nav.id}`)}
-              </button>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Floating pill navbar - visible when scrolled */}
-      <motion.div
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
-        animate={{ opacity: scrolled ? 1 : 0, y: scrolled ? 0 : -24 }}
-        transition={{ duration: 0.5, ease: EASE_PREMIUM }}
-        style={{ pointerEvents: scrolled ? 'auto' : 'none' }}
-      >
-        {/* Desktop pill */}
-        <div className="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-xl border"
-          style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
-        >
-          {navLinks.map((nav) => {
-            const isActive = activeSection === nav.id;
-            return (
-              <button
-                key={nav.id}
-                onClick={() => handleNavClick(nav.id)}
-                data-cursor-hover
-                className={`relative px-4 py-2 text-sm font-medium rounded-full cursor-pointer transition-colors duration-200 whitespace-nowrap ${
-                  isActive ? 'text-white' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="pill-active-bg"
-                    className="absolute inset-0 rounded-full -z-10"
-                    style={{ background: 'var(--accent-gradient)' }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                  />
-                )}
-                {t(`nav.${nav.id}`)}
-              </button>
-            );
-          })}
-          {langButton()}
+        <div className="flex items-center gap-1">
           <button
-            onClick={toggleDarkMode}
-            aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
-            data-cursor-hover
-            className="p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all duration-200 cursor-pointer"
+            type="button"
+            onClick={toggleLocale}
+            lang={nextLocale}
+            className="h-10 min-w-[2.75rem] rounded-md px-2 font-mono text-xs font-medium text-fg-2 transition-colors hover:bg-surface hover:text-fg"
           >
-            {darkMode ? <BsSun className="text-base" /> : <GiDeathStar className="text-base" />}
-          </button>
-        </div>
-
-        {/* Mobile pill */}
-        <div className="flex lg:hidden items-center gap-2 px-3 py-2 rounded-full backdrop-blur-xl border"
-          style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
-        >
-          {langButton("text-[10px]")}
-          <button
-            onClick={toggleDarkMode}
-            aria-label={darkMode ? t('header.switchToLight') : t('header.switchToDark')}
-            className="p-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors cursor-pointer"
-          >
-            {darkMode ? <BsSun className="text-sm" /> : <GiDeathStar className="text-sm" />}
+            {/* Visible code first so the accessible name contains the visible label */}
+            {nextLocale.toUpperCase()}
+            <span className="sr-only">: {t('header.switchLang')}</span>
           </button>
           <button
-            onClick={() => setToggle(!toggle)}
-            aria-label={toggle ? t('header.closeMenu') : t('header.openMenu')}
-            className="p-1.5 rounded-full hover:bg-[var(--glass-bg)] transition-colors cursor-pointer"
+            type="button"
+            onClick={toggleTheme}
+            className="flex h-10 w-10 items-center justify-center rounded-md text-fg-2 transition-colors hover:bg-surface hover:text-fg"
           >
-            <div className="w-4 flex flex-col gap-[3px]">
-              <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${toggle ? 'rotate-45 translate-y-[4.5px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
-              <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${toggle ? 'opacity-0 scale-0' : ''}`} style={{ background: 'var(--text-primary)' }} />
-              <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${toggle ? '-rotate-45 -translate-y-[4.5px]' : ''}`} style={{ background: 'var(--text-primary)' }} />
-            </div>
+            <FiSun className="when-dark h-[18px] w-[18px]" aria-hidden="true" />
+            <FiMoon className="when-light h-[18px] w-[18px]" aria-hidden="true" />
+            <span className="when-dark sr-only">{t('header.switchToLight')}</span>
+            <span className="when-light sr-only">{t('header.switchToDark')}</span>
+          </button>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label={menuOpen ? t('header.closeMenu') : t('header.openMenu')}
+            className="flex h-10 w-10 items-center justify-center rounded-md text-fg transition-colors hover:bg-surface md:hidden"
+          >
+            {menuOpen ? <FiX className="h-5 w-5" aria-hidden="true" /> : <FiMenu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
+      </div>
 
-        {/* Mobile dropdown from pill */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-300 mt-2 ${toggle && scrolled ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="rounded-2xl px-2 py-2 backdrop-blur-xl border"
-            style={{ background: 'var(--nav-bg)', borderColor: 'var(--glass-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
-          >
-            {navLinks.map((nav) => (
-              <button
-                key={nav.id}
-                onClick={() => handleNavClick(nav.id)}
-                className={`block w-full text-left px-4 py-2.5 text-sm font-medium rounded-xl cursor-pointer transition-colors duration-200 ${
-                  activeSection === nav.id
-                    ? 'text-white'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-                style={activeSection === nav.id ? { background: 'var(--accent-gradient)' } : {}}
-              >
-                {t(`nav.${nav.id}`)}
-              </button>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </>
+      <div id="mobile-nav" hidden={!menuOpen} className="border-t border-line md:hidden">
+        <nav aria-label={t('header.navLabel')} className="container-page py-2">
+          <ul>
+            {sectionLinks.map((nav, i) => {
+              const isActive = activeSection === nav.id;
+              return (
+                <li key={nav.id} className="border-b border-line last:border-b-0">
+                  <a
+                    href={`/#${nav.id}`}
+                    onClick={(e) => onNavClick(e, nav.id)}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`flex items-baseline gap-4 py-4 text-lg ${isActive ? 'text-fg' : 'text-fg-2'}`}
+                  >
+                    <span className="font-mono text-xs text-muted" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                    {t(`nav.${nav.id}`)}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
+    </header>
   );
 }
 

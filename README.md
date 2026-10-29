@@ -1,24 +1,47 @@
 # Portafolio de Samuel Arandia
 
-¡Bienvenido a mi portafolio en GitHub! Mi nombre es Samuel Arandia y soy un desarrollador web apasionado por crear soluciones tecnológicas innovadoras. Este portafolio es una muestra de mis habilidades técnicas y creativas, así como también de mi enfoque en el diseño de experiencias de usuario atractivas e intuitivas.
+Sitio personal de Samuel Arandia, desarrollador full stack en Santiago de Chile: proyectos, experiencia, stack y contacto, en español e inglés y con modo claro y oscuro.
 
-## Resumen
+Publicado en [samuelarandia.com](https://samuelarandia.com).
 
-Este portafolio se creó utilizando React, Next.js y Tailwind CSS. Incluye una selección de proyectos de desarrollo web que he realizado. Cada proyecto incluye una breve descripción, una lista de tecnologías utilizadas y un enlace a la demostración en vivo o a su código fuente en GitHub.
+## Stack
 
-## Instrucciones de configuración
+- Next.js 13 (app router) exportado como sitio estático (`output: 'export'`)
+- React 18, Tailwind CSS 3, framer-motion y Lenis
+- Inter y JetBrains Mono vía `next/font`
 
-Para ejecutar este portafolio en tu entorno de desarrollo local, sigue estas instrucciones:
+## Desarrollo local
 
-1. Clona este repositorio en tu máquina local.
-2. Navega a la carpeta del proyecto.
-3. Ejecuta "npm install" para instalar las dependencias.
-4. Ejecuta "npm run dev" para iniciar el proyecto en modo de desarrollo.
+Requiere Node.js 20.
 
-## Contribuir
+```bash
+npm install
+cp .env.local.example .env.local   # completa la URL del webhook del formulario
+npm run dev
+```
 
-Si deseas contribuir a alguno de mis proyectos, ¡gracias! Asegúrate de enviar una solicitud de extracción con cualquier cambio que desees realizar.
+`npm run build` genera el sitio estático en `out/`.
+
+### Variables de entorno
+
+| Variable | Uso |
+| --- | --- |
+| `NEXT_PUBLIC_CONTACT_WEBHOOK_URL` | URL del Logic App de Azure que recibe el formulario de contacto. Sin ella, el formulario muestra un mensaje de error con el correo de contacto. |
+
+## Estructura
+
+- `src/app/` — rutas (`/`, `/about`, `/portfolio`, `/skills`, `/contact`), layout, metadatos y estilos globales (tokens de color en `globals.css`)
+- `src/components/` — secciones de la landing y el armazón compartido (`SiteShell`)
+- `src/constants/index.js` — proyectos, redes sociales y enlaces
+- `src/i18n/translations.js` — todos los textos en español e inglés
+- `src/pages/404.js` — página 404 del export estático
+
+## Despliegue
+
+`wrangler.toml` publica la carpeta `out/` como assets en Cloudflare y sirve `out/404.html` para rutas inexistentes.
 
 ## Contacto
 
-Si deseas contactarme, envíame un correo electrónico a samuelarandia@gmail.com o encuéntrame en Twitter como @arandia_samuel
+- Correo: samuelarandia@gmail.com
+- LinkedIn: [/in/samuel-arandia](https://www.linkedin.com/in/samuel-arandia/)
+- GitHub: [@samuelArandia](https://github.com/samuelArandia)

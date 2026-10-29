@@ -1,222 +1,166 @@
 "use client"
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { BsTwitterX } from "react-icons/bs";
-import { socialMedia } from "@/constants";
+import { FiArrowDown, FiDownload } from "react-icons/fi";
+import { projects, CV_URL } from "@/constants";
 import { useLanguage } from '@/i18n/LanguageContext';
-import { EASE_PREMIUM } from "@/lib/motion";
-import { scrollToSection } from "@/components/motion/scrollToSection";
-import SplitText from "@/components/motion/SplitText";
-import MagneticButton from "@/components/motion/MagneticButton";
+import { handleSectionLinkClick } from "@/components/motion/scrollToSection";
 
-function RoleCycle({ roles, className, style }) {
-  const [index, setIndex] = useState(0);
+const featured = projects.filter((p) => p.featured);
 
-  useEffect(() => {
-    setIndex(0);
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % roles.length);
-    }, 2600);
-    return () => clearInterval(id);
-  }, [roles]);
-
+// Construction drawing around the portrait. The viewBox is the portrait box
+// (300×400 at x75,y100) grown by 50%, so the circle of r=250 passes exactly
+// through the portrait's corners; the axes run out past the section edges.
+function PortraitDrawing({ coords }) {
+  const line = { stroke: 'var(--line-strong)', strokeWidth: 1, vectorEffect: 'non-scaling-stroke' };
+  const accent = { stroke: 'var(--accent)', strokeWidth: 1.5, vectorEffect: 'non-scaling-stroke' };
   return (
-    <div className={className} style={{ ...style, position: "relative", overflow: "hidden" }}>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={index}
-          initial={{ y: "60%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          exit={{ y: "-60%", opacity: 0 }}
-          transition={{ duration: 0.55, ease: EASE_PREMIUM }}
-          style={{ display: "inline-block" }}
-        >
-          {roles[index]}
-        </motion.span>
-      </AnimatePresence>
-    </div>
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 450 600"
+      className="pointer-events-none absolute left-[-25%] top-[-25%] h-[150%] w-[150%] overflow-visible"
+      fill="none"
+    >
+      <defs>
+        {/* userSpaceOnUse: a straight line has a zero-height bbox */}
+        <linearGradient id="axis-h" gradientUnits="userSpaceOnUse" x1="-900" y1="0" x2="1400" y2="0">
+          <stop offset="0.3" style={{ stopColor: 'var(--fg)', stopOpacity: 0 }} />
+          <stop offset="0.42" style={{ stopColor: 'var(--fg)', stopOpacity: 0.2 }} />
+          <stop offset="0.7" style={{ stopColor: 'var(--fg)', stopOpacity: 0.2 }} />
+          <stop offset="1" style={{ stopColor: 'var(--fg)', stopOpacity: 0 }} />
+        </linearGradient>
+        <linearGradient id="axis-v" gradientUnits="userSpaceOnUse" x1="0" y1="-300" x2="0" y2="900">
+          <stop offset="0" style={{ stopColor: 'var(--fg)', stopOpacity: 0 }} />
+          <stop offset="0.3" style={{ stopColor: 'var(--fg)', stopOpacity: 0.2 }} />
+          <stop offset="0.7" style={{ stopColor: 'var(--fg)', stopOpacity: 0.2 }} />
+          <stop offset="1" style={{ stopColor: 'var(--fg)', stopOpacity: 0 }} />
+        </linearGradient>
+      </defs>
+      <line x1="-900" y1="300" x2="1400" y2="300" {...line} stroke="url(#axis-h)" pathLength="1" className="draw" style={{ '--d': '0.2s' }} />
+      <line x1="225" y1="-300" x2="225" y2="900" {...line} stroke="url(#axis-v)" pathLength="1" className="draw" style={{ '--d': '0.35s' }} />
+      <circle cx="225" cy="300" r="250" {...line} pathLength="1" className="draw" style={{ '--d': '0.5s' }} transform="rotate(-90 225 300)" />
+      <circle cx="225" cy="300" r="292" {...line} strokeDasharray="1 7" opacity="0.8" />
+
+      {/* quadrant ticks; none on the left, which faces the text column */}
+      <path d="M475 300h16M225 50v-16M225 550v16" {...accent} />
+
+      {/* crop marks at the portrait corners */}
+      <path
+        d="M57 100h12M75 82v12M393 100h-12M375 82v12M57 500h12M75 518v-12M393 500h-12M375 518v-12"
+        {...accent}
+      />
+
+      {/* dimension line under the portrait */}
+      <path d="M75 556h300M75 549v14M375 549v14" {...line} />
+
+      <text x="233" y="40" fill="var(--muted)" fontSize="11" fontFamily="var(--font-mono), monospace" letterSpacing="0.06em">
+        {coords}
+      </text>
+    </svg>
   );
 }
 
 function Inicio() {
-  const perfil = "/perfil.png";
   const { t } = useLanguage();
-  const sectionRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 90]);
-
-  const roles = [t('hero.role1'), t('hero.role2'), t('hero.role3')];
 
   return (
-    <section ref={sectionRef} className="min-h-[100dvh] flex items-center relative overflow-hidden" id="Inicio">
-      <div className="w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 lg:px-16 pt-24 pb-12">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-12 lg:gap-20">
-
-          {/* Text content */}
-          <div className="flex-1 text-center md:text-left">
-            {/* Greeting */}
-            <span
-              className="block font-body font-medium leading-tight"
-              style={{ fontSize: 'clamp(1.1rem, 2.4vw, 1.5rem)', color: 'var(--text-secondary)' }}
-            >
-              {t('hero.greeting')}
-            </span>
-            <h1 style={{ marginTop: '0.25rem' }}>
-              <SplitText
-                text={t('hero.name')}
-                as="span"
-                className="block font-display font-semibold leading-[1.05]"
-                style={{ fontSize: 'clamp(2.5rem, 6.5vw, 4.75rem)', color: 'var(--text-primary)', letterSpacing: '-0.02em' }}
-                stagger={0.06}
-              />
-            </h1>
-
-            {/* Role cycle */}
-            <div className="mt-5 flex items-center justify-center md:justify-start gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full status-dot flex-shrink-0" style={{ background: 'var(--accent-primary)' }} />
-              <RoleCycle
-                roles={roles}
-                className="font-mono font-medium"
-                style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)', color: 'var(--accent-primary)' }}
-              />
-            </div>
-
-            {/* Badges */}
-            <motion.div
-              className="mt-5 flex flex-wrap items-center justify-center md:justify-start gap-2"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.42, ease: EASE_PREMIUM }}
-            >
-              <span className="pill-badge">
-                <span className="w-1.5 h-1.5 rounded-full status-dot" style={{ background: 'var(--accent-primary)' }} />
-                {t('hero.status')}
+    <section id="Inicio" aria-labelledby="hero-title" className="relative overflow-hidden">
+      <div className="container-page grid items-center gap-14 pb-16 pt-28 md:pb-20 md:pt-36 lg:min-h-[100svh] lg:grid-cols-12 lg:gap-8 lg:pb-24 lg:pt-32">
+        <div className="lg:col-span-6 xl:col-span-7">
+          <div className="rise flex items-center gap-4">
+            <Image
+              src="/perfil.png"
+              alt=""
+              width={960}
+              height={1280}
+              sizes="64px"
+              className="h-20 w-[3.75rem] rounded-[3px] border border-line-strong object-cover lg:hidden"
+              priority
+            />
+            <p className="kicker flex items-center gap-3">
+              <span className="hidden h-px w-8 bg-accent lg:block" aria-hidden="true" />
+              <span>
+                {t('hero.role')}
+                <span className="hidden sm:inline" aria-hidden="true"> · </span>
+                <br className="sm:hidden" />
+                {t('contact.locationValue')}
               </span>
-              <span className="pill-badge">TypeScript</span>
-              <span className="pill-badge">NestJS</span>
-            </motion.div>
-
-            <motion.p
-              className="mt-6 max-w-lg mx-auto md:mx-0 leading-relaxed"
-              style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: EASE_PREMIUM }}
-            >
-              {t('hero.description')}
-            </motion.p>
-
-            {/* CTA */}
-            <motion.div
-              className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-5"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.65, ease: EASE_PREMIUM }}
-            >
-              <MagneticButton
-                as="button"
-                onClick={() => window.open("https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing", "_blank")}
-                className="px-8 py-3.5 rounded-full font-medium text-sm text-white cursor-pointer"
-                style={{ background: 'var(--accent-primary)' }}
-              >
-                {t('hero.downloadCV')}
-              </MagneticButton>
-              <button
-                onClick={() => scrollToSection('Contact')}
-                data-cursor-hover
-                className="relative font-medium text-sm cursor-pointer group"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                {t('hero.writeMe')}
-                <span
-                  className="absolute left-0 -bottom-1 w-full h-px origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"
-                  style={{ background: 'var(--text-primary)' }}
-                />
-                <span
-                  className="absolute left-0 -bottom-1 w-full h-px origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
-                  style={{ background: 'var(--accent-primary)' }}
-                />
-              </button>
-            </motion.div>
-
-            {/* Social links */}
-            <motion.div
-              className="flex flex-wrap justify-center md:justify-start gap-4 mt-9"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: EASE_PREMIUM }}
-            >
-              {socialMedia.map((social) => (
-                <a
-                  key={social.id}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={t('hero.visitSocial')}
-                  data-cursor-hover
-                  className="text-lg transition-colors duration-200 hover:text-[var(--accent-primary)] cursor-pointer"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  {social.id === "social-media-1" && <FaInstagram />}
-                  {social.id === "social-media-2" && <FaFacebook />}
-                  {social.id === "social-media-3" && <BsTwitterX />}
-                  {social.id === "social-media-4" && <FaLinkedin />}
-                  {social.id === "social-media-5" && <FaGithub />}
-                </a>
-              ))}
-            </motion.div>
+            </p>
           </div>
 
-          {/* Profile image */}
-          <motion.div
-            className="flex-shrink-0"
-            style={{ y: imageY }}
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2, ease: EASE_PREMIUM }}
+          <h1
+            id="hero-title"
+            className="rise mt-6 text-[clamp(3.25rem,10vw,7.25rem)] font-semibold leading-[0.9] tracking-[-0.05em]"
+            style={{ '--d': '0.06s' }}
           >
-            <div className="relative">
-              <Image
-                src={perfil}
-                alt={t('hero.profileAlt')}
-                width={340}
-                height={340}
-                className="relative rounded-full w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover"
-                style={{ boxShadow: '0 0 0 1px var(--card-border)' }}
-                priority
-              />
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full font-mono text-xs whitespace-nowrap border"
-                style={{ background: 'var(--bg-card)', borderColor: 'var(--glass-border)', color: 'var(--accent-primary)' }}
-              >
-                {t('hero.tagline')}
-              </div>
-            </div>
-          </motion.div>
+            {t('hero.name')}
+          </h1>
 
+          <p
+            className="rise mt-8 max-w-xl text-[clamp(1.3rem,2.3vw,1.7rem)] font-medium leading-[1.25] tracking-[-0.015em] text-fg"
+            style={{ '--d': '0.14s' }}
+          >
+            {t('hero.lead')}
+          </p>
+          <p className="rise mt-4 max-w-xl text-base leading-relaxed text-fg-2" style={{ '--d': '0.2s' }}>
+            {t('hero.description')}
+          </p>
+
+          <div className="rise mt-9 flex flex-wrap gap-3" style={{ '--d': '0.26s' }}>
+            <a href="/#Portafolio" onClick={(e) => handleSectionLinkClick(e, 'Portafolio')} className="btn btn-primary">
+              {t('hero.viewProjects')}
+              <FiArrowDown className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+              <FiDownload className="h-4 w-4" aria-hidden="true" />
+              {t('hero.downloadCV')}
+              <span className="sr-only">{t('common.newTab')}</span>
+            </a>
+            <p className="flex min-h-[2.75rem] items-center gap-2.5 px-1 text-sm text-fg-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+              {t('hero.status')}
+            </p>
+          </div>
+
+          <nav aria-label={t('hero.featured')} className="rise mt-12 max-w-xl border-t border-line pt-5" style={{ '--d': '0.34s' }}>
+            <p className="kicker">{t('hero.featured')}</p>
+            <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-1">
+              {featured.map((project, i) => (
+                <li key={project.id}>
+                  <a
+                    href={`/#${project.id}`}
+                    onClick={(e) => handleSectionLinkClick(e, project.id)}
+                    className="group inline-flex items-baseline gap-2 py-1.5 text-[0.9375rem] text-fg-2 transition-colors hover:text-fg"
+                  >
+                    <span className="font-mono text-xs text-muted transition-colors group-hover:text-accent" aria-hidden="true">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    {project.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div className="hidden lg:col-span-6 lg:block xl:col-span-5">
+          {/* The dashed ring reaches ~47% of the portrait width past each side;
+              these widths keep the drawing inside the viewport and clear of the text. */}
+          <div className="relative mx-auto w-full max-w-[15rem] xl:max-w-[16rem] min-[1400px]:mr-0 min-[1400px]:max-w-[19rem]">
+            <PortraitDrawing coords={t('hero.coords')} />
+            <Image
+              src="/perfil.png"
+              alt={t('hero.profileAlt')}
+              width={960}
+              height={1280}
+              sizes="(min-width: 1400px) 19rem, (min-width: 1024px) 16rem, 0px"
+              className="rise relative aspect-[3/4] w-full rounded-[3px] object-cover"
+              style={{ '--d': '0.15s', boxShadow: 'var(--shadow)' }}
+              priority
+            />
+          </div>
         </div>
       </div>
-
-      {/* Scroll cue */}
-      <motion.div
-        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 w-px h-10 overflow-hidden"
-        style={{ background: 'var(--glass-border)' }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.1, ease: EASE_PREMIUM }}
-      >
-        <motion.span
-          className="block w-px h-4"
-          style={{ background: 'var(--accent-primary)' }}
-          animate={{ y: [-16, 40] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: EASE_PREMIUM }}
-        />
-      </motion.div>
     </section>
   );
 }

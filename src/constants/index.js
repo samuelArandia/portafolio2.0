@@ -1,98 +1,106 @@
+// Section ids double as URL anchors (/#Portafolio). Keep them stable.
 export const navLinks = [
-    {
-        id: "Inicio",
-        Link: "/",
-        title: "Inicio",
-    },
-    {
-        id: "Portafolio",
-        Link: "/Portafolio",
-        title: "Portafolio",
-    },
-    {
-        id: "About",
-        Link: "/About",
-        title: "Sobre mí",
-    },
-    {
-        id: "Skills",
-        Link: "/Skills",
-        title: "Habilidades",
-    },
-    {
-        id: "Contact",
-        Link: "/Contact",
-        title: "Contacto",
-    },
+    { id: "Inicio" },
+    { id: "Portafolio" },
+    { id: "About" },
+    { id: "Skills" },
+    { id: "Contact" },
 ];
+
+export const EMAIL = "samuelarandia@gmail.com";
+export const CV_URL = "https://drive.google.com/file/d/1J-t-qPOVP2hqq85CteBTIR49wG7bqWLn/view?usp=sharing";
 
 export const socialMedia = [
     {
-        id: "social-media-1",
-        link: "https://www.instagram.com/samuel_arandia",
-    },
-    {
-        id: "social-media-2",
-        link: "https://www.facebook.com/samuel.arandia",
-    },
-    {
-        id: "social-media-3",
-        link: "https://twitter.com/Arandia_samuel",
-    },
-    {
         id: "social-media-4",
+        name: "LinkedIn",
+        handle: "/in/samuel-arandia",
         link: "https://www.linkedin.com/in/samuel-arandia/",
     },
     {
         id: "social-media-5",
+        name: "GitHub",
+        handle: "@samuelArandia",
         link: "https://github.com/samuelArandia",
+    },
+    {
+        id: "social-media-1",
+        name: "Instagram",
+        handle: "@samuel_arandia",
+        link: "https://www.instagram.com/samuel_arandia",
+    },
+    {
+        id: "social-media-2",
+        name: "Facebook",
+        handle: "samuel.arandia",
+        link: "https://www.facebook.com/samuel.arandia",
+    },
+    {
+        id: "social-media-3",
+        name: "X",
+        handle: "@Arandia_samuel",
+        link: "https://twitter.com/Arandia_samuel",
     },
 ];
 
+// Order sets the hierarchy: `featured` projects get the large layout.
+// Descriptions and roles live in i18n/translations.js under the same id.
 export const projects = [
     {
-        id: "proyecto-1",
-        imageSrc: "/postal.png",
-        title: "PostalExpress",
-        subtitle: "Advise SPA",
-        link: "https://thor.advise.cl/postal-chile/#/",
-        description: "Aplicación para la gestión de envíos de encomiendas y paquetería.",
-        technologies: ["Vue.js", "Go", "Tailwind CSS"],
-    },
-    {
-        id: "proyecto-2",
-        imageSrc: "/SILL.png",
-        title: "Sill",
-        subtitle: "Eleva SPA",
-        link: "https://center.sill.cl/login",
-        description: "Aplicación para la gestión y control de inventario de equipos tecnológicos.",
-        technologies: ["Vue.js", "Bootstrap", "Django", "PostgreSQL"],
-    },
-    {
-        id: "proyecto-3",
-        imageSrc: "/atm.png",
-        title: "ATM Rent",
-        subtitle: "ATM Rent",
-        link: "https://atmrent.cl",
-        description: "Ecommerce de arriendo de equipos de construcción, venta de repuestos y servicio técnico.",
-        technologies: ["Next.js", "Tailwind CSS", "PostgreSQL"],
-    },
-    {
         id: "proyecto-4",
-        imageSrc: "/softrent.png",
+        imageSrc: "/projects/softrent.jpg",
+        imageWidth: 1600,
+        imageHeight: 842,
         title: "SoftRent",
         subtitle: "SaaS",
         link: "https://softrent.cl",
-        description: "SaaS para la gestión de arriendo de maquinaria pesada: contratos, facturación electrónica SII y cobranza.",
         technologies: ["Angular", "TypeScript", "Spring Boot", "PostgreSQL"],
+        featured: true,
+    },
+    {
+        id: "proyecto-3",
+        imageSrc: "/projects/atm.jpg",
+        imageWidth: 1600,
+        imageHeight: 848,
+        title: "ATM Rent",
+        subtitle: "ATM Rent",
+        link: "https://atmrent.cl",
+        technologies: ["Next.js", "Tailwind CSS", "PostgreSQL"],
+        featured: true,
+    },
+    {
+        id: "proyecto-1",
+        imageSrc: "/projects/postal.jpg",
+        imageWidth: 1600,
+        imageHeight: 712,
+        title: "PostalExpress",
+        subtitle: "Advise SPA",
+        link: "https://thor.advise.cl/postal-chile/#/",
+        technologies: ["Vue.js", "Go", "Tailwind CSS"],
+        featured: true,
+    },
+    {
+        id: "proyecto-2",
+        imageSrc: "/projects/sill.jpg",
+        imageWidth: 1600,
+        imageHeight: 1028,
+        title: "Sill",
+        subtitle: "Eleva SPA",
+        link: "https://center.sill.cl/login",
+        technologies: ["Vue.js", "Bootstrap", "Django", "PostgreSQL"],
     },
     {
         id: "proyecto-5",
-        imageSrc: "/portafolio.png",
+        imageSrc: "/projects/portafolio.jpg",
+        imageWidth: 1600,
+        imageHeight: 889,
         title: "Mi Portafolio",
         subtitle: "Personal",
-        link: "https://samuelarandia.vercel.app",
-        description: "Portafolio personal basado en experiencias previas.",
+        link: "https://github.com/samuelArandia/portafolio2.0",
         technologies: ["React", "JavaScript", "Tailwind CSS", "Next.js"],
     },
 ];
+
+export function projectDomain(link) {
+    return new URL(link).hostname.replace(/^www\./, "");
+}

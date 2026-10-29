@@ -1,4 +1,7 @@
 import './globals.css'
+import { inter, jetbrainsMono } from '@/lib/fonts'
+import { themeInitScript } from '@/lib/themeScript'
+import { siteOpenGraph } from '@/lib/seo'
 
 const siteUrl = 'https://samuelarandia.com'
 
@@ -8,7 +11,7 @@ const personJsonLd = {
   name: 'Samuel Arandia',
   url: siteUrl,
   image: `${siteUrl}/perfil.png`,
-  jobTitle: 'Desarrollador de Software',
+  jobTitle: 'Desarrollador full stack',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Santiago',
@@ -26,11 +29,11 @@ const personJsonLd = {
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Samuel Arandia | Desarrollador de Software',
+    default: 'Samuel Arandia | Desarrollador full stack',
     template: '%s | Samuel Arandia',
   },
-  description: 'Portafolio de Samuel Arandia, desarrollador de software en Santiago de Chile. Especializado en desarrollo web con React, Next.js, Vue.js y más.',
-  keywords: ['desarrollador', 'software', 'portafolio', 'React', 'Next.js', 'Vue.js', 'Santiago', 'Chile'],
+  description: 'Portafolio de Samuel Arandia, desarrollador full stack en Santiago de Chile. Especializado en desarrollo web con React, Next.js, Vue.js y más.',
+  keywords: ['desarrollador full stack', 'software', 'portafolio', 'React', 'Next.js', 'Vue.js', 'Java', 'Spring Boot', 'Santiago', 'Chile'],
   authors: [{ name: 'Samuel Arandia', url: siteUrl }],
   creator: 'Samuel Arandia',
   alternates: {
@@ -45,25 +48,15 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Samuel Arandia | Desarrollador de Software',
-    description: 'Portafolio de Samuel Arandia, desarrollador de software en Santiago de Chile.',
+    ...siteOpenGraph,
+    title: 'Samuel Arandia | Desarrollador full stack',
+    description: 'Portafolio de Samuel Arandia, desarrollador full stack en Santiago de Chile.',
     url: siteUrl,
-    siteName: 'Samuel Arandia',
-    locale: 'es_CL',
-    type: 'website',
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Samuel Arandia — Desarrollador de Software',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Samuel Arandia | Desarrollador de Software',
-    description: 'Portafolio de Samuel Arandia, desarrollador de software en Santiago de Chile.',
+    title: 'Samuel Arandia | Desarrollador full stack',
+    description: 'Portafolio de Samuel Arandia, desarrollador full stack en Santiago de Chile.',
     images: ['/opengraph-image.png'],
   },
   icons: {
@@ -77,7 +70,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    // data-theme is set by themeInitScript before hydration
+    <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         {children}
         <script

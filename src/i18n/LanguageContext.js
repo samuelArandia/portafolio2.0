@@ -3,11 +3,23 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import translations from './translations';
 
 const LanguageContext = createContext();
+const STORAGE_KEY = 'locale';
 
 export function LanguageProvider({ children }) {
   const [locale, setLocale] = useState('es');
 
+  // A language the visitor picked wins over the browser's preference.
   useEffect(() => {
+    let stored = null;
+    try {
+      stored = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      // Storage unavailable (private mode); fall back to the browser language.
+    }
+    if (stored === 'es' || stored === 'en') {
+      setLocale(stored);
+      return;
+    }
     const browserLang = navigator.language || navigator.languages?.[0] || '';
     if (browserLang.startsWith('en')) {
       setLocale('en');
@@ -29,8 +41,14 @@ export function LanguageProvider({ children }) {
   }, [locale]);
 
   const toggleLocale = useCallback(() => {
-    setLocale(prev => prev === 'es' ? 'en' : 'es');
-  }, []);
+    const next = locale === 'es' ? 'en' : 'es';
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch (e) {
+      // The toggle still works for this page without storage.
+    }
+    setLocale(next);
+  }, [locale]);
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t, toggleLocale }}>

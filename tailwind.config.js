@@ -1,55 +1,38 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
+  // Hover styles only apply on devices that can hover, so taps don't leave
+  // elements stuck in their hover state on touch screens.
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Inter"', 'system-ui', 'sans-serif'],
-        body: ['"Inter"', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+      },
+      // Every color is a CSS variable so light/dark themes swap in globals.css.
+      colors: {
+        bg: 'var(--bg)',
+        surface: 'var(--surface)',
+        line: 'var(--line)',
+        'line-strong': 'var(--line-strong)',
+        fg: 'var(--fg)',
+        'fg-2': 'var(--fg-2)',
+        muted: 'var(--muted)',
+        accent: 'var(--accent)',
+        'on-accent': 'var(--on-accent)',
+      },
+      maxWidth: {
+        page: '72rem',
       },
       transitionTimingFunction: {
         premium: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      },
-      colors: {
-        dark: '#1F2937',
-        light: '#F9FAFB',
-        accent: {
-          magenta: '#e040fb',
-          purple: '#7c3aed',
-        },
-        surface: {
-          primary: '#0a0a0f',
-          secondary: '#12121a',
-          card: '#1a1a2e',
-        },
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'accent-gradient': 'linear-gradient(135deg, #e040fb, #7c3aed)',
-      },
-      animation: {
-        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
-        'slide-down': 'slide-down 0.4s ease-out forwards',
-      },
-      keyframes: {
-        'glow-pulse': {
-          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-          '50%': { opacity: '0.7', transform: 'scale(1.05)' },
-        },
-        'fade-in-up': {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        'slide-down': {
-          '0%': { opacity: '0', transform: 'translateY(-20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
       },
     },
   },

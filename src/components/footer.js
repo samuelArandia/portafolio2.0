@@ -1,9 +1,10 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaChevronUp, FaEnvelope, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
-import { BsTwitterX } from "react-icons/bs";
-import { socialMedia, navLinks, projects } from "@/constants";
-import { scrollToSection } from "@/components/motion/scrollToSection";
+import { FiArrowUp } from "react-icons/fi";
+import ExternalArrow from "@/components/ExternalArrow";
+import { socialMedia, navLinks, EMAIL } from "@/constants";
+import { handleSectionLinkClick } from "@/components/motion/scrollToSection";
+import { getLenis } from "@/components/motion/SmoothScroll";
 import { useLanguage } from '@/i18n/LanguageContext';
 
 function Footer() {
@@ -12,141 +13,95 @@ function Footer() {
   const { t } = useLanguage();
 
   useEffect(() => {
+    // On phones the floating button would sit over the text column, so it
+    // only appears once the footer is in view.
+    const wide = window.matchMedia('(min-width: 640px)');
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500);
+      const nearBottom = window.innerHeight + window.scrollY > document.documentElement.scrollHeight - 400;
+      setShowScrollTop(window.scrollY > 800 && (wide.matches || nearBottom));
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const lenis = getLenis();
+    if (lenis) lenis.scrollTo(0, { duration: 0.9 });
+    else window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    document.querySelector('header a')?.focus({ preventScroll: true });
   };
 
   return (
     <>
-      <footer className="relative pt-16 pb-8 px-5 sm:px-8 overflow-hidden" id="Footer" style={{ borderTop: '1px solid var(--card-border)' }}>
-        <div className="relative max-w-6xl mx-auto">
-          {/* Main grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <footer className="border-t border-line">
+        <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <p className="text-lg font-semibold tracking-tight text-fg">Samuel Arandia</p>
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-fg-2">{t('footer.aboutText')}</p>
+            <a href={`mailto:${EMAIL}`} className="link-underline mt-4 inline-block font-mono text-sm text-fg">
+              {EMAIL}
+            </a>
+          </div>
 
-            {/* About column */}
-            <div className="sm:col-span-2 lg:col-span-1">
-              <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
-                {t('footer.aboutText')}
-              </p>
-              {/* Brand tagline */}
-              <span className="font-mono text-xs inline-block px-3 py-1 rounded-full border"
-                style={{ color: 'var(--accent-primary)', borderColor: 'var(--glass-border)', background: 'var(--glass-bg)' }}
-              >
-                {t('hero.tagline')}
-              </span>
-              <div className="flex items-center gap-2 text-xs mt-4 mb-2" style={{ color: 'var(--text-muted)' }}>
-                <FaEnvelope className="text-[var(--accent-primary)] text-sm" />
-                <a href="mailto:samuelarandia@gmail.com" className="hover:text-[var(--accent-primary)] transition-colors">
-                  samuelarandia@gmail.com
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-muted)' }}>
-                <FaMapMarkerAlt className="text-[var(--accent-primary)] text-sm" />
-                <span>{t('contact.locationValue')}</span>
-              </div>
-            </div>
-
-            {/* Projects column */}
-            <div>
-              <h3 className="text-xs font-semibold font-mono uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
-                {t('footer.projectsTitle')}
-              </h3>
-              <ul className="space-y-2.5">
-                {projects.map((project) => (
-                  <li key={project.id}>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm hover:text-[var(--accent-primary)] transition-all duration-200 hover:translate-x-1 inline-block"
-                      style={{ color: 'var(--text-muted)' }}
-                    >
-                      {project.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Navigation column */}
-            <div>
-              <h3 className="text-xs font-semibold font-mono uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
-                {t('footer.navigationTitle')}
-              </h3>
-              <ul className="space-y-2.5">
-                {navLinks.map((nav) => (
-                  <li key={nav.id}>
-                    <button
-                      onClick={() => scrollToSection(nav.id)}
-                      className="text-sm hover:text-[var(--accent-primary)] transition-all duration-200 cursor-pointer hover:translate-x-1 inline-block"
-                      style={{ color: 'var(--text-muted)' }}
-                    >
-                      {t(`nav.${nav.id}`)}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Social column */}
-            <div>
-              <h3 className="text-xs font-semibold font-mono uppercase tracking-widest mb-4" style={{ color: 'var(--accent-primary)' }}>
-                Social
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {socialMedia.map((social) => (
+          <nav aria-label={t('footer.navigationTitle')}>
+            <h2 className="kicker">{t('footer.navigationTitle')}</h2>
+            <ul className="mt-4 space-y-1">
+              {navLinks.map((nav) => (
+                <li key={nav.id}>
                   <a
-                    key={social.id}
+                    href={`/#${nav.id}`}
+                    onClick={(e) => handleSectionLinkClick(e, nav.id)}
+                    className="inline-block py-1 text-sm text-fg-2 transition-colors hover:text-fg"
+                  >
+                    {t(`nav.${nav.id}`)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h2 className="kicker">{t('footer.socialTitle')}</h2>
+            <ul className="mt-4 space-y-1">
+              {socialMedia.map((social) => (
+                <li key={social.id}>
+                  <a
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={t('footer.visitSocial')}
-                    className="p-2.5 rounded-xl border text-lg transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--accent-primary)] cursor-pointer"
-                    style={{ borderColor: 'var(--card-border)', color: 'var(--text-muted)' }}
+                    className="group inline-flex items-baseline gap-2 py-1 text-sm text-fg-2 transition-colors hover:text-fg"
                   >
-                    {social.id === "social-media-1" && <FaInstagram />}
-                    {social.id === "social-media-2" && <FaFacebook />}
-                    {social.id === "social-media-3" && <BsTwitterX />}
-                    {social.id === "social-media-4" && <FaLinkedin />}
-                    {social.id === "social-media-5" && <FaGithub />}
+                    {social.name}
+                    <span className="font-mono text-xs text-muted">{social.handle}</span>
+                    <ExternalArrow className="h-3.5 w-3.5 self-center" />
+                    <span className="sr-only">{t('common.newTab')}</span>
                   </a>
-                ))}
-              </div>
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
 
-          {/* Bottom bar */}
-          <div className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              &copy; {year} Samuel Arandia. {t('footer.copyright')}
-            </p>
-            <p className="text-xs flex items-center gap-1.5" style={{ color: 'var(--text-muted)' }}>
-              {t('footer.builtWith')}
-              <FaHeart className="text-[var(--accent-primary)] text-[10px]" />
-              <span className="font-mono" style={{ color: 'var(--accent-primary)' }}>samuel.dev</span>
-            </p>
-          </div>
+        <div className="border-t border-line">
+          <p className="container-page py-6 font-mono text-xs text-muted">
+            &copy; {year} Samuel Arandia. {t('footer.copyright')}
+          </p>
         </div>
       </footer>
 
-      {/* Scroll to top button */}
       <button
+        type="button"
         onClick={scrollToTop}
         aria-label={t('footer.scrollTop')}
-        data-cursor-hover
-        className={`fixed bottom-6 right-6 z-40 p-3 rounded-xl text-white transition-all duration-300 cursor-pointer ${
-          showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'
+        tabIndex={showScrollTop ? 0 : -1}
+        aria-hidden={!showScrollTop}
+        className={`fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-md border border-line-strong text-fg backdrop-blur-md transition-all duration-300 hover:border-fg-2 ${
+          showScrollTop ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
         }`}
-        style={{ background: 'var(--accent-primary)', boxShadow: '0 4px 20px rgba(3, 166, 60, 0.3)' }}
+        style={{ background: 'var(--nav-bg)' }}
       >
-        <FaChevronUp className="text-sm" />
+        <FiArrowUp className="h-4 w-4" aria-hidden="true" />
       </button>
     </>
   );

@@ -1,98 +1,132 @@
 "use client"
-import React, { useEffect, useState, useRef } from "react";
-import { scrollToSection } from "@/components/motion/scrollToSection";
+import React from "react";
+import { FiDownload } from "react-icons/fi";
+import { projects, CV_URL } from "@/constants";
+import { handleSectionLinkClick } from "@/components/motion/scrollToSection";
 import { useLanguage } from '@/i18n/LanguageContext';
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import SplitText from "@/components/motion/SplitText";
+import { Reveal } from "@/components/motion/Reveal";
+import SectionHeading from "@/components/SectionHeading";
 import CodeWindow from "@/components/motion/CodeWindow";
 
-function AnimatedCounter({ target, label, suffix = "" }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const started = useRef(false);
+function projectIdByTitle(title) {
+  return projects.find((p) => p.title === title)?.id;
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const duration = 1500;
-          const steps = 40;
-          const increment = target / steps;
-          let current = 0;
-          const interval = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              setCount(target);
-              clearInterval(interval);
-            } else {
-              setCount(Math.floor(current));
-            }
-          }, duration / steps);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target]);
-
+function Timeline({ title, items, renderItem }) {
   return (
-    <div ref={ref} className="text-center md:text-left">
-      <div className="font-display font-semibold counter-value" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}>
-        {count}<span style={{ color: 'var(--accent-primary)' }}>{suffix}</span>
-      </div>
-      <div className="text-xs sm:text-sm mt-1 font-mono" style={{ color: 'var(--text-muted)' }}>{label}</div>
+    <div>
+      <h3 className="kicker">{title}</h3>
+      <ol className="mt-4 divide-y divide-line border-y border-line">
+        {items.map((item, i) => (
+          <li key={i} className="grid gap-2 py-6 sm:grid-cols-[10rem_1fr] sm:gap-6">
+            {renderItem(item)}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
 
 function About() {
   const { t } = useLanguage();
+  const experience = t('about.experience');
+  const education = t('about.education');
+  const certifications = t('about.certifications');
+  const orgWithPeriod = (item) => (
+    <div>
+      <p className="font-medium text-fg">{item.org}</p>
+      {item.period && <p className="mt-1 font-mono text-xs text-muted">{item.period}</p>}
+    </div>
+  );
 
   return (
-    <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="About">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-start gap-12 lg:gap-16">
-          {/* Text column */}
-          <div className="flex-1 lg:max-w-xl">
-            <span className="section-number">{t('about.section')} {'//'} {t('about.title')}</span>
+    <section id="About" aria-labelledby="about-title" className="py-24 md:py-32">
+      <div className="container-page">
+        <SectionHeading index={t('about.section')} title={t('about.title')} titleId="about-title" meta={t('contact.locationValue')} />
 
-            {/* Editorial opening statement */}
-            <h2 className="font-display font-medium leading-[1.15] mt-4" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.75rem)', color: 'var(--text-primary)' }}>
-              <SplitText text={t('about.p1')} stagger={0.012} duration={0.7} />
-            </h2>
+        <div className="mt-14 grid gap-16 lg:grid-cols-12 lg:gap-12">
+          <Reveal className="lg:col-span-5" amount={0.2}>
+            <p className="text-[clamp(1.375rem,2.4vw,1.75rem)] font-medium leading-[1.3] tracking-[-0.015em] text-fg">
+              {t('about.lead')}
+            </p>
+            <p className="mt-6 leading-relaxed text-fg-2">{t('about.p1')}</p>
+            <p className="mt-4 leading-relaxed text-fg-2">{t('about.p2')}</p>
 
-            <Reveal delay={0.1} className="mt-8 space-y-4 leading-relaxed" style={{ fontSize: 'clamp(0.9rem, 1.15vw, 1.05rem)', color: 'var(--text-secondary)' }}>
-              <p>{t('about.p2')}</p>
-              <p>{t('about.p3')}</p>
-              <p className="font-semibold" style={{ color: 'var(--accent-primary)' }}>{t('about.p4')}</p>
-            </Reveal>
+            <dl className="mt-10 grid grid-cols-2 border-y border-line">
+              <div className="flex flex-col-reverse gap-1 border-r border-line py-5 pr-4">
+                <dt className="text-sm text-fg-2">{t('about.yearsExp')}</dt>
+                <dd className="text-4xl font-semibold tracking-[-0.03em]">4+</dd>
+              </div>
+              <div className="flex flex-col-reverse gap-1 py-5 pl-5">
+                <dt className="text-sm text-fg-2">{t('about.projectsPublished')}</dt>
+                <dd className="text-4xl font-semibold tracking-[-0.03em]">{projects.length}</dd>
+              </div>
+            </dl>
 
-            {/* Counters */}
-            <RevealGroup className="grid grid-cols-3 gap-6 sm:gap-10 mt-14 pt-10" stagger={0.12} style={{ borderTop: '1px solid var(--card-border)' }}>
-              <RevealItem><AnimatedCounter target={3} label={t('about.yearsExp')} suffix="+" /></RevealItem>
-              <RevealItem><AnimatedCounter target={5} label={t('about.projectsCompleted')} suffix="+" /></RevealItem>
-              <RevealItem><AnimatedCounter target={15} label={t('about.technologies')} suffix="+" /></RevealItem>
-            </RevealGroup>
+            <a href={CV_URL} target="_blank" rel="noopener noreferrer" className="btn btn-secondary mt-8">
+              <FiDownload className="h-4 w-4" aria-hidden="true" />
+              {t('hero.downloadCV')}
+              <span className="sr-only">{t('common.newTab')}</span>
+            </a>
 
-            {/* CTA */}
-            <Reveal delay={0.15} className="mt-10">
-              <button
-                onClick={() => scrollToSection('Contact')}
-                data-cursor-hover
-                className="px-6 py-3 rounded-full font-medium text-sm border hover:-translate-y-0.5 hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300 cursor-pointer"
-                style={{ borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)' }}
-              >
-                {t('about.tellMore')}
-              </button>
-            </Reveal>
-          </div>
+            <CodeWindow className="mt-12" />
+          </Reveal>
 
-          {/* Code column */}
-          <div className="lg:w-[400px] flex-shrink-0 lg:sticky lg:top-28">
-            <CodeWindow />
-          </div>
+          <Reveal className="space-y-14 lg:col-span-6 lg:col-start-7" delay={0.08} amount={0.15}>
+            <Timeline
+              title={t('about.experienceTitle')}
+              items={experience}
+              renderItem={(item) => {
+                const projectId = projectIdByTitle(item.project);
+                return (
+                  <>
+                    {orgWithPeriod(item)}
+                    <div>
+                      {item.role && <p className="text-fg">{item.role}</p>}
+                      <p className={`${item.role ? 'mt-1.5 ' : ''}text-sm leading-relaxed text-fg-2`}>{item.detail}</p>
+                      {projectId && (
+                        <p className="mt-3 font-mono text-xs text-muted">
+                          {t('about.projectLabel')}:{' '}
+                          <a
+                            href={`/#${projectId}`}
+                            onClick={(e) => handleSectionLinkClick(e, projectId)}
+                            className="link-underline text-fg"
+                          >
+                            {item.project}
+                          </a>
+                        </p>
+                      )}
+                    </div>
+                  </>
+                );
+              }}
+            />
+
+            <Timeline
+              title={t('about.educationTitle')}
+              items={education}
+              renderItem={(item) => (
+                <>
+                  {orgWithPeriod(item)}
+                  <div>
+                    <p className="text-fg">{item.title}</p>
+                    {item.detail && <p className="mt-1.5 text-sm leading-relaxed text-fg-2">{item.detail}</p>}
+                  </div>
+                </>
+              )}
+            />
+
+            <Timeline
+              title={t('about.certificationsTitle')}
+              items={certifications}
+              renderItem={(item) => (
+                <>
+                  {orgWithPeriod(item)}
+                  <p className="text-fg">{item.title}</p>
+                </>
+              )}
+            />
+          </Reveal>
         </div>
       </div>
     </section>

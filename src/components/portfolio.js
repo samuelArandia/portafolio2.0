@@ -1,93 +1,64 @@
 "use client";
 
 import React from "react";
-import PortfolioCard from "./portfolioCard";
+import ExternalArrow from "@/components/ExternalArrow";
+import { ProjectLead, ProjectFeature, ProjectRow } from "./portfolioCard";
 import { projects } from "@/constants";
-import { FaVuejs, FaReact, FaJava } from "react-icons/fa";
-import { BsBootstrap } from "react-icons/bs";
-import { SiPostgresql, SiTailwindcss, SiAngular, SiTypescript, SiSpringboot } from "react-icons/si";
-import { DiCss3, DiDjango, DiJavascript } from "react-icons/di";
-import { TbBrandNextjs, TbBrandGolang } from "react-icons/tb";
-import { AiFillHtml5 } from "react-icons/ai";
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Reveal } from "@/components/motion/Reveal";
-import SplitText from "@/components/motion/SplitText";
+import SectionHeading from "@/components/SectionHeading";
 
-const techIconMap = {
-  "Vue.js": FaVuejs,
-  "Go": TbBrandGolang,
-  "Tailwind CSS": SiTailwindcss,
-  "Bootstrap": BsBootstrap,
-  "Django": DiDjango,
-  "PostgreSQL": SiPostgresql,
-  "React": FaReact,
-  "JavaScript": DiJavascript,
-  "Next.js": TbBrandNextjs,
-  "HTML": AiFillHtml5,
-  "CSS": DiCss3,
-  "Angular": SiAngular,
-  "TypeScript": SiTypescript,
-  "Spring Boot": SiSpringboot,
-  "Java": FaJava,
-};
+const featured = projects.filter((p) => p.featured);
+const others = projects.filter((p) => !p.featured);
+const [lead, ...secondary] = featured;
 
 const Portafolio = () => {
   const { t } = useLanguage();
-
-  const projectsWithIcons = projects.map((project) => {
-    const validTechs = project.technologies.filter((tech) => techIconMap[tech]);
-    return {
-      ...project,
-      description: t(`projects.${project.id}`),
-      technologies: validTechs.map((tech) => techIconMap[tech]),
-      techNames: validTechs,
-    };
-  });
+  const count = t('portfolio.count').replace('{n}', String(projects.length).padStart(2, '0'));
 
   return (
-    <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="Portafolio">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-12 sm:mb-16">
-          <span className="section-number">{t('portfolio.section')} {'//'}</span>
-          <h2
-            className="font-display font-semibold mt-2"
-            style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
-          >
-            <SplitText text={t('portfolio.title')} stagger={0.06} />
-          </h2>
-        </div>
+    <section id="Portafolio" aria-labelledby="portfolio-title" className="py-24 md:py-32">
+      <div className="container-page">
+        <SectionHeading index={t('portfolio.section')} title={t('portfolio.title')} titleId="portfolio-title" meta={count} />
 
-        {/* Projects - sticky stacking cards */}
-        <div className="relative">
-          {projectsWithIcons.map((project, index) => (
-            <div
-              key={project.id}
-              className="sticky mb-6 last:mb-0"
-              style={{
-                top: `${90 + index * 20}px`,
-                zIndex: index + 1,
-              }}
-            >
-              <PortfolioCard {...project} index={index} />
-            </div>
+        <Reveal className="mt-16 md:mt-20" amount={0.15}>
+          <ProjectLead project={lead} index={0} />
+        </Reveal>
+
+        <div className="mt-20 grid gap-x-10 gap-y-20 md:mt-28 md:grid-cols-2">
+          {secondary.map((project, i) => (
+            <Reveal key={project.id} delay={i * 0.08} amount={0.15} className="h-full">
+              <ProjectFeature project={project} index={i + 1} />
+            </Reveal>
           ))}
         </div>
 
-        {/* GitHub link */}
-        <Reveal className="text-center mt-12">
+        <div className="mt-24 md:mt-32">
+          <h3 className="kicker flex items-center gap-4">
+            {t('portfolio.others')}
+            <span className="h-px flex-1 bg-line" aria-hidden="true" />
+          </h3>
+          <div className="divide-y divide-line">
+            {others.map((project, i) => (
+              <Reveal key={project.id} amount={0.2}>
+                <ProjectRow project={project} index={featured.length + i} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 border-t border-line pt-8">
           <a
             href="https://github.com/samuelArandia"
             target="_blank"
             rel="noopener noreferrer"
-            data-cursor-hover
-            className="inline-flex items-center gap-2 text-sm font-mono hover:text-[var(--accent-primary)] transition-colors duration-200"
-            style={{ color: 'var(--text-secondary)' }}
+            className="group inline-flex min-h-[2.75rem] items-center gap-1.5 font-mono text-sm text-fg-2 transition-colors hover:text-fg"
           >
             {t('portfolio.viewMore')}
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            <ExternalArrow />
+            <span className="sr-only">{t('common.newTab')}</span>
           </a>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

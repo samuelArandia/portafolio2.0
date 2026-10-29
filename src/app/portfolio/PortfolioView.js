@@ -1,23 +1,16 @@
 "use client"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
 import Portafolio from "@/components/portfolio"
-import { LanguageProvider } from "@/i18n/LanguageContext"
-import SmoothScroll from "@/components/motion/SmoothScroll"
-import Cursor from "@/components/motion/Cursor"
+import SiteShell from "@/components/SiteShell"
 import React from "react"
 
+// Standalone route for the section; the header links back to the home page anchors.
 function PortfolioView() {
   return (
-    <LanguageProvider>
-      <div className="grain-overlay" />
-      <Cursor />
-      <SmoothScroll>
-        <Header />
+    <SiteShell routeTitleKey="nav.Portafolio">
+      <div className="pt-16">
         <Portafolio />
-        <Footer />
-      </SmoothScroll>
-    </LanguageProvider>
+      </div>
+    </SiteShell>
   )
 }
 

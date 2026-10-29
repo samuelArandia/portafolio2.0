@@ -3,3 +3,5 @@ compatibility_date = "2026-08-07"
 
 [assets]
 directory = "out"
+# Serve out/404.html (with a 404 status) for unknown paths instead of an empty response.
+not_found_handling = "404-page"

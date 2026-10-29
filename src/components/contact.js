@@ -1,30 +1,35 @@
 "use client"
-import React, { useState } from "react"
-import { BsFillSendCheckFill } from "react-icons/bs";
+import React, { useRef, useState } from "react"
+import { FiCheck, FiAlertCircle, FiX } from "react-icons/fi";
+import ExternalArrow from "@/components/ExternalArrow";
+import { EMAIL, socialMedia } from "@/constants";
 import { useLanguage } from '@/i18n/LanguageContext';
 import { Reveal } from "@/components/motion/Reveal";
-import SplitText from "@/components/motion/SplitText";
-import MagneticButton from "@/components/motion/MagneticButton";
+import SectionHeading from "@/components/SectionHeading";
+
+const professionalLinks = socialMedia.filter((s) => s.name === 'LinkedIn' || s.name === 'GitHub');
 
 function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const submitRef = useRef(null);
   const { t } = useLanguage();
+  const isSubmitting = status === "sending";
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isSubmitting) return;
 
+    // Webhook URL (with its SAS signature) comes from the environment; see .env.local.example.
     const webhookUrl = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_URL;
     if (!webhookUrl) {
-      alert(t('contact.error'));
+      setStatus("error");
       return;
     }
 
-    setIsSubmitting(true);
+    setStatus("sending");
 
     fetch(webhookUrl, {
       method: 'POST',
@@ -37,79 +42,73 @@ function Contact() {
     })
     .then(response => {
       if (response.ok) {
-        setShowAlert(true);
+        setStatus("success");
         setEmail("");
         setName("");
         setMessage("");
       } else {
-        alert(t('contact.error'));
+        setStatus("error");
       }
     })
     .catch(() => {
-      alert(t('contact.error'));
-    })
-    .finally(() => {
-      setIsSubmitting(false);
+      setStatus("error");
     });
   }
 
   return (
-    <section className="py-20 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 lg:px-16" id="Contact">
-      <div className="max-w-6xl mx-auto">
-        {/* Split layout */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-10 items-start">
-          {/* Editorial contact info */}
-          <div className="md:col-span-2">
-            <span className="section-number">{t('contact.section')} {'//'}</span>
-            <h2
-              className="font-display font-semibold mt-2"
-              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', color: 'var(--text-primary)' }}
+    <section id="Contact" aria-labelledby="contact-title" className="pb-24 pt-24 md:pb-32 md:pt-32">
+      <div className="container-page">
+        <SectionHeading index={t('contact.section')} title={t('contact.title')} titleId="contact-title">
+          {t('contact.subtitle')}
+        </SectionHeading>
+
+        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-12">
+          <Reveal className="lg:col-span-5" amount={0.2}>
+            <p className="kicker">{t('contact.emailLabelShort')}</p>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="link-underline mt-3 inline-block break-all text-[clamp(1.375rem,3vw,2rem)] font-medium tracking-[-0.02em] text-fg"
             >
-              <SplitText text={t('contact.title')} stagger={0.05} />
-            </h2>
-            <Reveal delay={0.1} className="mt-4 leading-relaxed max-w-sm" style={{ fontSize: 'clamp(0.875rem, 1.2vw, 1.05rem)', color: 'var(--text-secondary)' }}>
-              {t('contact.subtitle')}
-            </Reveal>
+              {EMAIL}
+            </a>
 
-            <Reveal delay={0.2} className="mt-10">
-              <MagneticButton
-                as="a"
-                href="mailto:samuelarandia@gmail.com"
-                data-cursor-hover
-                strength={0.25}
-                className="inline-block font-display font-medium break-all"
-                style={{ fontSize: 'clamp(1.25rem, 2.6vw, 1.9rem)', color: 'var(--text-primary)', borderBottom: '2px solid var(--accent-primary)' }}
-              >
-                samuelarandia@gmail.com
-              </MagneticButton>
-            </Reveal>
+            <dl className="mt-10 divide-y divide-line border-y border-line">
+              {professionalLinks.map((social) => (
+                <div key={social.id} className="flex items-center justify-between gap-4 py-3">
+                  <dt className="kicker">{social.name}</dt>
+                  <dd>
+                    <a
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex min-h-[2.75rem] items-center gap-1.5 font-mono text-sm text-fg-2 transition-colors hover:text-fg"
+                    >
+                      {social.handle}
+                      <ExternalArrow />
+                      <span className="sr-only">{t('common.newTab')}</span>
+                    </a>
+                  </dd>
+                </div>
+              ))}
+              <div className="flex items-center justify-between gap-4 py-3">
+                <dt className="kicker">{t('contact.location')}</dt>
+                <dd className="flex min-h-[2.75rem] items-center font-mono text-sm text-fg-2">{t('contact.locationValue')}</dd>
+              </div>
+            </dl>
+          </Reveal>
 
-            <Reveal delay={0.28} className="mt-8 space-y-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
-              <p>{t('contact.location')} — <span style={{ color: 'var(--text-secondary)' }}>{t('contact.locationValue')}</span></p>
-              <p>
-                <a href="https://www.linkedin.com/in/samuel-arandia/" target="_blank" rel="noopener noreferrer" data-cursor-hover className="hover:text-[var(--accent-primary)] transition-colors">/in/samuel-arandia</a>
-                {' · '}
-                <a href="https://github.com/samuelArandia" target="_blank" rel="noopener noreferrer" data-cursor-hover className="hover:text-[var(--accent-primary)] transition-colors">@samuelArandia</a>
-              </p>
-            </Reveal>
-          </div>
-
-          {/* Form */}
-          <Reveal delay={0.15} className="md:col-span-3">
-            <div className="rounded-2xl p-6 sm:p-8 gradient-border-top h-full"
-              style={{ background: 'var(--bg-card)', boxShadow: 'var(--card-shadow)' }}
-            >
-              <form onSubmit={handleSubmit} className="space-y-6">
+          <Reveal className="lg:col-span-6 lg:col-start-7" delay={0.08} amount={0.15}>
+            <div className="rounded-lg border border-line bg-surface p-6 sm:p-8" style={{ boxShadow: 'var(--shadow)' }}>
+              <h3 id="contact-form-title" className="text-lg font-semibold tracking-tight">{t('contact.formTitle')}</h3>
+              <form onSubmit={handleSubmit} aria-labelledby="contact-form-title" className="mt-6 space-y-5">
                 <div>
-                  <label htmlFor="name" className="flex items-center gap-1.5 mb-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
-                    <span style={{ color: 'var(--accent-primary)' }}>&gt;</span> {t('contact.name')}
-                  </label>
+                  <label htmlFor="name" className="mb-2 block text-sm text-fg-2">{t('contact.name')}</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    className="contact-field w-full bg-transparent border-0 border-b py-2 text-sm transition-colors"
-                    style={{ borderBottomColor: 'var(--glass-border)', color: 'var(--text-primary)' }}
+                    autoComplete="name"
+                    className="field"
                     placeholder={t('contact.namePlaceholder')}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -117,15 +116,13 @@ function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="flex items-center gap-1.5 mb-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
-                    <span style={{ color: 'var(--accent-primary)' }}>&gt;</span> {t('contact.emailLabel')}
-                  </label>
+                  <label htmlFor="email" className="mb-2 block text-sm text-fg-2">{t('contact.emailLabel')}</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="contact-field w-full bg-transparent border-0 border-b py-2 text-sm transition-colors"
-                    style={{ borderBottomColor: 'var(--glass-border)', color: 'var(--text-primary)' }}
+                    autoComplete="email"
+                    className="field"
                     placeholder={t('contact.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -133,42 +130,53 @@ function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="flex items-center gap-1.5 mb-2 font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
-                    <span style={{ color: 'var(--accent-primary)' }}>&gt;</span> {t('contact.message')}
-                  </label>
+                  <label htmlFor="message" className="mb-2 block text-sm text-fg-2">{t('contact.message')}</label>
                   <textarea
                     id="message"
                     name="message"
-                    rows="4"
-                    className="contact-field w-full bg-transparent border-0 border-b py-2 text-sm transition-colors resize-none"
-                    style={{ borderBottomColor: 'var(--glass-border)', color: 'var(--text-primary)' }}
+                    rows="5"
+                    className="field resize-y"
                     placeholder={t('contact.messagePlaceholder')}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
                   />
                 </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  data-cursor-hover
-                  className="w-full py-3 rounded-xl font-medium text-sm text-white transition-all duration-300 cursor-pointer hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-                  style={{ background: 'var(--accent-primary)' }}
-                >
+
+                {/* aria-disabled instead of disabled keeps keyboard focus on the button while sending */}
+                <button ref={submitRef} type="submit" aria-disabled={isSubmitting} className="btn btn-primary w-full sm:w-auto">
                   {isSubmitting ? t('contact.sending') : t('contact.send')}
                 </button>
 
-                {showAlert && (
-                  <div className="alert-success bg-green-500/10 text-green-400 px-4 py-4 rounded-xl" role="status">
-                    <div className="flex items-center justify-center gap-3">
-                      <BsFillSendCheckFill className="text-green-400 text-xl flex-shrink-0" />
-                      <span className="text-sm">{t('contact.success')}</span>
+                <div role="status" aria-live="polite">
+                  {status === "sending" && <span className="sr-only">{t('contact.sending')}</span>}
+                  {status === "success" && (
+                    <div className="flex items-start gap-3 rounded-md border border-line-strong px-4 py-3 text-sm text-fg" style={{ background: 'var(--accent-soft)' }}>
+                      <FiCheck className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                      <span className="flex-1">{t('contact.success')}</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setStatus("idle");
+                          submitRef.current?.focus();
+                        }}
+                        aria-label={t('contact.closeNotification')}
+                        className="-m-2 flex h-8 w-8 items-center justify-center rounded-md text-fg-2 hover:text-fg"
+                      >
+                        <FiX className="h-4 w-4" aria-hidden="true" />
+                      </button>
                     </div>
-                    <button onClick={() => setShowAlert(false)} className="mt-2 text-xs text-green-500 hover:text-green-300 transition-colors cursor-pointer block mx-auto" aria-label={t('contact.closeNotification')}>
-                      {t('contact.close')}
-                    </button>
-                  </div>
-                )}
+                  )}
+                  {status === "error" && (
+                    <div className="flex items-start gap-3 rounded-md border border-line-strong px-4 py-3 text-sm text-fg">
+                      <FiAlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-fg-2" aria-hidden="true" />
+                      <span>
+                        {t('contact.error')}{' '}
+                        <a href={`mailto:${EMAIL}`} className="link-underline">{EMAIL}</a>.
+                      </span>
+                    </div>
+                  )}
+                </div>
               </form>
             </div>
           </Reveal>
